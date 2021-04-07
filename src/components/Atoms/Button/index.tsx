@@ -5,6 +5,7 @@ interface ButtonProps {
   width: string;
   color: string;
   text: string;
+  background: string;
 }
 
 const Button = ({ height, width, color, text }: ButtonProps) => {
