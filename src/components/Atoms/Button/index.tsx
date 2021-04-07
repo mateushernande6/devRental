@@ -7,9 +7,9 @@ interface ButtonProps {
   text: string;
 }
 
-const Button = ({ height, width, color, text } : ButtonProps) => {
+const Button = ({ height, width, color, text }: ButtonProps) => {
   return (
-    <ButtonStyled height={height} width={width} color={color} text={'text'}>
+    <ButtonStyled height={height} width={width} color={color}>
       {text}
     </ButtonStyled>
   );
