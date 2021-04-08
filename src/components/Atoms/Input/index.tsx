@@ -11,3 +11,5 @@ const Input = ({ width, height, placeHolder }: Iinput) => {
     <InputStyled width={width} height={height} placeholder={placeHolder} />
   );
 };
+
+export default Input;
