@@ -1,6 +1,6 @@
 import Routes from "./routes";
-import { FC } from "react";
-const App: FC = () => {
+
+const App = () => {
   return (
     <>
       <Routes />
