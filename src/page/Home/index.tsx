@@ -1,4 +1,5 @@
 import HeaderHome from "../../components/Molecules/HeaderHome";
+import Details from "../../components/Molecules/Details";
 import { Container, DivBackground, ContainerLogo, ContainerOne } from "./style";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
       <DivBackground />
       <ContainerOne>
         <HeaderHome />
+        <Details />
       </ContainerOne>
     </Container>
   );
