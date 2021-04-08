@@ -11,7 +11,6 @@ interface ButtonProps {
   click: MouseEventHandler;
 }
 
-<<<<<<< HEAD
 const Button = ({
   height,
   width,
@@ -28,11 +27,6 @@ const Button = ({
       color={color}
       onClick={click}
     >
-=======
-const Button = ({ height, width, color, text }: ButtonProps) => {
-  return (
-    <ButtonStyled height={height} width={width} color={color}>
->>>>>>> c3678e9800bb812ec799ebd1f744d63cf63cde2f
       {text}
     </ButtonStyled>
   );
