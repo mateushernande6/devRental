@@ -1,7 +1,10 @@
 import { Container, ContainerSub, DivLogo, DivButtons, Image } from "./style";
 import Button from "../../Atoms/Button";
+import { useHistory } from "react-router-dom";
 
 const HeaderHome = () => {
+  const history = useHistory();
+
   return (
     <Container>
       <ContainerSub>
@@ -10,7 +13,7 @@ const HeaderHome = () => {
         </DivLogo>
         <DivButtons>
           <Button
-            click={() => console.log("Button login")}
+            click={() => history.push("/login")}
             color="#fff"
             background="#FC923F"
             height={3.5}
@@ -18,7 +21,7 @@ const HeaderHome = () => {
             text="Login"
           />
           <Button
-            click={() => console.log("Button login")}
+            click={() => history.push("/register")}
             height={3.5}
             width={13}
             color="#fff"
