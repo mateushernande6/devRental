@@ -12,18 +12,18 @@ interface ButtonProps {
 }
 
 const Button = ({
+  click,
+  background,
   height,
   width,
   color,
-  background,
   text,
-  click,
 }: ButtonProps) => {
   return (
     <ButtonStyled
+      background={background}
       height={height}
       width={width}
-      background={background}
       color={color}
       onClick={click}
       type="submit"
