@@ -6,6 +6,7 @@ import api from "../../services";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useHistory } from "react-router-dom";
 
 interface IFormInputs {
   email: string;
@@ -18,6 +19,7 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -31,7 +33,15 @@ const Login = () => {
     api
       .post("login", data)
       .then((response) => {
+        localStorage.clear();
+
+        localStorage.setItem(
+          "token",
+          JSON.stringify(response.data.accessToken)
+        );
+
         console.log(response);
+        // history.push("/");
       })
       .catch((err) => console.log(err.response));
   };

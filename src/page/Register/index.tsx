@@ -9,8 +9,11 @@ import Button from "../../components/Atoms/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import api from "../../services";
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
+  const history = useHistory();
   interface IFormValue {
     email: string;
     password: string;
@@ -26,14 +29,19 @@ const Register = () => {
     reset,
     register,
     formState: { errors },
-  } = useForm<IFormValue>({
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: IFormValue) => {
     reset();
 
-    console.log(data);
+    api
+      .post("users", data)
+      .then((response) => {
+        history.push("/login");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -43,7 +51,8 @@ const Register = () => {
           <h2>Cadastrar</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
-              {...register("email")}
+              name="email"
+              register={register}
               height={3.5}
               placeHolder={"Email"}
               width={30}
@@ -51,7 +60,8 @@ const Register = () => {
             <p>{errors.email?.message}</p>
 
             <Input
-              {...register("password")}
+              name="password"
+              register={register}
               height={3.5}
               placeHolder={"Senha"}
               width={30}
@@ -64,7 +74,6 @@ const Register = () => {
               color={"#fff"}
               text={"Register"}
               background={"#fc923f"}
-              click={() => console.log("oi")}
             />
           </form>
 
@@ -73,8 +82,8 @@ const Register = () => {
             width={20}
             color={"#fff"}
             text={"Login"}
+            click={() => history.push("/login")}
             background={"#14142b"}
-            click={() => console.log("oi")}
           />
         </InfoContainer>
         <SvgContainer>
