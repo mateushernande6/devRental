@@ -13,10 +13,14 @@ export const ContainerSub = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
-  width: 90%;
+  width: 73%;
 `;
 
-export const DivLogo = styled.div``;
+export const DivLogo = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const DivButtons = styled.div`
   width: 274px;
