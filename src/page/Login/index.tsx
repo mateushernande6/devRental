@@ -1,7 +1,6 @@
 import { Container, Main, DivImage, DivContent } from "./style";
 import Input from "../../components/Atoms/Input";
 import Button from "../../components/Atoms/Button";
-import { orange } from "@material-ui/core/colors";
 
 const Login = () => {
   return (
