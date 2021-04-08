@@ -16,6 +16,7 @@ export const Main = styled.div`
   padding: 3rem;
   display: flex;
   justify-content: space-around;
+  border-radius: 10px;
 `;
 export const DivImage = styled.div`
   width: 60rem;
@@ -28,10 +29,12 @@ export const DivImage = styled.div`
   }
 `;
 export const DivContent = styled.div`
+  width: 50rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+
   h2 {
     font-size: 4rem;
     font-family: "Montserrat Alternates", sans-serif;
@@ -41,5 +44,15 @@ export const DivContent = styled.div`
   }
   Input {
     margin-bottom: 3rem;
+  }
+  Button {
+    margin-bottom: 3rem;
+  }
+  .linkReg {
+    font-size: 2.5rem;
+    color: white;
+    outline: none;
+    text-decoration: none;
+    font-family: "Montserrat Alternates", sans-serif;
   }
 `;

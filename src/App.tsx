@@ -1,7 +1,6 @@
 import Routes from "./routes";
-import Button from "./components/Atoms/Button";
-import { FC } from "react";
-const App: FC = () => {
+
+const App = () => {
   return (
     <>
       <Routes />

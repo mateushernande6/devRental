@@ -8,7 +8,7 @@ interface ButtonProps {
   color: string;
   text: ReactNode;
   background: string;
-  click: MouseEventHandler;
+  click?: MouseEventHandler;
 }
 
 const Button = ({
@@ -26,6 +26,7 @@ const Button = ({
       background={background}
       color={color}
       onClick={click}
+      type="submit"
     >
       {text}
     </ButtonStyled>
