@@ -14,8 +14,9 @@ export const Main = styled.div`
   color: white;
   padding: 3rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   border-radius: 10px;
+  text-align: center;
 `;
 export const DivImage = styled.div`
   width: 60rem;
