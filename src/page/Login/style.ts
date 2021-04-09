@@ -14,7 +14,7 @@ export const Main = styled.div`
   color: white;
   padding: 3rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   border-radius: 10px;
 `;
 export const DivImage = styled.div`
@@ -33,16 +33,21 @@ export const DivContent = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  text-align: center;
+  justify-content: center;
 
   h2 {
     font-size: 4rem;
     font-family: "Montserrat Alternates", sans-serif;
     font-weight: 400;
-    text-align: center;
     margin-bottom: 6rem;
   }
-  Input {
+  p {
+    margin-top: 1rem;
     margin-bottom: 3rem;
+    font-size: 1.5rem;
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #f99292;
   }
   Button {
     margin-bottom: 3rem;

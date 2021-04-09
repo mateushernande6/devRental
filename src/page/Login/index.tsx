@@ -34,14 +34,11 @@ const Login = () => {
       .post("login", data)
       .then((response) => {
         localStorage.clear();
-
         localStorage.setItem(
           "token",
           JSON.stringify(response.data.accessToken)
         );
-
         console.log(response);
-        // history.push("/");
       })
       .catch((err) => console.log(err.response));
   };
@@ -62,6 +59,7 @@ const Login = () => {
               placeHolder="Email"
               register={register}
             />
+            <p>{errors.email?.message}</p>
             <Input
               name="password"
               width={30}
@@ -69,6 +67,7 @@ const Login = () => {
               placeHolder="Password"
               register={register}
             />
+            <p>{errors.password?.message}</p>
             <Button
               width={32.5}
               height={5.5}
