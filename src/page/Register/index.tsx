@@ -11,17 +11,28 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services";
 import { useHistory } from "react-router-dom";
+import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import { useContext } from "react";
 
 const Register = () => {
   const history = useHistory();
+
+  const { valueState } = useContext(AuthDashboardContext);
+
   interface IFormValue {
     email: string;
     password: string;
   }
 
   const schema = yup.object().shape({
+    name: yup.string().required(),
     email: yup.string().required(),
-    password: yup.string().required(),
+    password: yup
+      .string()
+      .matches(
+        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/
+      )
+      .required(),
   });
 
   const {
@@ -36,8 +47,10 @@ const Register = () => {
   const onSubmit = (data: IFormValue) => {
     reset();
 
+    const dataEnd = { ...data, campany: `${valueState}` };
+
     api
-      .post("users", data)
+      .post("users", dataEnd)
       .then((response) => {
         history.push("/login");
       })
@@ -50,6 +63,14 @@ const Register = () => {
         <InfoContainer>
           <h2>Cadastrar</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              name="name"
+              register={register}
+              height={3.5}
+              placeHolder={"Nome"}
+              width={30}
+            />
+            <p>{errors.name?.message}</p>
             <Input
               name="email"
               register={register}

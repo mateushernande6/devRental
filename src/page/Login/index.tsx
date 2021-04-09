@@ -29,7 +29,6 @@ const Login = () => {
   });
 
   const onSubmit = (data: IFormInputs) => {
-    console.log(data);
     api
       .post("login", data)
       .then((response) => {
@@ -40,8 +39,7 @@ const Login = () => {
           JSON.stringify(response.data.accessToken)
         );
 
-        console.log(response);
-        // history.push("/");
+        history.push("/devdashboard");
       })
       .catch((err) => console.log(err.response));
   };
