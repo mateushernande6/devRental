@@ -19,4 +19,9 @@ export const InputStyled = styled.input<Props>`
   ::-webkit-input-placeholder {
     color: white;
   }
+
+  @media (max-width: 817px) {
+    width: 22rem;
+    height: 2.5rem;
+  }
 `;

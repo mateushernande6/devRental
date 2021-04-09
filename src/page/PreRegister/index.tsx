@@ -9,13 +9,25 @@ import {
 import image1 from "./assets/asde1.svg";
 import { BsPeopleCircle } from "react-icons/bs";
 import { AiFillBank } from "react-icons/ai";
-import { useHistory } from "react-router";
+import { useContext } from "react";
+import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import { useHistory } from "react-router-dom";
 
 const PreRegister = () => {
   const history = useHistory();
-  const handleHistory = () => {
+
+  const { setValueState } = useContext(AuthDashboardContext);
+
+  const functionDev = (data: string) => {
+    setValueState(data);
     history.push("/register");
   };
+
+  const functionCompany = (data: string) => {
+    setValueState(data);
+    history.push("/register");
+  };
+
   return (
     <Container>
       <ContainerDiv>
@@ -23,11 +35,11 @@ const PreRegister = () => {
         <DivItens>
           <h1>Selecione seu perfil para acessar a devRental</h1>
           <DivCards>
-            <Card onClick={handleHistory}>
+            <Card onClick={() => functionDev("dev")}>
               <BsPeopleCircle />
               <h2>Sou Dev</h2>
             </Card>
-            <Card onClick={handleHistory}>
+            <Card onClick={() => functionCompany("company")}>
               <AiFillBank />
               <h2>Sou Empresa</h2>
             </Card>

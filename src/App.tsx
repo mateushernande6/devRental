@@ -1,9 +1,12 @@
 import Routes from "./routes";
+import { Providers } from "./Provider/index";
 
 const App = () => {
   return (
     <>
-      <Routes />
+      <Providers>
+        <Routes />
+      </Providers>
     </>
   );
 };

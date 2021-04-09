@@ -3,11 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  
   display: flex;
   align-items: center;
   justify-content: center;
-
 `;
 
 export const InnerContainer = styled.div`
@@ -15,43 +13,90 @@ export const InnerContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  border-radius: 13px;
 
-  width: 90vw;
-  height: 50rem;
-  
+  width: 800px;
+  height: 500px;
+
   background: #14142b;
 
+  @media (max-width: 817px) {
+    width: 94vw;
+    height: 92vh;
+    flex-direction: column-reverse;
+  }
+`;
+
+export const Title = styled.h2`
+  font-size: 4rem;
+  margin: 2rem 0;
+
+  @media (max-width: 817px) {
+    font-size: 3.4rem;
+  }
 `;
 
 export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  
-  width: 50rem;
+  border-right: 1px solid #212040;
+  width: 41rem;
+  height: 100%;
 
-  h2{
+  @media (max-width: 817px) {
+    border: none;
+  }
+
+  @media (max-width: 417px) {
+    width: 29rem;
+  }
+
+  h2 {
     font-size: 4rem;
     font-family: "Montserrat Alternates", sans-serif;
     color: #fff;
     margin-bottom: 2rem;
-  };
-  Input{
+  }
+  Input {
     margin-bottom: 2rem;
-  };
-  Button{
-    margin-bottom: 1rem;
-  };
-  //width: 50%;
+  }
 
+  Input:first-child {
+    margin-top: 1.5rem;
+  }
+  Button {
+    margin: 1rem 0 1rem 0;
+  }
+  //width: 50%;
 `;
 
 export const SvgContainer = styled.div`
-  
-    width: 40rem;
-  
-  img{
+  width: 40rem;
+  padding: 0 26px 0 26px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 50%; */
+  /* background-color: red; */
+  height: 100%;
+
+  img {
     width: 100%;
-  };
-    
+  }
+
+  @media (max-width: 817px) {
+    img {
+      width: 68%;
+    }
+    width: 40rem;
+  }
+
+  @media (max-width: 417px) {
+    img {
+      width: 58%;
+    }
+  }
 `;

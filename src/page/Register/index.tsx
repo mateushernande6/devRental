@@ -3,6 +3,7 @@ import {
   InnerContainer,
   SvgContainer,
   InfoContainer,
+  Title,
 } from "./style";
 import Input from "../../components/Atoms/Input";
 import Button from "../../components/Atoms/Button";
@@ -11,17 +12,28 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services";
 import { useHistory } from "react-router-dom";
+import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import { useContext } from "react";
 
 const Register = () => {
   const history = useHistory();
+
+  const { valueState } = useContext(AuthDashboardContext);
+
   interface IFormValue {
     email: string;
     password: string;
   }
 
   const schema = yup.object().shape({
+    name: yup.string().required(),
     email: yup.string().required(),
-    password: yup.string().required(),
+    password: yup
+      .string()
+      .matches(
+        /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/
+      )
+      .required(),
   });
 
   const {
@@ -36,8 +48,10 @@ const Register = () => {
   const onSubmit = (data: IFormValue) => {
     reset();
 
+    const dataEnd = { ...data, campany: `${valueState}` };
+
     api
-      .post("users", data)
+      .post("users", dataEnd)
       .then((response) => {
         history.push("/login");
       })
@@ -48,29 +62,37 @@ const Register = () => {
     <Container>
       <InnerContainer>
         <InfoContainer>
-          <h2>Cadastrar</h2>
+          <Title>Cadastrar</Title>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <Input
+              name="name"
+              register={register}
+              height={2.5}
+              placeHolder={"Nome"}
+              width={24}
+            />
+            <p>{errors.name?.message}</p>
             <Input
               name="email"
               register={register}
-              height={3.5}
+              height={2.5}
               placeHolder={"Email"}
-              width={30}
+              width={24}
             />
             <p>{errors.email?.message}</p>
 
             <Input
               name="password"
               register={register}
-              height={3.5}
+              height={2.5}
               placeHolder={"Senha"}
-              width={30}
+              width={24}
             />
             <p>{errors.password?.message}</p>
 
             <Button
-              height={5}
-              width={32}
+              height={4.7}
+              width={26}
               color={"#fff"}
               text={"Register"}
               background={"#fc923f"}
@@ -79,7 +101,7 @@ const Register = () => {
 
           <Button
             height={4}
-            width={20}
+            width={26}
             color={"#fff"}
             text={"Login"}
             click={() => history.push("/login")}
