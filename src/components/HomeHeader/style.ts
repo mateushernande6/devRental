@@ -4,9 +4,9 @@ export const Container = styled.div`
   font-size: 2rem;
   color: #fff;
   
-  margin: 0 auto;
+  margin: 1rem auto;
   
-  width: 90vw;
+  width: 100%;
   height: 100%;
   
   background: #191932;
@@ -21,7 +21,7 @@ export const UpperContainer = styled.div`
     
   img{
     width: 40%;
-    height: 100%; 
+    height: 50%; 
   };
   div{
     width: 34rem;

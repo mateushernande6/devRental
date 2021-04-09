@@ -1,16 +1,19 @@
 import {Container, UpperContainer, LowerContainer} from './style'
 import Button from "../Atoms/Button";
+import {useHistory} from 'react-router-dom'
 
 const HomeHeader = () => {
+    const history = useHistory()
+
     return (
     <Container>
         <UpperContainer>
 
-            <img src={'./assets/devrental.svg'} alt={''}/>
+            <img src={'./assets/logoHome1.svg'} alt={''}/>
 
             <div>
-                <Button height={4.5} width={15} color={'var(--text)'} text={'Login'} background={'var(--color-primary)'} click={()=> null}/>
-                <Button height={4.5} width={15} color={'var(--text)'} text={'Register'} background={'var(--color-secondary)'} click={()=> null}/>
+                <Button height={4.5} width={15} color={'var(--text)'} text={'Login'} background={'var(--color-primary)'} click={()=> history.push('/login')}/>
+                <Button height={4.5} width={15} color={'var(--text)'} text={'Register'} background={'var(--color-secondary)'} click={()=> history.push('/preregister')}/>
             </div>
         </UpperContainer>
 
