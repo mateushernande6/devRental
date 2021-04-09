@@ -1,8 +1,14 @@
 import Routes from "./routes";
+import { Providers } from "./Provider/index";
 
-import { FC } from "react";
-const App: FC = () => {
-  return <Routes />;
+const App = () => {
+  return (
+    <>
+      <Providers>
+        <Routes />
+      </Providers>
+    </>
+  );
 };
 
 export default App;

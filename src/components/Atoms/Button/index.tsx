@@ -1,16 +1,33 @@
+import { MouseEventHandler } from "react";
+import { ReactNode } from "react";
 import { ButtonStyled } from "./style";
 
 interface ButtonProps {
-  height: string;
-  width: string;
+  height: number;
+  width: number;
   color: string;
-  text: string;
+  text: ReactNode;
   background: string;
+  click?: MouseEventHandler;
 }
 
-const Button = ({ height, width, color, background, text } : ButtonProps) => {
+const Button = ({
+  click,
+  background,
+  height,
+  width,
+  color,
+  text,
+}: ButtonProps) => {
   return (
-    <ButtonStyled height={height} width={width} background={background} color={color} text={'text'}>
+    <ButtonStyled
+      background={background}
+      height={height}
+      width={width}
+      color={color}
+      onClick={click}
+      type="submit"
+    >
       {text}
     </ButtonStyled>
   );

@@ -3,6 +3,7 @@ import Home from "../page/Home";
 import Login from "../page/Login";
 import Register from "../page/Register";
 import PreRegister from "../page/PreRegister";
+import Dashboard from "../page/Dashboard";
 
 const Routes = () => {
   return (
@@ -11,6 +12,7 @@ const Routes = () => {
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/preregister" component={PreRegister} />
+      <Route exact path="/dashboard" component={Dashboard} />
     </Switch>
   );
 };
