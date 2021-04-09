@@ -6,8 +6,7 @@ import { useHistory } from "react-router-dom";
 const PreRegister = () => {
   const history = useHistory();
 
-  const { valueState, setValueState } = useContext(AuthDashboardContext);
-  console.log(valueState);
+  const { setValueState } = useContext(AuthDashboardContext);
 
   const FunctionDev = (data: string) => {
     setValueState(data);
