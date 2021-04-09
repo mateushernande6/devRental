@@ -3,6 +3,7 @@ import {
   InnerContainer,
   SvgContainer,
   InfoContainer,
+  Title,
 } from "./style";
 import Input from "../../components/Atoms/Input";
 import Button from "../../components/Atoms/Button";
@@ -61,37 +62,37 @@ const Register = () => {
     <Container>
       <InnerContainer>
         <InfoContainer>
-          <h2>Cadastrar</h2>
+          <Title>Cadastrar</Title>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Input
               name="name"
               register={register}
-              height={3.5}
+              height={2.5}
               placeHolder={"Nome"}
-              width={30}
+              width={24}
             />
             <p>{errors.name?.message}</p>
             <Input
               name="email"
               register={register}
-              height={3.5}
+              height={2.5}
               placeHolder={"Email"}
-              width={30}
+              width={24}
             />
             <p>{errors.email?.message}</p>
 
             <Input
               name="password"
               register={register}
-              height={3.5}
+              height={2.5}
               placeHolder={"Senha"}
-              width={30}
+              width={24}
             />
             <p>{errors.password?.message}</p>
 
             <Button
-              height={5}
-              width={32}
+              height={4.7}
+              width={26}
               color={"#fff"}
               text={"Register"}
               background={"#fc923f"}
@@ -100,7 +101,7 @@ const Register = () => {
 
           <Button
             height={4}
-            width={20}
+            width={26}
             color={"#fff"}
             text={"Login"}
             click={() => history.push("/login")}

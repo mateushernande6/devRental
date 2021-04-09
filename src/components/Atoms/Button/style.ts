@@ -22,4 +22,8 @@ export const ButtonStyled = styled.button<ButtonProps>`
   color: ${(props) => props.color};
   width: ${(props) => `${props.width}rem`};
   background: ${(props) => props.background};
+
+  @media (max-width: 817px) {
+    width: 24.5rem;
+  }
 `;
