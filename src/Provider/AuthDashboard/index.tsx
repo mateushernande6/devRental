@@ -3,11 +3,6 @@ import { createContext, ReactNode, useState } from "react";
 interface IChildrenContext {
   children: ReactNode;
 }
-
-// interface IItemsArray {
-//   category: string;
-// }
-
 interface ITypeState {
   valueState: string;
   setValueState: React.Dispatch<React.SetStateAction<string>>;
