@@ -11,8 +11,8 @@ const Home = () => {
     return (
     <>
         {/*<HomeHeader/>*/}
-        {/*<Partners/>*/}
-        <GoalsMissions/>
+        <Partners/>
+        {/*<GoalsMissions/>*/}
         {/*<Attests/>*/}
         {/*<Contact/>*/}
    </>
