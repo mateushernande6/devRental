@@ -60,6 +60,10 @@ export const DivTitle = styled.div`
   width: 80%;
   align-items: center;
   margin-bottom: 33px;
+
+  @media (max-width: 512px) {
+    width: 96%;
+  }
 `;
 
 export const Line = styled.div`

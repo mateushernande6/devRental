@@ -38,7 +38,7 @@ const Login = () => {
           JSON.stringify(response.data.accessToken)
         );
 
-        history.push("/devdashboard");
+        history.push("/dashboard");
       })
       .catch((err) => console.log(err.response));
   };
