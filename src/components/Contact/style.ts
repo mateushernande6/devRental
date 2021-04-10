@@ -1,19 +1,22 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.section`
   margin: 0 auto;
 
   width: 100%;
-  height: 100%;
+  max-width: 1125px;
 
   background: #191932;
   
+  color: #fff;
   
 `;
 
 export const UpperContainer = styled.div` 
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
+  
   
   font-size: 1.6rem;
   
@@ -28,10 +31,15 @@ export const UpperContainer = styled.div`
     padding: 2rem 0;
     font-size: 2rem;
   }
+
+  @media (min-width: 769px){
+    flex-direction: row;
+  }
 `;
 
 export const InfoSection = styled.div`
-  width: 27%;
+  text-align: center;
+  //width: 27%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,7 +62,7 @@ export const Footer = styled.footer`
 
   background: #272748;
   
-  height: 5rem;
+  height: 3rem;
   
   display: flex;
   justify-content: center;

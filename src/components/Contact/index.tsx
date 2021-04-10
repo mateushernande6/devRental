@@ -35,7 +35,7 @@ const Contact = () => {
             </UpperContainer>
 
             <Footer>
-            <h6>desenvolvido por um bando de gente no 220</h6>
+            <h6>desenvolvido na kenzie academy brasil</h6>
             </Footer>
 
         </Container>

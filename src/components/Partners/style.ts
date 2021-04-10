@@ -9,7 +9,7 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1125px;
   
-  background: #191932;
+  background: #201f3e;
   
 `;
 
@@ -27,7 +27,6 @@ export const UpperContainer = styled.div`
     
     h2{
     font-size: 3rem;
-    font-variant: all-small-caps;
     };
     p{
     margin-top: 1rem;

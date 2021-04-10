@@ -8,7 +8,7 @@ export const Container = styled.section`
 
   max-width: 1125px;
 
-  background: #191932;
+  background: #201f3e;
   
   //display: flex;
   //flex-direction: column;

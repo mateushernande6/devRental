@@ -10,11 +10,11 @@ import Contact from "../../components/Contact";
 const Home = () => {
     return (
     <>
-        {/*<HomeHeader/>*/}
+        <HomeHeader/>
         <Partners/>
-        {/*<GoalsMissions/>*/}
-        {/*<Attests/>*/}
-        {/*<Contact/>*/}
+        <GoalsMissions/>
+        <Attests/>
+        <Contact/>
    </>
     );
 };
