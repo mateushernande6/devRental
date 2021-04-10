@@ -1,22 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
-import { FiUser } from "react-icons/fi";
-import {
-  Image,
-  Container,
-  Content,
-  Title,
-  SubTitle,
-  Text,
-  UlStyled,
-  LiStyled,
-  DivTitle,
-  Line,
-  BackIcon,
-} from "./style";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,7 +17,11 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function ModalComponents() {
+interface IDataChildren {
+  children: ReactNode;
+}
+
+export default function ModalComponents({ children }: IDataChildren) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -61,57 +51,7 @@ export default function ModalComponents() {
         }}
       >
         <Fade in={open}>
-          <>
-            <Container>
-              <Content>
-                <DivTitle>
-                  <Title>DevRental</Title>
-                  <Line />
-                  <BackIcon>
-                    <FiUser size={35} />
-                  </BackIcon>
-                </DivTitle>
-                <SubTitle>Objetivo:</SubTitle>
-                <Text>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy
-                </Text>
-                <SubTitle>Descrição:</SubTitle>
-                <Text>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
-                </Text>
-                <Text>
-                  It has survived not only five centuries, but also the leap
-                  into electronic typesetting, remaining essentially unchanged.
-                  It was popularised in the 1960s with the release of Letraset
-                  sheets containing Lorem Ipsum passages, and more recently with
-                  desktop publishing software like Aldus PageMaker including
-                  versions of Lorem Ipsum.
-                </Text>
-                <SubTitle>Tecnologias:</SubTitle>
-                <UlStyled>
-                  <LiStyled>React</LiStyled>
-                  <LiStyled>JsonServe</LiStyled>
-                  <LiStyled>Styles-components</LiStyled>
-                  <LiStyled>Context-api</LiStyled>
-                  <LiStyled>Yup</LiStyled>
-                </UlStyled>
-                <SubTitle>Recompensa:</SubTitle>
-                <Text>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy
-                </Text>
-              </Content>
-
-              <Image />
-            </Container>
-          </>
+          <>{children}</>
         </Fade>
       </Modal>
     </div>

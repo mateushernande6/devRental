@@ -47,8 +47,7 @@ export const InfoContainer = styled.div`
 
   p {
     text-align: left;
-    margin-top: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
     font-size: 1.5rem;
     font-family: "Montserrat Alternates", sans-serif;
     color: #f99292;
@@ -69,7 +68,7 @@ export const InfoContainer = styled.div`
     margin-bottom: 2rem;
   }
   Input {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   Input:first-child {

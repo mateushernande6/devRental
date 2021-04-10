@@ -1,6 +1,7 @@
 import ItensMenu from "../../components/ItensMenu";
 import ModalComponents from "../../components/Modal";
 import { Container, DivSection, DivMenu, DivAside, DivMain } from "./style";
+import DataCard from "../../components/DataCard";
 
 const Dashboard = () => {
   return (
@@ -15,9 +16,9 @@ const Dashboard = () => {
               fun={() => console.log("aqui")}
             />
             <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
-            <button>
-              <ModalComponents />
-            </button>
+            <ModalComponents>
+              <DataCard />
+            </ModalComponents>
           </DivMenu>
         </DivSection>
       </DivMain>

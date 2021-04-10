@@ -57,6 +57,7 @@ const Register = () => {
     api
       .post("users", dataEnd)
       .then((response) => {
+        console.log(response);
         history.push("/login");
       })
       .catch((err) => console.log(err));
