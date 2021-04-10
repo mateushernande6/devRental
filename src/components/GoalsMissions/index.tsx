@@ -1,7 +1,8 @@
-import {Container, LowerContainer, UpperContainer} from './style'
+import {Container, LowerContainer, UpperContainer, OuterContainer} from './style'
 
 const GoalsMissions = () => {
     return (
+<OuterContainer>
     <Container>
 
         <UpperContainer>
@@ -16,6 +17,7 @@ const GoalsMissions = () => {
         </LowerContainer>
 
     </Container>
+</OuterContainer>
     );
 };
 

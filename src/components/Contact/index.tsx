@@ -1,10 +1,11 @@
-import {Container, Footer, UpperContainer, Icons, InfoSection} from './style'
+import {OuterContainer, Container, Footer, UpperContainer, Icons, InfoSection} from './style'
 
 import {IoLogoFacebook, IoMdMail, IoLogoInstagram} from 'react-icons/io'
 
 
 const Contact = () => {
     return (
+<OuterContainer>
         <Container>
     <UpperContainer>
         <InfoSection>
@@ -34,11 +35,13 @@ const Contact = () => {
         </InfoSection>
             </UpperContainer>
 
-            <Footer>
-            <h6>desenvolvido na kenzie academy brasil</h6>
-            </Footer>
-
         </Container>
+
+    <Footer>
+        <h6>desenvolvido na kenzie academy brasil</h6>
+    </Footer>
+
+</OuterContainer>
     );
 };
 

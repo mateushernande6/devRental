@@ -1,9 +1,10 @@
-import {Container, LowerContainer, UpperContainer, CompanyCard} from "./style";
+import {OuterContainer, Container, LowerContainer, UpperContainer, CompanyCard} from "./style";
 
 import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/md'
 
 const Partners = () => {
     return (
+       <OuterContainer>
         <Container>
 
             <UpperContainer>
@@ -43,6 +44,7 @@ const Partners = () => {
         </LowerContainer>
 
         </Container>
+       </OuterContainer>
     );
 };
 

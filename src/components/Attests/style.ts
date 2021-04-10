@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const OuterContainer = styled.div`
+  width: 100%;
+  background: #201f3e;
+  
+  padding-top: 4rem;
+
+`;
+
 export const Container = styled.section`
   margin: 0 auto;
   color: #fff;
@@ -8,7 +16,6 @@ export const Container = styled.section`
 
   max-width: 1125px;
 
-  background: #201f3e;
   
   //display: flex;
   //flex-direction: column;
@@ -19,12 +26,13 @@ export const UpperContainer = styled.div`
   
   height: 10rem;
 
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   
-  //margin-bottom: 3rem;
+  margin-bottom: 3rem;
 
   h2{
     font-size: 4rem;
@@ -43,7 +51,8 @@ export const LowerContainer = styled.div`
   justify-content: space-around;
   align-items: center;
 
-
+  padding-bottom: 4rem;
+  
   @media (min-width: 769px){
       flex-direction: row;
     };
@@ -52,9 +61,9 @@ export const LowerContainer = styled.div`
 
 export const Card = styled.div`
   width: 20rem;
-  height: 30rem;
+  height: auto;
   
-  margin: 3rem 0;
+  margin: 4rem 0;
   border-radius: 6px;
   
   background: #272748;
@@ -69,7 +78,13 @@ export const Card = styled.div`
   };
   
   p{
-    padding: 1rem;
+    padding: 2rem;
     font-size: 1.5rem;
+    line-height: 1.8rem;
   };
+  
+  @media (min-width: 769px){
+    width: 25rem;
+  }
+  
 `;

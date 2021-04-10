@@ -1,5 +1,11 @@
 import styled from "styled-components";
 
+export const OuterContainer = styled.div`
+  width: 100vw;
+
+  background: #191932;
+`;
+
 export const Container = styled.section`
   font-size: 2rem;
   color: #fff;
@@ -9,7 +15,6 @@ export const Container = styled.section`
   
   margin: 0 auto;
 
-  background: #191932;
 `;
 
 export const UpperContainer = styled.div`
@@ -22,8 +27,7 @@ export const UpperContainer = styled.div`
   
   h2{
     text-align: center;
-    font-size: 4rem;
-    font-variant: all-small-caps;
+    font-size: 3rem;
   };
   
   p{
@@ -39,18 +43,24 @@ export const LowerContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   
-  padding-bottom: 2rem;
+  padding-bottom: 6rem;
   
   font-size: 1.5rem;
   img{
-    width: 30rem;
+    width: 28rem;
+    margin-bottom: 2rem;
   }
   p{
     width: 30rem;
+    background: #272748;
     
     text-align: center;
     
+    line-height: 2rem;
     margin-top: 2rem;
+    
+    padding: 2rem 2rem;
+    border-radius: 6px;
   }
 
   @media (min-width: 769px){
@@ -66,7 +76,9 @@ export const LowerContainer = styled.div`
       background: #272748;
       width: 40rem;
 
-      padding: 2rem;
+      text-align: left;
+      
+      line-height: 2.9rem;
 
       border-radius: 10px;
     };

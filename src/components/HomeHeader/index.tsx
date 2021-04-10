@@ -1,4 +1,4 @@
-import {Container, UpperContainer, LowerContainer} from './style'
+import {OuterContainer, Container, UpperContainer, LowerContainer} from './style'
 import Button from "../Atoms/Button";
 import {useHistory} from 'react-router-dom'
 
@@ -6,6 +6,7 @@ const HomeHeader = () => {
     const history = useHistory()
 
     return (
+<OuterContainer>
     <Container>
         <UpperContainer>
 
@@ -25,6 +26,7 @@ const HomeHeader = () => {
 
         </LowerContainer>
     </Container>
+</OuterContainer>
         );
 };
 

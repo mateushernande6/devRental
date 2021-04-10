@@ -1,5 +1,12 @@
 import styled from "styled-components";
 
+export const OuterContainer = styled.div`
+  width: 100vw;
+  background: #201f3e;
+  
+  height: 40rem;
+`;
+
 export const Container = styled.section`
   font-size: 2rem;
   color: #fff;
@@ -9,7 +16,6 @@ export const Container = styled.section`
   width: 100%;
   max-width: 1125px;
   
-  background: #201f3e;
   
 `;
 

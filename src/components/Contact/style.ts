@@ -1,6 +1,15 @@
 import styled from "styled-components";
 
+export const OuterContainer = styled.div`
+  width: 100vw;
+
+  background: #191932;
+  
+  padding-top: 1rem;
+`;
+
 export const Container = styled.section`
+  
   margin: 0 auto;
 
   width: 100%;
@@ -44,12 +53,28 @@ export const InfoSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+  padding-top: 1rem;
+  
+  img{
+    width: 70%;
+  }
+  
+  li{
+    line-height: 2.5rem;
+  }
+  //@media(min-width: 769px){
+  //  li{
+  //    text-align: left;
+  //  }
+  //}
+  
 `;
 
 export const Icons = styled.div`
-  width: 70%;
+  width: 67%;
   
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
   
   display: flex;
   flex-direction: row;
@@ -59,10 +84,13 @@ export const Icons = styled.div`
 
 
 export const Footer = styled.footer`
-
+  width: 100%;
+  
+  color: #fff;
+  
   background: #272748;
   
-  height: 3rem;
+  height: 5rem;
   
   display: flex;
   justify-content: center;
@@ -70,6 +98,7 @@ export const Footer = styled.footer`
   
   h6{
     font-variant: all-small-caps;
+    font-size: 2rem;
   };
   
 `;
