@@ -21,7 +21,7 @@ const HomeHeader = () => {
 
             <img src={'./assets/hometwo.svg'}/>
 
-            <p>Uma empresa sempre está atrás de pessoas qualificadas, mostre a ela que você existe</p>
+            <p>Uma empresa sempre está atrás de pessoas qualificadas, mostre a ela que você existe!</p>
 
         </LowerContainer>
     </Container>
