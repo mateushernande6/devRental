@@ -99,4 +99,12 @@ export const SvgContainer = styled.div`
       width: 58%;
     }
   }
+
+  @media (max-width: 400px) {
+    width: 30rem;
+
+    img {
+      width: 83%;
+    }
+  }
 `;
