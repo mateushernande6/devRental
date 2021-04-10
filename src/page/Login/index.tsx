@@ -13,9 +13,18 @@ interface IFormInputs {
   password: string;
 }
 
+const required = "Campo obrigatório";
+
 const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
+  email: yup.string().email("Email Invalido").required(required),
+  password: yup
+    .string()
+    .min(8, "Mínimo de 8 dígitos")
+    .matches(
+      /^((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      "Senha deve conter ao menos uma letra maiúscula, uma minúscula, um número e um caracter especial!"
+    )
+    .required(required),
 });
 
 const Login = () => {

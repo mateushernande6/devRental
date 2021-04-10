@@ -45,6 +45,15 @@ export const InfoContainer = styled.div`
   width: 41rem;
   height: 100%;
 
+  p {
+    text-align: left;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    font-size: 1.5rem;
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #f99292;
+  }
+
   @media (max-width: 817px) {
     border: none;
   }
