@@ -1,6 +1,7 @@
 import ItensMenu from "../../components/ItensMenu";
 import ModalComponents from "../../components/Modal";
 import { Container, DivSection, DivMenu, DivAside, DivMain } from "./style";
+import Card from "../../components/Cards";
 
 const Dashboard = () => {
   return (
