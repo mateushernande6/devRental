@@ -68,8 +68,9 @@ const Register = () => {
       <InnerContainer>
         <InfoContainer>
           <Title>Cadastrar</Title>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} data-testid="formRegister">
             <Input
+              data-testid="InputName"
               name="name"
               register={register}
               height={2.5}
@@ -78,6 +79,7 @@ const Register = () => {
             />
             <p>{errors.name?.message}</p>
             <Input
+              data-testid="InputEmail"
               name="email"
               register={register}
               height={2.5}
@@ -87,6 +89,7 @@ const Register = () => {
             <p>{errors.email?.message}</p>
 
             <Input
+              data-testid="InputPassword"
               name="password"
               register={register}
               height={2.5}
