@@ -18,7 +18,15 @@ export const Logo = styled.img`
   width: 217px;
 `;
 
-export const DivContent = styled.div``;
+export const ContainerCard = styled.div`
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 1rem;
+  overflow-y: auto;
+`;
 
 export const DivMenu = styled.div`
   width: 100%;

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 interface IFormInputs {
   email: string;
@@ -46,6 +47,8 @@ const Login = () => {
           "token",
           JSON.stringify(response.data.accessToken)
         );
+        let { sub } = jwt_decode<string>(response.data.accessToken);
+        localStorage.setItem("userId", JSON.stringify(sub));
 
         history.push("/dashboard");
       })

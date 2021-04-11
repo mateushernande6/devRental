@@ -1,9 +1,34 @@
 import ItensMenu from "../../components/ItensMenu";
-import ModalComponents from "../../components/Modal";
-import { Container, DivSection, DivMenu, DivAside, DivMain } from "./style";
-import DataCard from "../../components/DataCard";
+import {
+  Container,
+  DivSection,
+  DivMenu,
+  DivAside,
+  DivMain,
+  ContainerCard,
+} from "./style";
+import Card from "../../components/Cards";
+import api from "../../services";
+import { useEffect, useState } from "react";
+
+interface Iuser {
+  token: string;
+}
 
 const Dashboard = () => {
+  const [infoJobs, setInfoJobs] = useState([]);
+
+  useEffect(() => {
+    const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
+    let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
+    console.log(user);
+    api
+      .get(`jobs`, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => console.log(response));
+  }, []);
+
   return (
     <Container>
       <DivAside></DivAside>
@@ -16,10 +41,8 @@ const Dashboard = () => {
               fun={() => console.log("aqui")}
             />
             <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
-            <ModalComponents>
-              <DataCard />
-            </ModalComponents>
           </DivMenu>
+          <ContainerCard></ContainerCard>
         </DivSection>
       </DivMain>
     </Container>

@@ -3,6 +3,7 @@ import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import Button from "../Atoms/Button";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -35,9 +36,15 @@ export default function ModalComponents({ children }: IDataChildren) {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        react-transition-group
-      </button>
+      <Button
+        width={20}
+        background="#FC923F"
+        color=""
+        height={4}
+        text="Ver mais"
+        click={handleOpen}
+      />
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
