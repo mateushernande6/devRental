@@ -44,6 +44,7 @@ export const DivContent = styled.div`
     margin-bottom: 6rem;
   }
   p {
+    text-align: left;
     margin-top: 1rem;
     margin-bottom: 3rem;
     font-size: 1.5rem;

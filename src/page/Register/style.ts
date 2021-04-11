@@ -45,6 +45,14 @@ export const InfoContainer = styled.div`
   width: 41rem;
   height: 100%;
 
+  p {
+    text-align: left;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-family: "Montserrat Alternates", sans-serif;
+    color: #f99292;
+  }
+
   @media (max-width: 817px) {
     border: none;
   }
@@ -60,7 +68,7 @@ export const InfoContainer = styled.div`
     margin-bottom: 2rem;
   }
   Input {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 
   Input:first-child {
@@ -97,6 +105,14 @@ export const SvgContainer = styled.div`
   @media (max-width: 417px) {
     img {
       width: 58%;
+    }
+  }
+
+  @media (max-width: 400px) {
+    width: 30rem;
+
+    img {
+      width: 83%;
     }
   }
 `;
