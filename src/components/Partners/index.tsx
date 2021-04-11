@@ -1,7 +1,10 @@
-import {Container, LowerContainer, UpperContainer} from "./style";
+import {OuterContainer, Container, LowerContainer, UpperContainer, CompanyCard} from "./style";
+
+import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/md'
 
 const Partners = () => {
     return (
+       <OuterContainer>
         <Container>
 
             <UpperContainer>
@@ -11,11 +14,37 @@ const Partners = () => {
 
             </UpperContainer>
 
-            <LowerContainer>
 
-            </LowerContainer>
+        <LowerContainer>
+
+        <MdKeyboardArrowLeft size={'7rem'}  />
+
+        {/*<CompanyCard>*/}
+        {/*    <img src={'https://picsum.photos/200'} alt={''}/>*/}
+        {/*    <h4>Company name</h4>*/}
+        {/*</CompanyCard>*/}
+
+        <CompanyCard>
+            <img src={'https://picsum.photos/200'} alt={''}/>
+            <h4>Company name</h4>
+        </CompanyCard>
+
+        <CompanyCard>
+            <img src={'https://picsum.photos/200'} alt={''}/>
+            <h4>Company name</h4>
+        </CompanyCard>
+
+        <CompanyCard>
+            <img src={'https://picsum.photos/200'} alt={''}/>
+            <h4>Company name</h4>
+        </CompanyCard>
+
+        <MdKeyboardArrowRight size={'7rem'}/>
+
+        </LowerContainer>
 
         </Container>
+       </OuterContainer>
     );
 };
 

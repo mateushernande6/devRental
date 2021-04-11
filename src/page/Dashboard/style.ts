@@ -30,12 +30,12 @@ export const ContainerCard = styled.div`
 
 export const DivMenu = styled.div`
   width: 100%;
-  height: 10vh;
+  height: 14vh;
   border-bottom: 1px solid #424472;
   border-radius: 16px 16px 0 0;
-
+  padding-left: 68px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 

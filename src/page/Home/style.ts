@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-export const HomeSection = styled.section`
-  font-size: 2rem;
-  color: #fff;
+export const Container = styled.div`
 
-  height: 100vh;
-  
-  margin-bottom: 2rem;
 `;
+

@@ -1,4 +1,4 @@
-import {HomeSection} from "./style";
+import {Container} from "./style";
 
 import React from 'react';
 import HomeHeader from "../../components/HomeHeader";
@@ -9,28 +9,13 @@ import Contact from "../../components/Contact";
 
 const Home = () => {
     return (
-       <>
-       <HomeSection>
-           <HomeHeader/>
-       </HomeSection>
-
-       <HomeSection>
-            <Partners/>
-       </HomeSection>
-
-       <HomeSection>
-           <GoalsMissions/>
-       </HomeSection>
-
-       <HomeSection>
+    <>
+        <HomeHeader/>
+        <Partners/>
+        <GoalsMissions/>
         <Attests/>
-       </HomeSection>
-
-       <HomeSection>
-           <Contact/>
-       </HomeSection>
-
-       </>
+        <Contact/>
+   </>
     );
 };
 

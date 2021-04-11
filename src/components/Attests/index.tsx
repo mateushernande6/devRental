@@ -1,9 +1,10 @@
-import {Container, UpperContainer, LowerContainer, Card} from "./style";
+import {OuterContainer, Container, UpperContainer, LowerContainer, Card} from "./style";
 
 import React from 'react';
 
 const Attests = () => {
     return (
+<OuterContainer>
     <Container>
 
         <UpperContainer>
@@ -31,6 +32,7 @@ const Attests = () => {
         </LowerContainer>
 
     </Container>
+</OuterContainer>
     );
 };
 
