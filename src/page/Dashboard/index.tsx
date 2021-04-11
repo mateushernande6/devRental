@@ -1,4 +1,11 @@
-import { Container, DivSection, DivMenu, DivAside, DivMain } from "./style";
+import {
+  Container,
+  DivSection,
+  DivMenu,
+  DivAside,
+  DivMain,
+  ContainerCard,
+} from "./style";
 import Card from "../../components/Cards";
 
 const Dashboard = () => {
@@ -8,7 +15,16 @@ const Dashboard = () => {
       <DivMain>
         <DivSection>
           <DivMenu></DivMenu>
-          <Card />
+          <ContainerCard>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </ContainerCard>
         </DivSection>
       </DivMain>
     </Container>

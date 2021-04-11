@@ -1,9 +1,16 @@
-import { Container } from "./style";
+import { Container, ImgCard } from "./style";
 
 const Card = () => {
   return (
     <Container>
-      <div>sdcsa</div>
+      <>
+        <image>
+          <ImgCard src="https://picsum.photos/200/200" />
+        </image>
+        <section>
+          <p>Teste para front-end </p>
+        </section>
+      </>
     </Container>
   );
 };
