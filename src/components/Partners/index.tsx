@@ -1,9 +1,10 @@
-import {Container, LowerContainer, UpperContainer} from "./style";
+import {OuterContainer, Container, LowerContainer, UpperContainer, CompanyCard} from "./style";
 
 import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/md'
 
 const Partners = () => {
     return (
+       <OuterContainer>
         <Container>
 
             <UpperContainer>
@@ -16,18 +17,34 @@ const Partners = () => {
 
         <LowerContainer>
 
-        <MdKeyboardArrowLeft size={'10rem'}  />
+        <MdKeyboardArrowLeft size={'7rem'}  />
 
-            <img src={'https://picsum.photos/200'} alt={''}/>
-            <img src={'https://picsum.photos/200'} alt={''}/>
-            <img src={'https://picsum.photos/200'} alt={''}/>
-            <img src={'https://picsum.photos/200'} alt={''}/>
+        {/*<CompanyCard>*/}
+        {/*    <img src={'https://picsum.photos/200'} alt={''}/>*/}
+        {/*    <h4>Company name</h4>*/}
+        {/*</CompanyCard>*/}
 
-        <MdKeyboardArrowRight size={'10rem'}/>
+        <CompanyCard>
+            <img src={'https://picsum.photos/200'} alt={''}/>
+            <h4>Company name</h4>
+        </CompanyCard>
+
+        <CompanyCard>
+            <img src={'https://picsum.photos/200'} alt={''}/>
+            <h4>Company name</h4>
+        </CompanyCard>
+
+        <CompanyCard>
+            <img src={'https://picsum.photos/200'} alt={''}/>
+            <h4>Company name</h4>
+        </CompanyCard>
+
+        <MdKeyboardArrowRight size={'7rem'}/>
 
         </LowerContainer>
 
         </Container>
+       </OuterContainer>
     );
 };
 
