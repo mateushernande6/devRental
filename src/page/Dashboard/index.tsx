@@ -15,6 +15,7 @@ import ModalComponents from "../../components/Modal";
 import NewWork from "../../components/newWork";
 import { ComponentDev } from "../../components/ComponentDev";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import { ComponentEmp } from "../../components/ComponentEmp";
 interface Iuser {
   token: string;
 }
@@ -73,19 +74,18 @@ const Dashboard = () => {
         {valueState === "dev" ? (
           <ComponentDev />
         ) : (
-          <>
-            <Button
-              height={4.7}
-              width={26}
-              color={"#fff"}
-              text={"Novo trabalho"}
-              background={"#fc923f"}
-              click={handleOpen}
-            />
-            <ModalComponents open={open} handleClose={handleClose}>
-              <NewWork />
-            </ModalComponents>
-          </>
+          <ComponentEmp />
+          // {/* <Button
+          //   height={4.7}
+          //   width={26}
+          //   color={"#fff"}
+          //   text={"Novo trabalho"}
+          //   background={"#fc923f"}
+          //   click={handleOpen}
+          // />
+          // <ModalComponents open={open} handleClose={handleClose}>
+          //   <NewWork />
+          // </ModalComponents> */}
         )}
       </DivAside>
       <DivMain>
