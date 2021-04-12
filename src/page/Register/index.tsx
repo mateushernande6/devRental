@@ -54,12 +54,9 @@ const Register = () => {
 
     const dataEnd = { ...data, category: `${valueState}` };
 
-    console.log(dataEnd, valueState);
-
     api
       .post("users", dataEnd)
       .then((response) => {
-        console.log(response);
         history.push("/login");
       })
       .catch((err) => console.log(err));
