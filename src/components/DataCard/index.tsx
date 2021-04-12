@@ -9,6 +9,7 @@ import {
   LiStyled,
   DivTitle,
   Line,
+  TextButton,
   BackIcon,
 } from "./style";
 import { FiCheckSquare } from "react-icons/fi";
@@ -30,9 +31,10 @@ const DataCard = ({ dataObj }: ImodalData) => {
       <Content>
         <DivTitle>
           <Title>{dataObj.title}</Title>
-          <Line />
+          {/* <Line /> */}
           <BackIcon>
-            <FiCheckSquare size={30} />
+            <FiCheckSquare size={28} />
+            <TextButton>Aceitar Desafio</TextButton>
           </BackIcon>
         </DivTitle>
         <SubTitle>Objetivo:</SubTitle>

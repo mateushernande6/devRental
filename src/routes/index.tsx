@@ -4,6 +4,7 @@ import Login from "../page/Login";
 import Register from "../page/Register";
 import PreRegister from "../page/PreRegister";
 import Dashboard from "../page/Dashboard";
+import NotFound from "../page/NotFound";
 
 const Routes = () => {
   return (
@@ -13,6 +14,7 @@ const Routes = () => {
       <Route exact path="/register" component={Register} />
       <Route exact path="/preregister" component={PreRegister} />
       <Route exact path="/dashboard" component={Dashboard} />
+      <Route path="/notfound" component={NotFound} />
     </Switch>
   );
 };
