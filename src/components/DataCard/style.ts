@@ -96,6 +96,19 @@ export const Line = styled.div`
   }
 `;
 
+export const BackIconCam = styled.div`
+  background-color: #d75358;
+  width: 174px;
+  cursor: pointer;
+  height: 42px;
+  align-items: center;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: filter 0.3s;
+`;
+
 export const BackIcon = styled.div`
   background-color: #fc923f;
   width: 174px;
