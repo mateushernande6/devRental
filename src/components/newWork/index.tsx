@@ -1,79 +1,103 @@
-import {Container, TextArea, ErrorMessage} from "./style";
+import { Container, TextArea, ErrorMessage } from "./style";
 
 import Input from "../Atoms/Input";
-import Button from '../Atoms/Button'
+import Button from "../Atoms/Button";
 
-import {useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
-import * as yup from 'yup'
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import api from "../../services";
-import {AuthDashboardContext} from "../../Provider/AuthDashboard";
-import {MouseEventHandler, useContext, useState} from "react";
-import {date} from "yup";
-
+import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import { MouseEventHandler, useContext, useState } from "react";
+import { date } from "yup";
+import { DataMapContext } from "../../Provider/DataMap";
 
 const NewWork = () => {
+  const { itemMap, setItemMap } = useContext(DataMapContext);
 
-    const [Techs, setTechs] = useState<string[]>([])
-    const [value, setValue] = useState<string>('')
+  const [Techs, setTechs] = useState<string[]>([]);
+  const [value, setValue] = useState<string>("");
 
-    interface INewWork {
-        workTitle: string;
-        workDescription: string;
-        workTechs: any;
-        workDeadline: any;
-    }
+  interface INewWork {
+    title: string;
+    objective: string;
+    description: string;
+    tecnology: string[];
+    reward: string;
+    deadline?: string;
+  }
 
-    const requiredField = 'Campo obrigatório'
+  interface Iuser {
+    token: string;
+  }
 
-    const schema = yup.object().shape({
-        workTitle: yup.string().required(requiredField),
-        workGoal: yup.string().required(requiredField),
-        workDescription: yup.string().required(requiredField).max(500, 'máximo de 500 caracteres'),
-        // workTechs: yup.string().required(requiredField),
-        workReward: yup.string().required(requiredField),
-        workDeadline: yup.string().required(requiredField),
+  const requiredField = "Campo obrigatório";
 
+  const schema = yup.object().shape({
+    title: yup.string().required(requiredField),
+    objective: yup.string().required(requiredField),
+    description: yup
+      .string()
+      .required(requiredField)
+      .max(500, "máximo de 500 caracteres"),
+    // workTechs: yup.string().required(requiredField),
+    reward: yup.string().required(requiredField),
+    workDeadline: yup.string().required(requiredField),
+  });
 
-    })
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-    const {handleSubmit, reset, register, formState:{errors}} = useForm({
-        resolver: yupResolver(schema)
-    })
+  const handleForm = (data: INewWork) => {
+    const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
-    const handleForm = (data: INewWork)=>{
-        const postData = {...data, workTechs: Techs}
+    const postData = { ...data, tecnology: Techs, userId: idUser };
 
-        console.log(postData)
-    }
+    let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit(handleForm)}>
+    console.log(user, postData);
 
+    api
+      .post(`jobs`, postData, {
+        headers: {
+          Authorization: `Bearer ${user}`,
+        },
+      })
+      .then((response) => {
+        setItemMap([...itemMap, postData]);
+        console.log("Desafio cadastrado na api");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit(handleForm)}>
         <Input
-            name={'workTitle'}
-            register={register}
-            width={30}
-            height={2.5}
-            placeHolder={'Título'}
+          name={"title"}
+          register={register}
+          width={30}
+          height={2.5}
+          placeHolder={"Título"}
         />
-        <ErrorMessage>{errors.workTitle?.message}</ErrorMessage>
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
-                {/*//    titulo, objetivo, descrição, tecnologias, recompensa, prazo*/}
+        {/*//    titulo, objetivo, descrição, tecnologias, recompensa, prazo*/}
+        <TextArea {...register("objective")} placeholder="Objetivo" rows={5} />
+        <ErrorMessage>{errors.objective?.message}</ErrorMessage>
+
         <TextArea
-        {...register('workGoal')}
-        placeholder='Objetivo'
-        rows={5}
+          {...register("description")}
+          placeholder="Descrição"
+          rows={10}
         />
-        <ErrorMessage>{errors.workDescription?.message}</ErrorMessage>
-
-       <TextArea
-       {...register('workDescription')}
-       placeholder='Descrição'
-        rows={10}
-       />
-       <ErrorMessage>{errors.workDescription?.message}</ErrorMessage>
+        <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
         {/*<Input*/}
         {/*    name={'workTechs'}*/}
@@ -83,50 +107,54 @@ const NewWork = () => {
         {/*    placeHolder={'Techs'}*/}
         {/*/>*/}
 
-        {Techs.map((item, index) => <ErrorMessage>{item}</ErrorMessage>)}
+        {Techs.map((item, index) => (
+          <ErrorMessage>{item}</ErrorMessage>
+        ))}
 
-        <input placeholder={'New tech'}
-            onChange={(e) => setValue(e.target.value)}
+        <input
+          placeholder={"New tech"}
+          onChange={(e) => setValue(e.target.value)}
         />
 
-        <button onClick={(e)=> {
+        <button
+          onClick={(e) => {
             setTechs([...Techs, value]);
-            e.preventDefault()
-
-        }}>add tech</button>
-        <ErrorMessage>{errors.workTechs?.message}</ErrorMessage>
+            e.preventDefault();
+          }}
+        >
+          add tech
+        </button>
+        {/* <ErrorMessage>{errors.workTechs?.message}</ErrorMessage> */}
 
         <Input
-            name={'workReward'}
-            register={register}
-            width={30}
-            height={2.5}
-            placeHolder={'Recompensa'}
+          name={"reward"}
+          register={register}
+          width={30}
+          height={2.5}
+          placeHolder={"Recompensa"}
         />
-        <ErrorMessage>{errors.workDescription?.message}</ErrorMessage>
+        <ErrorMessage>{errors.reward?.message}</ErrorMessage>
 
-
-                <Input
-            name={'workDeadline'}
-            register={register}
-            width={30}
-            height={2.5}
-            placeHolder={'Prazo'}
+        <Input
+          name={"workDeadline"}
+          register={register}
+          width={30}
+          height={2.5}
+          placeHolder={"Prazo"}
         />
         <ErrorMessage>{errors.workDeadline?.message}</ErrorMessage>
 
         <Button
-            height={4.7}
-            width={26}
-            color={"#fff"}
-            text={"Adicionar"}
-            background={"#fc923f"}
-            // type={'submit'}
+          height={4.7}
+          width={26}
+          color={"#fff"}
+          text={"Adicionar"}
+          background={"#fc923f"}
+          // type={'submit'}
         />
-
-            </form>
-        </div>
-    );
+      </form>
+    </div>
+  );
 };
 
 export default NewWork;
