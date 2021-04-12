@@ -49,7 +49,6 @@ const Login = () => {
         );
         let { sub } = jwt_decode<string>(response.data.accessToken);
         localStorage.setItem("userId", JSON.stringify(sub));
-        console.log(response);
         history.push("/dashboard");
       })
       .catch((err) => console.log(err.response));
@@ -88,7 +87,7 @@ const Login = () => {
               background="#FC923F"
             />
           </form>
-          <Link className="linkReg" to="/register">
+          <Link className="linkReg" to="/preregister">
             Register
           </Link>
         </DivContent>

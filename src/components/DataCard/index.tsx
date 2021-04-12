@@ -9,10 +9,13 @@ import {
   LiStyled,
   DivTitle,
   Line,
+  BackIconCam,
   TextButton,
   BackIcon,
 } from "./style";
 import { FiCheckSquare } from "react-icons/fi";
+import { useContext } from "react";
+import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 
 interface IitensData {
   title: string;
@@ -26,16 +29,25 @@ interface ImodalData {
 }
 
 const DataCard = ({ dataObj }: ImodalData) => {
+  const { valueState } = useContext(AuthDashboardContext);
+
   return (
     <Container>
       <Content>
         <DivTitle>
           <Title>{dataObj.title}</Title>
           {/* <Line /> */}
-          <BackIcon>
-            <FiCheckSquare size={28} />
-            <TextButton>Aceitar Desafio</TextButton>
-          </BackIcon>
+          {valueState === "dev" ? (
+            <BackIcon>
+              <FiCheckSquare size={28} />
+              <TextButton>Aceitar Desafio</TextButton>
+            </BackIcon>
+          ) : (
+            <BackIconCam>
+              <FiCheckSquare size={28} />
+              <TextButton>Excluir Desafio</TextButton>
+            </BackIconCam>
+          )}
         </DivTitle>
         <SubTitle>Objetivo:</SubTitle>
         <Text>{dataObj.objective}</Text>

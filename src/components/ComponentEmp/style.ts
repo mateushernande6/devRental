@@ -52,7 +52,7 @@ export const DivUsuarioInfo = styled.div`
   }
 `;
 
-export const BlockTecs = styled.div`
+export const Block = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
