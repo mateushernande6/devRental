@@ -26,6 +26,22 @@ export const ContainerCard = styled.div`
   justify-content: space-around;
   padding: 1rem;
   overflow-y: auto;
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+
+    border-radius: 0 8px 8px 0;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 0 8px 8px 0;
+
+    /* background-image: linear-gradient(#212040, #21203e); */
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3a3864;
+    border-radius: 5px;
+  }
 `;
 
 export const DivMenu = styled.div`

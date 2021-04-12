@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
   #root {
-    --text: "#fff";
+    --text: #fff;
     --color-primary: #FC923F;
     --color-secondary: #D75358;
 

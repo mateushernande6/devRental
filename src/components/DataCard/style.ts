@@ -97,13 +97,25 @@ export const Line = styled.div`
 `;
 
 export const BackIcon = styled.div`
-  background-color: rgba(20, 20, 43, 0.79);
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
+  background-color: #fc923f;
+  width: 174px;
+  cursor: pointer;
+  height: 42px;
   align-items: center;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  transition: filter 0.3s;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+`;
+
+export const TextButton = styled.span`
+  margin: 0;
+  font-size: 1.7rem;
 `;
 
 export const Title = styled.h1`
