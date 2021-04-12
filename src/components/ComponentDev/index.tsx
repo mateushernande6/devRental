@@ -21,12 +21,9 @@ import {
 } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import api from "../../services";
-import Input from "../Atoms/Input";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
+import ModalComponents from "../Modal";
 
 interface ITech {
   name: string;
@@ -36,8 +33,9 @@ export const ComponentDev = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [tech, setTech] = useState<ITech[]>([]);
+  const [open, setOpen] = useState<boolean>(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -65,6 +63,14 @@ export const ComponentDev = () => {
         setTech(response.data);
       });
   }, []);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // const handleShow = () => {
   //   setShow(true);
@@ -94,9 +100,12 @@ export const ComponentDev = () => {
       <InfoTecs>
         <h2>Tecs</h2>
         <Line />
-        <DivPlus>
+        <DivPlus onClick={handleOpen}>
           <BsPlus />
         </DivPlus>
+        <ModalComponents open={open} handleClose={handleClose}>
+          <RegisterTech />
+        </ModalComponents>
       </InfoTecs>
       {/* {show && <RegisterTech setShow={setShow}/>} */}
       <ContainerTecs>
