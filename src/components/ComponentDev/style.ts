@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 export const Logo = styled.img`
@@ -52,11 +52,19 @@ export const DivUsuarioInfo = styled.div`
   }
 `;
 
+export const BlockTecs = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const InfoTecs = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 170px;
+  margin-bottom: 10px;
 
   h2 {
     font-size: 2rem;
@@ -122,7 +130,27 @@ export const Btn = styled.button`
   }
 `;
 
-export const ContainerTecs = styled.div``;
+export const ContainerTecs = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Tecs = styled.div`
+  width: 150px;
+  height: 30px;
+  border-radius: 15px;
+  background: #575a9e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: bolder;
+  margin-bottom: 10px;
+`;
 
 export const ContainerLogOut = styled.div`
   display: flex;
