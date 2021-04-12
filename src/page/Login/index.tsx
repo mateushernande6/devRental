@@ -87,7 +87,7 @@ const Login = () => {
               background="#FC923F"
             />
           </form>
-          <Link className="linkReg" to="/register">
+          <Link className="linkReg" to="/preregister">
             Register
           </Link>
         </DivContent>
