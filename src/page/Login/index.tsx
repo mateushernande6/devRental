@@ -49,7 +49,7 @@ const Login = () => {
         );
         let { sub } = jwt_decode<string>(response.data.accessToken);
         localStorage.setItem("userId", JSON.stringify(sub));
-
+        console.log(response);
         history.push("/dashboard");
       })
       .catch((err) => console.log(err.response));
@@ -59,7 +59,7 @@ const Login = () => {
     <Container>
       <Main>
         <DivImage>
-          <img src="./assets/loginImage.svg" />
+          <img src="./assets/loginImage.svg" alt="img" />
         </DivImage>
         <DivContent>
           <h2>Faça Login</h2>
