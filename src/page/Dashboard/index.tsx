@@ -85,7 +85,7 @@ const Dashboard = () => {
           </DivMenu>
           <ContainerCard>
             {dataCardMap.map((ele, index) => (
-              <Card key={index} title={ele.title} />
+              <Card key={index} title={ele.title} dataCardObj={ele} />
             ))}
           </ContainerCard>
         </DivSection>
