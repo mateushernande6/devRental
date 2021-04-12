@@ -9,7 +9,8 @@ import {
 } from "./style";
 import Card from "../../components/Cards";
 import api from "../../services";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { ComponentDev } from "../../components/ComponentDev";
 
 interface Iuser {
   token: string;
@@ -54,7 +55,9 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <DivAside></DivAside>
+      <DivAside>
+        <ComponentDev />
+      </DivAside>
       <DivMain>
         <DivSection>
           <DivMenu>
