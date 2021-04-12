@@ -10,9 +10,13 @@ import {
 import Card from "../../components/Cards";
 import api from "../../services";
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 import Button from "../../components/Atoms/Button";
 import ModalComponents from "../../components/Modal";
 import NewWork from "../../components/newWork";
+=======
+import { ComponentDev } from "../../components/ComponentDev";
+>>>>>>> db8eb4692a445d8876348739ceab6eaad1c46f16
 
 interface Iuser {
   token: string;
@@ -38,25 +42,37 @@ const Dashboard = () => {
   }
 
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
+  const [category, setCategory] = useState<string>("");
 
   useEffect(() => {
-    // const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
+    const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
     let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
-    console.log(user);
+
     api
-      .get(`jobs`, {
+      .get(`users/${idUser}`, {
         headers: { Authorization: `Bearer ${user}` },
       })
-      .then(
-        (response) => setdataCardMap(response.data)
-        // console.log(response)
-      )
+      .then((response) => {
+        setCategory(response.data.category);
+      })
       .catch((err) => console.log(err));
+
+    if (idUser) {
+      api
+        .get(`jobs/?userId=1`, {
+          headers: { Authorization: `Bearer ${user}` },
+        })
+        .then((response) => {
+          setdataCardMap(response.data);
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   return (
     <Container>
       <DivAside>
+<<<<<<< HEAD
         <Button
             height={4.7}
             width={26}
@@ -69,16 +85,34 @@ const Dashboard = () => {
         <NewWork/>
     </ModalComponents>
 
+=======
+        <ComponentDev />
+>>>>>>> db8eb4692a445d8876348739ceab6eaad1c46f16
       </DivAside>
       <DivMain>
         <DivSection>
           <DivMenu>
-            <ItensMenu text="Desafios" fun={() => console.log("aqui")} />
-            <ItensMenu
-              text="Projetos aceitos"
-              fun={() => console.log("aqui")}
-            />
-            <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
+            {category === "dev" ? (
+              <>
+                <ItensMenu text="Desafios" fun={() => console.log("aqui")} />
+                <ItensMenu
+                  text="Projetos aceitos"
+                  fun={() => console.log("aqui")}
+                />
+                <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
+              </>
+            ) : (
+              <>
+                <ItensMenu
+                  text="Desafios ativos"
+                  fun={() => console.log("aqui")}
+                />
+                <ItensMenu
+                  text="Desafios fechados"
+                  fun={() => console.log("aqui")}
+                />
+              </>
+            )}
           </DivMenu>
           <ContainerCard>
             {dataCardMap.map((ele, index) => (
