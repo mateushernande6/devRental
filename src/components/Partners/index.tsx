@@ -1,51 +1,43 @@
-import {OuterContainer, Container, LowerContainer, UpperContainer, CompanyCard} from "./style";
-
-import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/md'
+import {
+  OuterContainer,
+  Container,
+  UpperContainer,
+  CompanyImage,
+} from "./style";
+import Carousel from "react-elastic-carousel";
 
 const Partners = () => {
-    return (
-       <OuterContainer>
-        <Container>
+  return (
+    <OuterContainer>
+      <Container>
+        <UpperContainer>
+          <h2>Empresas Parceiras</h2>
 
-            <UpperContainer>
-        <h2>Empresas Parceiras</h2>
-
-        <p>lorem ipsum dolor sit amet </p>
-
-            </UpperContainer>
-
-
-        <LowerContainer>
-
-        <MdKeyboardArrowLeft size={'7rem'}  />
-
-        {/*<CompanyCard>*/}
-        {/*    <img src={'https://picsum.photos/200'} alt={''}/>*/}
-        {/*    <h4>Company name</h4>*/}
-        {/*</CompanyCard>*/}
-
-        <CompanyCard>
-            <img src={'https://picsum.photos/200'} alt={''}/>
-            <h4>Company name</h4>
-        </CompanyCard>
-
-        <CompanyCard>
-            <img src={'https://picsum.photos/200'} alt={''}/>
-            <h4>Company name</h4>
-        </CompanyCard>
-
-        <CompanyCard>
-            <img src={'https://picsum.photos/200'} alt={''}/>
-            <h4>Company name</h4>
-        </CompanyCard>
-
-        <MdKeyboardArrowRight size={'7rem'}/>
-
-        </LowerContainer>
-
-        </Container>
-       </OuterContainer>
-    );
+          <p>lorem ipsum dolor sit amet </p>
+        </UpperContainer>
+        <>
+          <Carousel
+            enableAutoPlay={true}
+            autoPlaySpeed={3000}
+            isRTL
+            itemsToShow={4}
+            transitionMs={1000}
+            tiltEasing="ease"
+            enableTilt
+          >
+            <CompanyImage src="https://picsum.photos/200/200" />
+            <CompanyImage src="https://picsum.photos/200/200" />
+            <CompanyImage src="https://picsum.photos/200/200" />
+            <CompanyImage src="https://picsum.photos/200/200" />
+            <CompanyImage src="https://picsum.photos/200/200" />
+            <CompanyImage src="https://picsum.photos/200/200" />
+            <CompanyImage src="https://picsum.photos/200/200" />
+            <CompanyImage src="https://picsum.photos/200/200" />
+          </Carousel>
+        </>
+      </Container>
+    </OuterContainer>
+  );
 };
 
 export default Partners;
