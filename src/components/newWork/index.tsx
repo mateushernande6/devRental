@@ -1,4 +1,4 @@
-import {Container, TextArea, ErrorMessage} from "./style";
+import {Container, TextArea, ErrorMessage, TechsList} from "./style";
 
 import Input from "../Atoms/Input";
 import Button from '../Atoms/Button'
@@ -48,7 +48,7 @@ const NewWork = () => {
     }
 
     return (
-        <div>
+        <Container>
             <form onSubmit={handleSubmit(handleForm)}>
 
         <Input
@@ -71,29 +71,28 @@ const NewWork = () => {
        <TextArea
        {...register('workDescription')}
        placeholder='Descrição'
-        rows={10}
+        rows={5}
        />
        <ErrorMessage>{errors.workDescription?.message}</ErrorMessage>
 
-        {/*<Input*/}
-        {/*    name={'workTechs'}*/}
-        {/*    register={register}*/}
-        {/*    width={30}*/}
-        {/*    height={2.5}*/}
-        {/*    placeHolder={'Techs'}*/}
-        {/*/>*/}
-
-        {Techs.map((item, index) => <ErrorMessage>{item}</ErrorMessage>)}
-
+                <h4>Techs:</h4>
+                <ul>
+        {Techs.map((item, index) => <TechsList key={index}>{item}</TechsList>)}
+            </ul>
         <input placeholder={'New tech'}
             onChange={(e) => setValue(e.target.value)}
         />
 
-        <button onClick={(e)=> {
+        <Button click={(e)=> {
             setTechs([...Techs, value]);
             e.preventDefault()
-
-        }}>add tech</button>
+        }}
+        text={'Nova tech'}
+        color={'#fff'}
+        background={'#D75358'}
+        width={20}
+        height={3}
+        />
         <ErrorMessage>{errors.workTechs?.message}</ErrorMessage>
 
         <Input
@@ -105,27 +104,24 @@ const NewWork = () => {
         />
         <ErrorMessage>{errors.workDescription?.message}</ErrorMessage>
 
-
-                <Input
-            name={'workDeadline'}
-            register={register}
-            width={30}
-            height={2.5}
-            placeHolder={'Prazo'}
+        <Input
+        name={'workDeadline'}
+        register={register}
+        width={30}
+        height={2.5}
+        placeHolder={'Prazo'}
         />
         <ErrorMessage>{errors.workDeadline?.message}</ErrorMessage>
 
         <Button
-            height={4.7}
-            width={26}
-            color={"#fff"}
-            text={"Adicionar"}
-            background={"#fc923f"}
-            // type={'submit'}
+        height={4.7}
+        width={26}
+        color={"#fff"}
+        text={"Adicionar"}
+        background={"#fc923f"}
         />
-
-            </form>
-        </div>
+        </form>
+        </Container>
     );
 };
 
