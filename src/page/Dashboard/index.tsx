@@ -10,7 +10,13 @@ import {
 import Card from "../../components/Cards";
 import api from "../../services";
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
+import Button from "../../components/Atoms/Button";
+import ModalComponents from "../../components/Modal";
+import NewWork from "../../components/newWork";
+=======
 import { ComponentDev } from "../../components/ComponentDev";
+>>>>>>> db8eb4692a445d8876348739ceab6eaad1c46f16
 
 interface Iuser {
   token: string;
@@ -25,6 +31,16 @@ interface IdataCard {
 }
 
 const Dashboard = () => {
+
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = ()=>{
+    setOpen(true)
+  }
+  const handleClose = ()=>{
+    setOpen(false)
+  }
+
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
 
@@ -56,7 +72,22 @@ const Dashboard = () => {
   return (
     <Container>
       <DivAside>
+<<<<<<< HEAD
+        <Button
+            height={4.7}
+            width={26}
+            color={"#fff"}
+            text={"Novo trabalho"}
+            background={"#fc923f"}
+            click={handleOpen}
+        />
+    <ModalComponents open={open} handleClose={handleClose}>
+        <NewWork/>
+    </ModalComponents>
+
+=======
         <ComponentDev />
+>>>>>>> db8eb4692a445d8876348739ceab6eaad1c46f16
       </DivAside>
       <DivMain>
         <DivSection>
