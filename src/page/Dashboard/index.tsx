@@ -9,8 +9,12 @@ import {
 } from "./style";
 import Card from "../../components/Cards";
 import api from "../../services";
-import React, { useEffect, useState } from "react";
-
+import { useEffect, useState, useContext } from "react";
+import Button from "../../components/Atoms/Button";
+import ModalComponents from "../../components/Modal";
+import NewWork from "../../components/newWork";
+import { ComponentDev } from "../../components/ComponentDev";
+import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 interface Iuser {
   token: string;
 }
@@ -24,6 +28,17 @@ interface IdataCard {
 }
 
 const Dashboard = () => {
+  const { valueState } = useContext(AuthDashboardContext);
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
 
@@ -54,7 +69,25 @@ const Dashboard = () => {
 
   return (
     <Container>
-      <DivAside></DivAside>
+      <DivAside>
+        {valueState === "dev" ? (
+          <ComponentDev />
+        ) : (
+          <>
+            <Button
+              height={4.7}
+              width={26}
+              color={"#fff"}
+              text={"Novo trabalho"}
+              background={"#fc923f"}
+              click={handleOpen}
+            />
+            <ModalComponents open={open} handleClose={handleClose}>
+              <NewWork />
+            </ModalComponents>
+          </>
+        )}
+      </DivAside>
       <DivMain>
         <DivSection>
           <DivMenu>
@@ -71,10 +104,6 @@ const Dashboard = () => {
               <>
                 <ItensMenu
                   text="Desafios ativos"
-                  fun={() => console.log("aqui")}
-                />
-                <ItensMenu
-                  text="Desafios fechados"
                   fun={() => console.log("aqui")}
                 />
               </>
