@@ -46,28 +46,28 @@ const Dashboard = () => {
     let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
 
     api
-      .get(`users/${idUser}`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setCategory(response.data.category);
-
-        if (response.data.category === "dev") {
-          cardDev();
-        }
-      })
-      .catch((err) => console.log(err));
-
-    if (idUser) {
-      api
-        .get(`jobs/?userId=${idUser}`, {
+        .get(`users/${idUser}`, {
           headers: { Authorization: `Bearer ${user}` },
         })
         .then((response) => {
-          setdataCardMap(response.data);
-          setItemMap(response.data);
+          setCategory(response.data.category);
+
+          if (response.data.category === "dev") {
+            cardDev();
+          }
         })
         .catch((err) => console.log(err));
+
+    if (idUser) {
+      api
+          .get(`jobs/?userId=${idUser}`, {
+            headers: { Authorization: `Bearer ${user}` },
+          })
+          .then((response) => {
+            setdataCardMap(response.data);
+            setItemMap(response.data);
+          })
+          .catch((err) => console.log(err));
     }
   }, []);
 
@@ -75,50 +75,50 @@ const Dashboard = () => {
     let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
 
     api
-      .get(`jobs`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setdataCardMap(response.data);
-        setItemMap(response.data);
-      })
-      .catch((err) => console.log(err));
+        .get(`jobs`, {
+          headers: { Authorization: `Bearer ${user}` },
+        })
+        .then((response) => {
+          setdataCardMap(response.data);
+          setItemMap(response.data);
+        })
+        .catch((err) => console.log(err));
   };
 
   return (
-    <Container>
-      <DivAside>
-        {category === "dev" ? <ComponentDev /> : <ComponentEmp />}
-      </DivAside>
-      <DivMain>
-        <DivSection>
-          <DivMenu>
-            {category === "dev" ? (
-              <>
-                <ItensMenu text="Desafios" fun={() => console.log("aqui")} />
-                <ItensMenu
-                  text="Projetos aceitos"
-                  fun={() => console.log("aqui")}
-                />
-                <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
-              </>
-            ) : (
-              <>
-                <ItensMenu
-                  text="Desafios ativos"
-                  fun={() => console.log("aqui")}
-                />
-              </>
-            )}
-          </DivMenu>
-          <ContainerCard>
-            {dataCardMap.map((ele, index) => (
-              <Card key={index} title={ele.title} dataCardObj={ele} />
-            ))}
-          </ContainerCard>
-        </DivSection>
-      </DivMain>
-    </Container>
+      <Container>
+        <DivAside>
+          {category === "dev" ? <ComponentDev /> : <ComponentEmp />}
+        </DivAside>
+        <DivMain>
+          <DivSection>
+            <DivMenu>
+              {category === "dev" ? (
+                  <>
+                    <ItensMenu text="Desafios" fun={() => console.log("aqui")} />
+                    <ItensMenu
+                        text="Projetos aceitos"
+                        fun={() => console.log("aqui")}
+                    />
+                    <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
+                  </>
+              ) : (
+                  <>
+                    <ItensMenu
+                        text="Desafios ativos"
+                        fun={() => console.log("aqui")}
+                    />
+                  </>
+              )}
+            </DivMenu>
+            <ContainerCard>
+              {dataCardMap.map((ele, index) => (
+                  <Card key={index} title={ele.title} dataCardObj={ele} />
+              ))}
+            </ContainerCard>
+          </DivSection>
+        </DivMain>
+      </Container>
   );
 };
 
