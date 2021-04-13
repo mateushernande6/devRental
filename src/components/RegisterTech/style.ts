@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Button from "../Atoms/Button";
 
 export const Container = styled.div`
   width: 300px;
@@ -29,11 +28,6 @@ export const DivButtons = styled.div`
   justify-content: center;
   border: none;
   margin-top: 7px;
-`;
-
-export const OrangeButton = styled(Button)`
-  margin-left: 50px;
-  margin-top: 10px;
 `;
 
 export const P = styled.p`
