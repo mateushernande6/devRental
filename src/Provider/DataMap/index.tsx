@@ -11,6 +11,7 @@ interface IdataState {
   tecnology: string[];
   reward: string;
   deadline?: string;
+  id: number;
 }
 
 interface IcontextData {

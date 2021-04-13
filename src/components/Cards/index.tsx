@@ -10,6 +10,7 @@ interface IitensData {
   description: string;
   tecnology: string[];
   reward: string;
+  id: number;
 }
 interface Props {
   title: string;

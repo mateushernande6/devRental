@@ -25,6 +25,7 @@ const NewWork = () => {
     tecnology: string[];
     reward: string;
     deadline?: string;
+    id: number;
   }
 
   interface Iuser {
