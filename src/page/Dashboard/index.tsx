@@ -15,6 +15,8 @@ import ModalComponents from "../../components/Modal";
 import NewWork from "../../components/newWork";
 import { ComponentDev } from "../../components/ComponentDev";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import { DataMapContext } from "../../Provider/DataMap";
+import { ComponentEmp } from "../../components/ComponentEmp";
 interface Iuser {
   token: string;
 }
@@ -25,10 +27,12 @@ interface IdataCard {
   description: string;
   tecnology: string[];
   reward: string;
+  id: number;
 }
 
 const Dashboard = () => {
   const { valueState } = useContext(AuthDashboardContext);
+  const { itemMap, setItemMap } = useContext(DataMapContext);
 
   const [open, setOpen] = useState(false);
 
@@ -41,6 +45,10 @@ const Dashboard = () => {
 
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
+
+  useEffect(() => {
+    setdataCardMap(itemMap);
+  }, [itemMap]);
 
   useEffect(() => {
     const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
@@ -57,11 +65,12 @@ const Dashboard = () => {
 
     if (idUser) {
       api
-        .get(`jobs/?userId=1`, {
+        .get(`jobs/?userId=${idUser}`, {
           headers: { Authorization: `Bearer ${user}` },
         })
         .then((response) => {
           setdataCardMap(response.data);
+          setItemMap(response.data);
         })
         .catch((err) => console.log(err));
     }
@@ -73,19 +82,18 @@ const Dashboard = () => {
         {valueState === "dev" ? (
           <ComponentDev />
         ) : (
-          <>
-            <Button
-              height={4.7}
-              width={26}
-              color={"#fff"}
-              text={"Novo trabalho"}
-              background={"#fc923f"}
-              click={handleOpen}
-            />
-            <ModalComponents open={open} handleClose={handleClose}>
-              <NewWork />
-            </ModalComponents>
-          </>
+          <ComponentEmp />
+          // {/* <Button
+          //   height={4.7}
+          //   width={26}
+          //   color={"#fff"}
+          //   text={"Novo trabalho"}
+          //   background={"#fc923f"}
+          //   click={handleOpen}
+          // />
+          // <ModalComponents open={open} handleClose={handleClose}>
+          //   <NewWork />
+          // </ModalComponents> */}
         )}
       </DivAside>
       <DivMain>

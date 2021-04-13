@@ -1,33 +1,25 @@
 import {
   Container,
-  InfoTecs,
   ContainerUsuario,
-  DivPlus,
   DivUsuarioInfo,
-  Line,
   Logo,
-  ContainerTecs,
   ContainerLogOut,
-  Tecs,
-  BlockTecs,
+  Block,
 } from "./style";
 import logo from "./Assets/devRental.png";
-import { BsPeopleCircle, BsPlus, BsFillCaretLeftFill } from "react-icons/bs";
+import { BsPeopleCircle, BsFillCaretLeftFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import api from "../../services";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
 import ModalComponents from "../Modal";
+import NewWork from "../newWork";
+import Button from "../Atoms/Button";
 
-interface ITech {
-  name: string;
-}
-
-export const ComponentDev = () => {
+export const ComponentEmp = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const history = useHistory();
 
@@ -46,17 +38,6 @@ export const ComponentDev = () => {
       });
   }, []);
 
-  useEffect(() => {
-    let user = JSON.parse(localStorage.getItem("token") ?? "");
-    api
-      .get(`techs/?userId=${id}`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setTech(response.data);
-      });
-  }, []);
-
   const handleOpen = () => {
     setOpen(true);
   };
@@ -69,7 +50,6 @@ export const ComponentDev = () => {
     localStorage.clear();
     history.push("/login");
   };
-
   return (
     <Container>
       <Logo src={logo} />
@@ -82,23 +62,19 @@ export const ComponentDev = () => {
           <h3>{email}</h3>
         </DivUsuarioInfo>
       </ContainerUsuario>
-      <BlockTecs>
-        <InfoTecs>
-          <h2>Tecs</h2>
-          <Line />
-          <DivPlus onClick={handleOpen}>
-            <BsPlus />
-          </DivPlus>
-          <ModalComponents open={open} handleClose={handleClose}>
-            <RegisterTech />
-          </ModalComponents>
-        </InfoTecs>
-        <ContainerTecs>
-          {tech.map((element) => {
-            return <Tecs>{element.name}</Tecs>;
-          })}
-        </ContainerTecs>
-      </BlockTecs>
+      <Block>
+        <Button
+          height={4.7}
+          width={26}
+          color={"#fff"}
+          text={"Novo trabalho"}
+          background={"#fc923f"}
+          click={handleOpen}
+        />
+        <ModalComponents open={open} handleClose={handleClose}>
+          <NewWork />
+        </ModalComponents>
+      </Block>
       <ContainerLogOut onClick={handleLogOut}>
         <BsFillCaretLeftFill className="Sair" />
         <h2>Sair</h2>
