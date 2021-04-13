@@ -9,9 +9,19 @@ export const Container = styled.div`
   justify-content: space-around;
 `;
 
+export const PrincipalBlock = styled.div`
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+`;
+
 export const Logo = styled.img`
   width: 320px;
   height: 75px;
+  margin-bottom: 15px;
 `;
 
 export const ContainerUsuario = styled.div`
@@ -19,6 +29,7 @@ export const ContainerUsuario = styled.div`
   align-items: flex-start;
   justify-content: space-around;
   width: 170px;
+  margin-bottom: 15px;
 
   div {
     font-size: 60px;
@@ -53,6 +64,7 @@ export const DivUsuarioInfo = styled.div`
 `;
 
 export const BlockTecs = styled.div`
+  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,6 +75,7 @@ export const InfoTecs = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-top: 10px;
   width: 170px;
   margin-bottom: 10px;
 
@@ -132,24 +145,48 @@ export const Btn = styled.button`
 
 export const ContainerTecs = styled.div`
   display: flex;
+  height: 200px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-y: auto;
+  padding: 1rem;
+  margin-top: 10px;
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 0 8px 8px 0;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 0 8px 8px 0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3a3864;
+    border-radius: 5px;
+  }
 `;
 
 export const Tecs = styled.div`
-  width: 150px;
-  height: 30px;
-  border-radius: 15px;
-  background: #575a9e;
+  width: 210px;
+  height: 50px;
+  border-radius: 5px;
+  /* background: #575a9e; */
+  background: #424472;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   color: white;
   font-size: 1.5rem;
   font-family: "Montserrat Alternates", sans-serif;
   font-weight: bolder;
   margin-bottom: 10px;
+  padding: 10px;
+
+  div {
+    font-size: 25px;
+    color: #fc923f;
+  }
 `;
 
 export const ContainerLogOut = styled.div`
@@ -158,6 +195,7 @@ export const ContainerLogOut = styled.div`
   justify-content: center;
   font-size: 30px;
   padding: 5px;
+  margin-bottom: 145px;
 
   &:hover {
     cursor: pointer;
