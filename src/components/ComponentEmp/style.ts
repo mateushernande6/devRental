@@ -9,9 +9,19 @@ export const Container = styled.div`
   justify-content: space-around;
 `;
 
+export const PrincipalBlock = styled.div`
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 10px;
+`;
+
 export const Logo = styled.img`
   width: 320px;
   height: 75px;
+  margin-bottom: 30px;
 `;
 
 export const ContainerUsuario = styled.div`
@@ -161,8 +171,6 @@ export const ContainerLogOut = styled.div`
 
   &:hover {
     cursor: pointer;
-    border: solid 2px white;
-    border-radius: 15px;
   }
 
   h2 {

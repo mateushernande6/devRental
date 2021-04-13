@@ -15,6 +15,7 @@ import { RegisterTech } from "../RegisterTech";
 import ModalComponents from "../Modal";
 import NewWork from "../newWork";
 import Button from "../Atoms/Button";
+import { PrincipalBlock } from "../ComponentEmp/style";
 
 export const ComponentEmp = () => {
   const [id, setId] = useState("");
@@ -52,16 +53,18 @@ export const ComponentEmp = () => {
   };
   return (
     <Container>
-      <Logo src={logo} />
-      <ContainerUsuario>
-        <div>
-          <BsPeopleCircle />
-        </div>
-        <DivUsuarioInfo>
-          <h2>{name}</h2>
-          <h3>{email}</h3>
-        </DivUsuarioInfo>
-      </ContainerUsuario>
+      <PrincipalBlock>
+        <Logo src={logo} />
+        <ContainerUsuario>
+          <div>
+            <BsPeopleCircle />
+          </div>
+          <DivUsuarioInfo>
+            <h2>{name}</h2>
+            <h3>{email}</h3>
+          </DivUsuarioInfo>
+        </ContainerUsuario>
+      </PrincipalBlock>
       <Block>
         <Button
           height={4.7}
