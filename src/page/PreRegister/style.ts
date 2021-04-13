@@ -16,12 +16,32 @@ export const ContainerDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #14142b;
+
+  @media (max-width: 910px) {
+    margin: 0 auto;
+    flex-direction: column;
+  }
+  @media (max-width: 425px) {
+    width: 465px;
+    flex-direction: column;
+    height: 600px;
+  }
+
+  @media (max-width: 375px) {
+    margin-top: 70px;
+  }
 `;
 
 export const Img = styled.img`
   width: 445px;
   height: 310px;
   margin-left: 20px;
+
+  @media (max-width: 910px) {
+    width: 222px;
+    height: 215px;
+    margin-top: 10px;
+  }
 `;
 
 export const DivItens = styled.div`
@@ -38,6 +58,20 @@ export const DivItens = styled.div`
     text-align: center;
     color: white;
   }
+
+  @media (max-width: 910px) {
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+    }
+  }
+  @media (max-width: 425px) {
+    margin: 0 auto;
+  }
+
+  @media (max-width: 375px) {
+    margin-left: 10px;
+  }
 `;
 
 export const DivCards = styled.div`
@@ -46,6 +80,14 @@ export const DivCards = styled.div`
   align-items: center;
   justify-content: space-around;
   margin-right: 20px;
+
+  @media (max-width: 425px) {
+    margin: 0 auto;
+  }
+
+  @media (max-width: 375px) {
+    margin-left: 23px;
+  }
 `;
 
 export const Card = styled.div`
@@ -61,6 +103,12 @@ export const Card = styled.div`
   border-radius: 15px;
   transition-property: transform;
   transition-duration: 0.5s;
+
+  @media (max-width: 425px) {
+    width: 100px;
+    height: 120px;
+    font-size: 5rem;
+  }
 
   &:hover {
     transform: scale(1.1);

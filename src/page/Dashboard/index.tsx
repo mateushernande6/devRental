@@ -9,7 +9,6 @@ import {
 } from "./style";
 import Card from "../../components/Cards";
 import api from "../../services";
-
 import { useEffect, useState, useContext } from "react";
 import Button from "../../components/Atoms/Button";
 import ModalComponents from "../../components/Modal";
@@ -18,7 +17,6 @@ import { ComponentDev } from "../../components/ComponentDev";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { DataMapContext } from "../../Provider/DataMap";
 import { ComponentEmp } from "../../components/ComponentEmp";
-
 interface Iuser {
   token: string;
 }
@@ -29,20 +27,12 @@ interface IdataCard {
   description: string;
   tecnology: string[];
   reward: string;
+  id: number;
 }
 
 const Dashboard = () => {
   const { valueState } = useContext(AuthDashboardContext);
   const { itemMap, setItemMap } = useContext(DataMapContext);
-
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
@@ -56,16 +46,35 @@ const Dashboard = () => {
     let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
 
     api
-      .get(`users/${idUser}`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setCategory(response.data.category);
-      })
-      .catch((err) => console.log(err));
+        .get(`users/${idUser}`, {
+          headers: { Authorization: `Bearer ${user}` },
+        })
+        .then((response) => {
+          setCategory(response.data.category);
+
+          if (response.data.category === "dev") {
+            cardDev();
+          }
+        })
+        .catch((err) => console.log(err));
 
     if (idUser) {
       api
+          .get(`jobs/?userId=${idUser}`, {
+            headers: { Authorization: `Bearer ${user}` },
+          })
+          .then((response) => {
+            setdataCardMap(response.data);
+            setItemMap(response.data);
+          })
+          .catch((err) => console.log(err));
+    }
+  }, []);
+
+  const cardDev = () => {
+    let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
+
+    api
         .get(`jobs`, {
           headers: { Authorization: `Bearer ${user}` },
         })
@@ -74,59 +83,42 @@ const Dashboard = () => {
           setItemMap(response.data);
         })
         .catch((err) => console.log(err));
-    }
-  }, []);
+  };
 
   return (
-    <Container>
-      <DivAside>
-
-        {valueState === "dev" ? (
-          <ComponentDev />
-        ) : (
-          <ComponentEmp />
-          // {/* <Button
-          //   height={4.7}
-          //   width={26}
-          //   color={"#fff"}
-          //   text={"Novo trabalho"}
-          //   background={"#fc923f"}
-          //   click={handleOpen}
-          // />
-          // <ModalComponents open={open} handleClose={handleClose}>
-          //   <NewWork />
-          // </ModalComponents> */}
-        )}
-      </DivAside>
-      <DivMain>
-        <DivSection>
-          <DivMenu>
-            {category === "dev" ? (
-              <>
-                <ItensMenu text="Desafios" fun={() => console.log("aqui")} />
-                <ItensMenu
-                  text="Projetos aceitos"
-                  fun={() => console.log("aqui")}
-                />
-                <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
-              </>
-            ) : (
-              <>
-                <ItensMenu
-                  text="Desafios ativos"
-                  fun={() => console.log("aqui")}
-                />
-              </>
-            )}
-          </DivMenu>
-          <ContainerCard>
-            {dataCardMap.map((ele, index) => (
-              <Card key={index} title={ele.title} dataCardObj={ele} />
-            ))}
-          </ContainerCard>
-        </DivSection>
-      </DivMain>
-    </Container>
+      <Container>
+        <DivAside>
+          {category === "dev" ? <ComponentDev /> : <ComponentEmp />}
+        </DivAside>
+        <DivMain>
+          <DivSection>
+            <DivMenu>
+              {category === "dev" ? (
+                  <>
+                    <ItensMenu text="Desafios" fun={() => console.log("aqui")} />
+                    <ItensMenu
+                        text="Projetos aceitos"
+                        fun={() => console.log("aqui")}
+                    />
+                    <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
+                  </>
+              ) : (
+                  <>
+                    <ItensMenu
+                        text="Desafios ativos"
+                        fun={() => console.log("aqui")}
+                    />
+                  </>
+              )}
+            </DivMenu>
+            <ContainerCard>
+              {dataCardMap.map((ele, index) => (
+                  <Card key={index} title={ele.title} dataCardObj={ele} />
+              ))}
+            </ContainerCard>
+          </DivSection>
+        </DivMain>
+      </Container>
   );
 };
 

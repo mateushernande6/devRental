@@ -1,4 +1,4 @@
-import {Container, TextArea, ErrorMessage, TechsList} from "./style";
+import { Container, TextArea, ErrorMessage, TechsList } from "./style";
 
 import Input from "../Atoms/Input";
 import Button from "../Atoms/Button";
@@ -12,26 +12,25 @@ import { MouseEventHandler, useContext, useState } from "react";
 import { date } from "yup";
 import { DataMapContext } from "../../Provider/DataMap";
 
-
-interface INewWork {
-    title: string;
-    objective: string;
-    description: string;
-    tecnology: string[];
-    reward: string;
-    deadline?: string;
-}
-interface Iuser {
-    token: string;
-}
-
 const NewWork = () => {
+    const { itemMap, setItemMap } = useContext(DataMapContext);
 
-    const [Techs, setTechs] = useState<string[]>([])
-    const [value, setValue] = useState<string>('')
+    const [Techs, setTechs] = useState<string[]>([]);
+    const [value, setValue] = useState<string>("");
 
-    const {itemMap, setItemMap} = useContext(DataMapContext);
+    interface INewWork {
+        title: string;
+        objective: string;
+        description: string;
+        tecnology: string[];
+        reward: string;
+        deadline?: string;
+        id: number;
+    }
 
+    interface Iuser {
+        token: string;
+    }
 
     const requiredField = "Campo obrigatório";
 
@@ -51,7 +50,7 @@ const NewWork = () => {
         handleSubmit,
         reset,
         register,
-        formState: {errors},
+        formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
     });
@@ -59,7 +58,7 @@ const NewWork = () => {
     const handleForm = (data: INewWork) => {
         const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
-        const postData = {...data, tecnology: Techs, userId: idUser};
+        const postData = { ...data, tecnology: Techs, userId: idUser };
 
         let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
 
@@ -72,7 +71,8 @@ const NewWork = () => {
                 },
             })
             .then((response) => {
-                setItemMap([...itemMap, postData]);
+                console.log(response);
+                setItemMap([...itemMap, response.data]);
                 console.log("Desafio cadastrado na api");
             })
             .catch((err) => console.log(err));
@@ -90,33 +90,38 @@ const NewWork = () => {
                 />
                 <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
-                <TextArea {...register("objective")} placeholder="Objetivo" rows={5}/>
+                {/*//    titulo, objetivo, descrição, tecnologias, recompensa, prazo*/}
+                <TextArea {...register("objective")} placeholder="Objetivo" rows={5} />
                 <ErrorMessage>{errors.objective?.message}</ErrorMessage>
 
                 <TextArea
                     {...register("description")}
                     placeholder="Descrição"
-                    rows={5}
+                    rows={10}
                 />
                 <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
-                <h4>Techs:</h4>
+                <h4>Techs</h4>
                 <ul>
-                    {Techs.map((item, index) => <TechsList key={index}>{item}</TechsList>)}
+                {Techs.map((item, index) => (
+                    <TechsList>{item}</TechsList>
+                ))}
                 </ul>
-                <input placeholder={'New tech'}
-                       onChange={(e) => setValue(e.target.value)}
+                <input
+                    placeholder={"New tech"}
+                    onChange={(e) => setValue(e.target.value)}
                 />
-                <Button click={(e) => {
-                    setTechs([...Techs, value]);
-                    e.preventDefault()
-                }}
-                        text={'Nova tech'}
-                        color={'#fff'}
-                        background={'#D75358'}
-                        width={20}
-                        height={3}
-                />
+
+                <button
+                    onClick={(e) => {
+                        setTechs([...Techs, value]);
+                        e.preventDefault();
+                    }}
+                >
+                    add tech
+                </button>
+                {/* <ErrorMessage>{errors.workTechs?.message}</ErrorMessage> */}
+
                 <Input
                     name={"reward"}
                     register={register}
@@ -141,9 +146,11 @@ const NewWork = () => {
                     color={"#fff"}
                     text={"Adicionar"}
                     background={"#fc923f"}
+                    // type={'submit'}
                 />
             </form>
         </Container>
     );
-}
-export default NewWork
+};
+
+export default NewWork;
