@@ -37,25 +37,26 @@ interface Iuser {
 
 interface Iobj {
   id: number;
-  title: string;
 }
 
 const DataCard = ({ dataObj }: ImodalData) => {
   const { valueState } = useContext(AuthDashboardContext);
   const { itemMap, setItemMap } = useContext(DataMapContext);
 
-  const deleteCard = ({ id, title }: Iobj) => {
+  const deleteCard = (dataObj: Iobj) => {
     const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
     let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
 
     console.log(user);
+    console.log(idUser);
+    console.log(dataObj);
 
     api
-      .delete(`jobs/${id}/?userId=${idUser}`, {
+      .delete(`jobs/${dataObj.id}/?userId=${idUser}`, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        const filterMap = itemMap.filter((ele) => ele.id !== id && ele);
+        const filterMap = itemMap.filter((ele) => ele.id !== dataObj.id && ele);
         setItemMap(filterMap);
         console.log("card deletado");
       })
