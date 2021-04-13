@@ -26,6 +26,8 @@ interface IitensData {
   tecnology: string[];
   reward: string;
   id: number;
+  buttonBotton: string;
+  buttonTop: string;
 }
 interface ImodalData {
   dataObj: IitensData;
@@ -42,11 +44,10 @@ interface Iobj {
 const DataCard = ({ dataObj }: ImodalData) => {
   const { valueState } = useContext(AuthDashboardContext);
   const { itemMap, setItemMap } = useContext(DataMapContext);
+  let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
+  const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
   const deleteCard = (dataObj: Iobj) => {
-    const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
-    let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
-
     console.log(user);
     console.log(idUser);
     console.log(dataObj);
@@ -63,6 +64,53 @@ const DataCard = ({ dataObj }: ImodalData) => {
       .catch((err) => console.log(err));
   };
 
+  const challengesAccepted = (dataObj: Iobj) => {
+    const dataApi = {
+      ...dataObj,
+      userId: idUser,
+      buttonTop: "desafioAceito",
+      buttonBotton: "desafioAceito",
+    };
+
+    api
+      .post(`accepted`, dataApi, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        console.log("Cadastrado desafio aceito");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const addPortfolio = (dataObj: Iobj) => {
+    const dataApi = {
+      ...dataObj,
+      userId: idUser,
+      buttonTop: "",
+      buttonBotton: "portfolio",
+    };
+    console.log("aui mesmo: ", dataApi);
+    api
+      .post(`portfolio`, dataApi, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        console.log("Adcionado no portfolio");
+      })
+      .catch((err) => console.log(err));
+
+    api
+      .delete(`accepted/${dataObj.id}/?userId=${idUser}`, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        console.log("deletado do aceitado e add portfolio");
+        const filterMap = itemMap.filter((ele) => ele.id !== dataObj.id && ele);
+        setItemMap(filterMap);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Container>
       <Content>
@@ -70,16 +118,25 @@ const DataCard = ({ dataObj }: ImodalData) => {
           <Title>{dataObj.title}</Title>
           {console.log(dataObj)}
           {/* <Line /> */}
-          {valueState === "dev" ? (
+          {dataObj.buttonTop === "desafio" ? (
             <BackIcon>
               <FiCheckSquare size={28} />
-              <TextButton>Aceitar Desafio</TextButton>
+              <TextButton onClick={() => challengesAccepted(dataObj)}>
+                Aceitar Desafio
+              </TextButton>
             </BackIcon>
-          ) : (
+          ) : dataObj.buttonTop === "excluir" ? (
             <BackIconCam onClick={() => deleteCard(dataObj)}>
               <FiCheckSquare size={28} />
               <TextButton>Excluir Desafio</TextButton>
             </BackIconCam>
+          ) : dataObj.buttonTop === "desafioAceito" ? (
+            <BackIconCam onClick={() => addPortfolio(dataObj)}>
+              <FiCheckSquare size={28} />
+              <TextButton>Desafio Concluido</TextButton>
+            </BackIconCam>
+          ) : (
+            ""
           )}
         </DivTitle>
         <SubTitle>Objetivo:</SubTitle>
