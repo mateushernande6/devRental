@@ -17,7 +17,7 @@ const PrivateRoute = ({ component: Component, ...rest }: IPrevate) => (
   <Route
     {...rest}
     render={(props) =>
-      token ? (
+      !!token ? (
         <Component {...props} />
       ) : (
         <Redirect to={{ pathname: "/", state: { from: props.location } }} />
