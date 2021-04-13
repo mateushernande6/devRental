@@ -7,7 +7,7 @@ import {
   Block,
 } from "./style";
 import logo from "./Assets/devRental.png";
-import { BsPeopleCircle, BsPlus, BsFillCaretLeftFill } from "react-icons/bs";
+import { BsPeopleCircle, BsFillCaretLeftFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import api from "../../services";
 import { useHistory } from "react-router";
@@ -20,7 +20,6 @@ export const ComponentEmp = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  //   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const history = useHistory();
 
@@ -38,17 +37,6 @@ export const ComponentEmp = () => {
         setEmail(response.data.email);
       });
   }, []);
-
-  //   useEffect(() => {
-  //     let user = JSON.parse(localStorage.getItem("token") ?? "");
-  //     api
-  //       .get(`techs/?userId=${id}`, {
-  //         headers: { Authorization: `Bearer ${user}` },
-  //       })
-  //       .then((response) => {
-  //         setTech(response.data);
-  //       });
-  //   }, []);
 
   const handleOpen = () => {
     setOpen(true);
