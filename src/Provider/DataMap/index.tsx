@@ -12,6 +12,8 @@ interface IdataState {
   reward: string;
   deadline?: string;
   id: number;
+  buttonBotton: string;
+  buttonTop: string;
 }
 
 interface IcontextData {

@@ -11,6 +11,8 @@ interface IitensData {
   tecnology: string[];
   reward: string;
   id: number;
+  buttonBotton: string;
+  buttonTop: string;
 }
 interface Props {
   title: string;
@@ -31,20 +33,51 @@ const Card = ({ title, dataCardObj }: Props) => {
   return (
     <Container>
       <>
+        {console.log(dataCardObj)}
         <image>
           <ImgCard src="https://picsum.photos/200/200" />
         </image>
         <section>
           <p>{title}</p>
         </section>
-        <Button
+        {dataCardObj.buttonBotton === "desafio" ? (
+          <Button
+            width={20}
+            background="#FC923F"
+            color=""
+            height={4}
+            text="Ver mais"
+            click={handleOpen}
+          />
+        ) : dataCardObj.buttonBotton === "desafioAceito" ? (
+          <Button
+            width={20}
+            background="#49D2A2"
+            color=""
+            height={4}
+            text="Detalhes"
+            click={handleOpen}
+          />
+        ) : dataCardObj.buttonBotton === "portfolio" ? (
+          <Button
+            width={20}
+            background="#e04552"
+            color=""
+            height={4}
+            text="Ver mais"
+            click={handleOpen}
+          />
+        ) : (
+          ""
+        )}
+        {/* <Button
           width={20}
           background="#FC923F"
           color=""
           height={4}
           text="Ver mais"
           click={handleOpen}
-        />
+        /> */}
         <>
           <ModalComponents open={open} handleClose={handleClose}>
             <DataCard dataObj={dataCardObj} />
