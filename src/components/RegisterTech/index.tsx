@@ -2,11 +2,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../Atoms/Input";
-import { Container, DivButtons, OrangeButton, P } from "./style";
+import { Container, DivButtons, P } from "./style";
 
 import api from "../../services";
 import Button from "../Atoms/Button";
-import { SetStateAction } from "react";
 
 interface IValue {
   name: string;
@@ -61,7 +60,7 @@ export const RegisterTech = ({ getTechs }: IProps) => {
           width={10}
         />
         <P>{errors.name?.message}</P>
-        <OrangeButton
+        <Button
           height={2}
           width={7}
           color={"#fff"}
