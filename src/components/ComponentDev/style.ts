@@ -161,8 +161,6 @@ export const ContainerLogOut = styled.div`
 
   &:hover {
     cursor: pointer;
-    border: solid 2px white;
-    border-radius: 15px;
   }
 
   h2 {
