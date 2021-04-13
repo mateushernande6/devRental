@@ -34,15 +34,6 @@ const Dashboard = () => {
   const { valueState } = useContext(AuthDashboardContext);
   const { itemMap, setItemMap } = useContext(DataMapContext);
 
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
 
@@ -60,6 +51,10 @@ const Dashboard = () => {
       })
       .then((response) => {
         setCategory(response.data.category);
+
+        if (response.data.category === "dev") {
+          cardDev();
+        }
       })
       .catch((err) => console.log(err));
 
@@ -76,25 +71,24 @@ const Dashboard = () => {
     }
   }, []);
 
+  const cardDev = () => {
+    let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
+
+    api
+      .get(`jobs`, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        setdataCardMap(response.data);
+        setItemMap(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Container>
       <DivAside>
-        {valueState === "dev" ? (
-          <ComponentDev />
-        ) : (
-          <ComponentEmp />
-          // {/* <Button
-          //   height={4.7}
-          //   width={26}
-          //   color={"#fff"}
-          //   text={"Novo trabalho"}
-          //   background={"#fc923f"}
-          //   click={handleOpen}
-          // />
-          // <ModalComponents open={open} handleClose={handleClose}>
-          //   <NewWork />
-          // </ModalComponents> */}
-        )}
+        {category === "dev" ? <ComponentDev /> : <ComponentEmp />}
       </DivAside>
       <DivMain>
         <DivSection>
