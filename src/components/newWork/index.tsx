@@ -25,6 +25,7 @@ const NewWork = () => {
     tecnology: string[];
     reward: string;
     deadline?: string;
+    id: number;
   }
 
   interface Iuser {
@@ -70,7 +71,8 @@ const NewWork = () => {
         },
       })
       .then((response) => {
-        setItemMap([...itemMap, postData]);
+        console.log(response);
+        setItemMap([...itemMap, response.data]);
         console.log("Desafio cadastrado na api");
       })
       .catch((err) => console.log(err));

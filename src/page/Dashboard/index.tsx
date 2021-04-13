@@ -27,6 +27,7 @@ interface IdataCard {
   description: string;
   tecnology: string[];
   reward: string;
+  id: number;
 }
 
 const Dashboard = () => {
@@ -64,7 +65,7 @@ const Dashboard = () => {
 
     if (idUser) {
       api
-        .get(`jobs`, {
+        .get(`jobs/?userId=${idUser}`, {
           headers: { Authorization: `Bearer ${user}` },
         })
         .then((response) => {
