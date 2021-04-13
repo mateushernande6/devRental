@@ -35,3 +35,11 @@ export const OrangeButton = styled(Button)`
   margin-left: 50px;
   margin-top: 10px;
 `;
+
+export const P = styled.p`
+  font-size: 1rem;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: bolder;
+  text-align: center;
+  color: red;
+`;

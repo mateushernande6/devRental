@@ -2,17 +2,22 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../Atoms/Input";
-import { Container, DivButtons, OrangeButton } from "./style";
+import { Container, DivButtons, OrangeButton, P } from "./style";
 
 import api from "../../services";
 import Button from "../Atoms/Button";
+import { SetStateAction } from "react";
 
 interface IValue {
   name: string;
   userId: string;
 }
 
-export const RegisterTech = () => {
+interface IProps {
+  getTechs: () => void;
+}
+
+export const RegisterTech = ({ getTechs }: IProps) => {
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
   });
@@ -29,11 +34,19 @@ export const RegisterTech = () => {
   const onSubmit = (data: IValue) => {
     const id = JSON.parse(localStorage.getItem("userId") ?? "");
     let user = JSON.parse(localStorage.getItem("token") ?? "");
-    const userId = "userId:" + id;
+    const userId = id;
     const newData = { ...data, userId };
-    api.post("techs", newData, {
-      headers: { Authorization: `Bearer ${user}` },
-    });
+    console.log(newData);
+
+    api
+      .post("techs", newData, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        console.log(response);
+      });
+    reset();
+    getTechs();
   };
 
   return (
@@ -47,7 +60,7 @@ export const RegisterTech = () => {
           placeHolder={"Tecnologia"}
           width={10}
         />
-        <p>{errors.name?.message}</p>
+        <P>{errors.name?.message}</P>
         <OrangeButton
           height={2}
           width={7}

@@ -21,6 +21,7 @@ import ModalComponents from "../Modal";
 
 interface ITech {
   name: string;
+  userId: string;
 }
 
 export const ComponentDev = () => {
@@ -29,9 +30,18 @@ export const ComponentDev = () => {
   const [email, setEmail] = useState("");
   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+  const [flag, setFlag] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
+    Promise.all([getNameEmail(), getTechs()]);
+  }, []);
+
+  useEffect(() => {
+    getTechs();
+  }, [flag]);
+
+  const getNameEmail = () => {
     const id = JSON.parse(localStorage.getItem("userId") ?? "");
     setId(id);
     const users = "users/" + id;
@@ -44,18 +54,18 @@ export const ComponentDev = () => {
         setName(response.data.name);
         setEmail(response.data.email);
       });
-  }, []);
+  };
 
-  useEffect(() => {
+  const getTechs = () => {
     let user = JSON.parse(localStorage.getItem("token") ?? "");
     api
-      .get(`techs/?userId=${id}`, {
+      .get(`techs`, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
         setTech(response.data);
       });
-  }, []);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -90,13 +100,17 @@ export const ComponentDev = () => {
             <BsPlus />
           </DivPlus>
           <ModalComponents open={open} handleClose={handleClose}>
-            <RegisterTech />
+            <RegisterTech getTechs={getTechs} />
           </ModalComponents>
         </InfoTecs>
         <ContainerTecs>
-          {tech.map((element) => {
-            return <Tecs>{element.name}</Tecs>;
-          })}
+          {tech
+            .filter((element) => {
+              return element.userId == id;
+            })
+            .map((element) => {
+              return <Tecs>{element.name}</Tecs>;
+            })}
         </ContainerTecs>
       </BlockTecs>
       <ContainerLogOut onClick={handleLogOut}>
