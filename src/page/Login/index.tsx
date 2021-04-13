@@ -8,6 +8,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import { toast } from "react-toastify";
+import { useState, useEffect } from "react";
 
 interface IFormInputs {
   email: string;
@@ -29,11 +31,14 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
+  const [error, setError] = useState(false);
+
   const history = useHistory();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -49,11 +54,31 @@ const Login = () => {
         );
         let { sub } = jwt_decode<string>(response.data.accessToken);
         localStorage.setItem("userId", JSON.stringify(sub));
+
         history.push("/dashboard");
       })
-      .catch((err) => console.log(err.response));
+      .catch((err) => {
+        setError(true);
+        console.log("aassasa", err.response);
+      });
   };
 
+  useEffect(() => {
+    if (error) {
+      toast.error(`😵 Não foi possivél fazer login `, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setError(false);
+    }
+  }, [error]);
+
+  console.log(error);
   return (
     <Container>
       <Main>
