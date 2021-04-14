@@ -49,13 +49,12 @@ export const PhotoProfile = styled.div<IPhoto>`
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  }
+
   label {
     width: 90px;
-    height:90px;
+    height: 90px;
     overflow: hidden;
-    border-radius:50%;
+    border-radius: 50%;
     background-color: indigo;
     cursor: pointer;
     text-align: center;
