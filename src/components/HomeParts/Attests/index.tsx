@@ -1,5 +1,5 @@
-import {OuterContainer, Container, UpperContainer, LowerContainer, Card} from "./style";
-
+import { UpperContainer, LowerContainer, Card} from "./style";
+import {OuterContainer, Container} from "../style";
 import React from 'react';
 
 const Attests = () => {

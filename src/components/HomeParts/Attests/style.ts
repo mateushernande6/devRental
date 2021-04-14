@@ -1,27 +1,5 @@
 import styled from "styled-components";
 
-export const OuterContainer = styled.div`
-  width: 100%;
-  background: #201f3e;
-  
-  padding-top: 4rem;
-
-`;
-
-export const Container = styled.section`
-  margin: 0 auto;
-  color: #fff;
-  
-  width: 100%;
-
-  max-width: 1125px;
-
-  
-  //display: flex;
-  //flex-direction: column;
-  //justify-content: center;
-`;
-
 export const UpperContainer = styled.div`
   
   height: 10rem;

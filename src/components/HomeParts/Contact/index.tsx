@@ -1,4 +1,5 @@
-import {OuterContainer, Container, Footer, UpperContainer, Icons, InfoSection} from './style'
+import {Footer, UpperContainer, Icons, InfoSection} from './style'
+import {OuterContainer, Container} from "../style";
 
 import {IoLogoFacebook, IoMdMail, IoLogoInstagram} from 'react-icons/io'
 
@@ -40,7 +41,6 @@ const Contact = () => {
     <Footer>
         <h6>desenvolvido na kenzie academy brasil</h6>
     </Footer>
-
 </OuterContainer>
     );
 };
