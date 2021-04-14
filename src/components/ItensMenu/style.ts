@@ -8,8 +8,9 @@ export const Container = styled.div`
   cursor: pointer;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
+  border-bottom: 1px solid #fc923f;
 
   &:hover {
-    border-bottom: 1px solid #fc923f;
+    border-bottom: 1px solid #ff6a17;
   }
 `;

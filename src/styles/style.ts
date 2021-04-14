@@ -19,4 +19,16 @@ export default createGlobalStyle`
     
     min-width: 30rem;
   }
+
+  .MuiButton-containedPrimary {
+    background-color: rgba(66, 68, 114, 0.43) !important;
+  }
+
+  .MuiTypography-body1 {
+    font-size: 1.6rem !important;
+  }
+
+  .MuiSvgIcon-fontSizeSmall {
+    font-size: 2.55rem !important;
+  }
 `;

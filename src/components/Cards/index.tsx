@@ -42,42 +42,34 @@ const Card = ({ title, dataCardObj }: Props) => {
         </section>
         {dataCardObj.buttonBotton === "desafio" ? (
           <Button
-            width={20}
+            width={18}
             background="#FC923F"
-            color=""
-            height={4}
+            color="#fcfbff"
+            height={3.7}
             text="Ver mais"
             click={handleOpen}
           />
         ) : dataCardObj.buttonBotton === "desafioAceito" ? (
           <Button
-            width={20}
+            width={18}
             background="#49D2A2"
-            color=""
-            height={4}
+            color="#fcfbff"
+            height={3.7}
             text="Detalhes"
             click={handleOpen}
           />
         ) : dataCardObj.buttonBotton === "portfolio" ? (
           <Button
-            width={20}
+            width={18}
             background="#e04552"
-            color=""
-            height={4}
+            color="#fcfbff"
+            height={3.7}
             text="Ver mais"
             click={handleOpen}
           />
         ) : (
           ""
         )}
-        {/* <Button
-          width={20}
-          background="#FC923F"
-          color=""
-          height={4}
-          text="Ver mais"
-          click={handleOpen}
-        /> */}
         <>
           <ModalComponents open={open} handleClose={handleClose}>
             <DataCard dataObj={dataCardObj} />
