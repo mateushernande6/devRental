@@ -10,6 +10,8 @@ export default createGlobalStyle`
   }
   html{
     font-size: 62.5%;
+
+    width: 100%;
   }
 
   body {
@@ -18,5 +20,7 @@ export default createGlobalStyle`
     font-family: "Montserrat", sans-serif;
     
     min-width: 30rem;
+    
+   
   }
 `;
