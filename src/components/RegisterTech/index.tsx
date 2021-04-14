@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../Atoms/Input";
-import { Container, DivButtons, P } from "./style";
+import { Container, DivButtons, P, FormStyled } from "./style";
 
 import api from "../../services";
 import Button from "../Atoms/Button";
@@ -51,7 +51,7 @@ export const RegisterTech = ({ getTechs }: IProps) => {
   return (
     <Container>
       <h2>Qual tech você conhece?</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <FormStyled onSubmit={handleSubmit(onSubmit)}>
         <Input
           name="name"
           register={register}
@@ -61,13 +61,13 @@ export const RegisterTech = ({ getTechs }: IProps) => {
         />
         <P>{errors.name?.message}</P>
         <Button
-          height={2}
+          height={3.02}
           width={7}
           color={"#fff"}
           text={"Ok"}
           background={"#fc923f"}
         />
-      </form>
+      </FormStyled>
     </Container>
   );
 };
