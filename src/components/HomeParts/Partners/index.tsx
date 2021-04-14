@@ -1,9 +1,9 @@
 import {
-  OuterContainer,
-  Container,
   UpperContainer,
   CompanyImage,
 } from "./style";
+import {OuterContainer, Container} from "../style";
+
 import Carousel from "react-elastic-carousel";
 
 const Partners = () => {
