@@ -8,8 +8,8 @@ export const Container = styled.div`
   justify-content: center;
 `;
 export const Main = styled.div`
-  width: 90vw;
-  height: 50rem;
+  width: 800px;
+  height: 500px;
   background-color: #14142b;
   color: white;
   padding: 3rem;
@@ -17,19 +17,36 @@ export const Main = styled.div`
   justify-content: center;
   border-radius: 10px;
   text-align: center;
+
+  @media (max-width: 820px) {
+    flex-direction: column;
+    align-items: center;
+
+    width: 94vw;
+    height: 92vh;
+  }
 `;
 export const DivImage = styled.div`
-  width: 60rem;
+  width: 50%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-right: 1px solid #212040;
   img {
-    width: 100%;
+    width: 90%;
+
+    @media (max-width: 820px) {
+      width: 65%;
+      min-width: 200px;
+    }
+  }
+
+  @media (max-width: 820px) {
+    border: none;
   }
 `;
 export const DivContent = styled.div`
-  width: 50rem;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,28 +54,51 @@ export const DivContent = styled.div`
   text-align: center;
   justify-content: center;
 
+  @media (max-width: 820px) {
+    width: 100%;
+  }
+
+  @media (max-width: 317px) {
+    width: 120%;
+  }
+
   h2 {
     font-size: 4rem;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     margin-bottom: 6rem;
+
+    @media (max-width: 820px) {
+      margin: 4rem 0;
+    }
   }
   p {
     text-align: left;
     margin-top: 1rem;
     margin-bottom: 3rem;
     font-size: 1.5rem;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #f99292;
   }
+
+  form {
+    input {
+      width: 24rem;
+      height: 2.5rem;
+    }
+  }
+
   Button {
     margin-bottom: 3rem;
+    width: 26rem;
+    height: 4.7rem;
   }
   .linkReg {
-    font-size: 2.5rem;
+    font-size: 1.6rem;
+    font-weight: bold;
     color: white;
     outline: none;
     text-decoration: none;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Montserrat", sans-serif;
   }
 `;
