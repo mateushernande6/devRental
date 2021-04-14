@@ -8,20 +8,59 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
+export const DivText = styled.div`
+  width: 500px;
+
+  @media (max-width: 506px) {
+    width: 318px;
+  }
+
+  @media (max-width: 400px) {
+    width: 254px;
+  }
+`;
+
+export const DivImage = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  border-right: 1px solid #212040;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 918px) {
+    height: 55%;
+  }
+`;
+
+export const DivCardIcon = styled.div`
+  background-color: rgb(66, 68, 114, 0.38);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+`;
+
 export const ContainerDiv = styled.div`
-  height: 550px;
-  width: 1098px;
+  width: 900px;
+  height: 460px;
+  /* height: 550px;
+  width: 1098px; */
   border-radius: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #14142b;
 
-  @media (max-width: 910px) {
+  @media (max-width: 918px) {
     margin: 0 auto;
     flex-direction: column;
+    width: 97%;
+    height: 91%;
   }
-  @media (max-width: 425px) {
+  /* @media (max-width: 425px) {
     width: 465px;
     flex-direction: column;
     height: 600px;
@@ -29,32 +68,35 @@ export const ContainerDiv = styled.div`
 
   @media (max-width: 375px) {
     margin-top: 70px;
-  }
+  } */
 `;
 
 export const Img = styled.img`
-  width: 445px;
-  height: 310px;
+  width: 368px;
+  height: auto;
   margin-left: 20px;
 
-  @media (max-width: 910px) {
-    width: 222px;
-    height: 215px;
+  @media (max-width: 918px) {
+    width: 313px;
     margin-top: 10px;
+  }
+
+  @media (max-width: 450px) {
+    width: 226px;
   }
 `;
 
 export const DivItens = styled.div`
-  height: 500px;
+  height: 452px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 
   h1 {
-    font-size: 4rem;
-    font-family: "Montserrat Alternates", sans-serif;
-    font-weight: 400;
+    font-size: 3.6rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
     text-align: center;
     color: white;
   }
@@ -65,12 +107,13 @@ export const DivItens = styled.div`
       text-align: center;
     }
   }
-  @media (max-width: 425px) {
-    margin: 0 auto;
+
+  @media (max-width: 450px) {
+    font-size: 2.5rem;
   }
 
-  @media (max-width: 375px) {
-    margin-left: 10px;
+  @media (max-width: 425px) {
+    margin: 0 auto;
   }
 `;
 
@@ -79,46 +122,42 @@ export const DivCards = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin-right: 20px;
 
-  @media (max-width: 425px) {
-    margin: 0 auto;
-  }
-
-  @media (max-width: 375px) {
-    margin-left: 23px;
+  @media (max-width: 470px) {
+    width: 250px;
   }
 `;
 
 export const Card = styled.div`
   width: 150px;
-  height: 200px;
+  height: 160px;
   font-size: 7rem;
   color: white;
-  background-color: #424472;
+  background-color: rgb(66, 68, 114, 0.43);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 7px;
   transition-property: transform;
   transition-duration: 0.5s;
 
-  @media (max-width: 425px) {
-    width: 100px;
-    height: 120px;
+  @media (max-width: 470px) {
+    width: 119px;
+    height: 171px;
     font-size: 5rem;
   }
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.03);
     cursor: pointer;
-    border: solid 3px white;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 12%), 0 3px 6px rgb(0 0 0 / 24%);
+    /* border: solid 1px white; */
   }
 
   h2 {
     font-size: 2rem;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 400;
     text-align: center;
     color: white;
