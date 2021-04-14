@@ -25,7 +25,8 @@ import api from "../../services";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
 import ModalComponents from "../Modal";
-
+import PublishIcon from "@material-ui/icons/Publish";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 interface ITech {
   name: string;
   userId: string;
@@ -101,7 +102,9 @@ export const ComponentDev = () => {
       <ContainerUsuario>
         <PhotoProfile tst={file}>
           <input type="file" onChange={handleChange} id="fileButton" hidden />
-          <label htmlFor="fileButton">teste</label>
+          <label htmlFor="fileButton">
+            <DeleteForeverIcon />
+          </label>
         </PhotoProfile>
 
         <DivUsuarioInfo>
