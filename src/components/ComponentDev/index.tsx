@@ -10,26 +10,25 @@ import {
   ContainerLogOut,
   Tecs,
   BlockTecs,
-  PrincipalBlock,
+  PhotoProfile,
 } from "./style";
 import logo from "./Assets/devRental.png";
+import { BsPeopleCircle, BsPlus, BsFillCaretLeftFill } from "react-icons/bs";
 import {
-  BsPeopleCircle,
-  BsPlus,
-  BsFillCaretLeftFill,
-  BsCode,
-} from "react-icons/bs";
-import { useEffect, useState } from "react";
+  ChangeEvent,
+  ChangeEventHandler,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import api from "../../services";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
 import ModalComponents from "../Modal";
-import { DeleteTech } from "../DeleteTech";
 
 interface ITech {
   name: string;
   userId: string;
-  id: number;
 }
 
 export const ComponentDev = () => {
@@ -38,11 +37,18 @@ export const ComponentDev = () => {
   const [email, setEmail] = useState("");
   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+  const [flag, setFlag] = useState(false);
+  const [file, setFile] = useState<any>();
+
   const history = useHistory();
 
   useEffect(() => {
     Promise.all([getNameEmail(), getTechs()]);
   }, []);
+
+  useEffect(() => {
+    getTechs();
+  }, [flag]);
 
   const getNameEmail = () => {
     const id = JSON.parse(localStorage.getItem("userId") ?? "");
@@ -83,20 +89,26 @@ export const ComponentDev = () => {
     history.push("/login");
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) {
+      setFile(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+
   return (
     <Container>
-      <PrincipalBlock>
-        <Logo src={logo} />
-        <ContainerUsuario>
-          <div>
-            <BsPeopleCircle />
-          </div>
-          <DivUsuarioInfo>
-            <h2>{name}</h2>
-            <h3>{email}</h3>
-          </DivUsuarioInfo>
-        </ContainerUsuario>
-      </PrincipalBlock>
+      <Logo src={logo} />
+      <ContainerUsuario>
+        <PhotoProfile tst={file}>
+          <input type="file" onChange={handleChange} id="fileButton" hidden />
+          <label htmlFor="fileButton">teste</label>
+        </PhotoProfile>
+
+        <DivUsuarioInfo>
+          <h2>{name}</h2>
+          <h3>{email}</h3>
+        </DivUsuarioInfo>
+      </ContainerUsuario>
       <BlockTecs>
         <InfoTecs>
           <h2>Tecs</h2>
@@ -114,15 +126,7 @@ export const ComponentDev = () => {
               return element.userId == id;
             })
             .map((element) => {
-              return (
-                <Tecs>
-                  <div>
-                    <BsCode />
-                  </div>
-                  {element.name}
-                  <DeleteTech id={element.id} getTechs={getTechs} />
-                </Tecs>
-              );
+              return <Tecs>{element.name}</Tecs>;
             })}
         </ContainerTecs>
       </BlockTecs>

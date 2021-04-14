@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface IPhoto {
+  tst?: any;
+}
+
 export const Container = styled.div`
   width: 25%;
   height: 100vh;
@@ -21,19 +25,40 @@ export const PrincipalBlock = styled.div`
 export const Logo = styled.img`
   width: 320px;
   height: 75px;
-  margin-bottom: 15px;
+  margin-top: 15px;
 `;
 
 export const ContainerUsuario = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
-  width: 170px;
-  margin-bottom: 15px;
+  width: 250px;
 
   div {
     font-size: 60px;
     color: white;
+  }
+`;
+export const PhotoProfile = styled.div<IPhoto>`
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  background-color: green;
+  background-image: url(${(props) => props.tst});
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  }
+  label {
+    width: 90px;
+    height:90px;
+    overflow: hidden;
+    border-radius:50%;
+    background-color: indigo;
+    cursor: pointer;
+    text-align: center;
   }
 `;
 
