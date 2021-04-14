@@ -11,14 +11,12 @@ import {
   Tecs,
   BlockTecs,
   PrincipalBlock,
+  DivIconUser,
+  FiChevronLeftStyle,
 } from "./style";
+import { FiPlus } from "react-icons/fi";
 import logo from "./Assets/devRental.png";
-import {
-  BsPeopleCircle,
-  BsPlus,
-  BsFillCaretLeftFill,
-  BsCode,
-} from "react-icons/bs";
+import { BsPeopleCircle, BsCode } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import api from "../../services";
 import { useHistory } from "react-router";
@@ -88,9 +86,9 @@ export const ComponentDev = () => {
       <PrincipalBlock>
         <Logo src={logo} />
         <ContainerUsuario>
-          <div>
-            <BsPeopleCircle />
-          </div>
+          <DivIconUser>
+            <BsPeopleCircle size={48} />
+          </DivIconUser>
           <DivUsuarioInfo>
             <h2>{name}</h2>
             <h3>{email}</h3>
@@ -102,7 +100,7 @@ export const ComponentDev = () => {
           <h2>Tecs</h2>
           <Line />
           <DivPlus onClick={handleOpen}>
-            <BsPlus />
+            <FiPlus />
           </DivPlus>
           <ModalComponents open={open} handleClose={handleClose}>
             <RegisterTech getTechs={getTechs} />
@@ -127,7 +125,7 @@ export const ComponentDev = () => {
         </ContainerTecs>
       </BlockTecs>
       <ContainerLogOut onClick={handleLogOut}>
-        <BsFillCaretLeftFill className="Sair" />
+        <FiChevronLeftStyle className="Sair" />
         <h2>Sair</h2>
       </ContainerLogOut>
     </Container>

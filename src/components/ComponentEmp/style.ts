@@ -7,6 +7,10 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+
+  @media (max-width: 850px) {
+    display: none;
+  }
 `;
 
 export const PrincipalBlock = styled.div`

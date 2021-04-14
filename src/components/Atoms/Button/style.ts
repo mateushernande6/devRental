@@ -9,7 +9,7 @@ interface ButtonProps {
 
 export const ButtonStyled = styled.button<ButtonProps>`
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 1.6rem;
   outline: none;
@@ -23,7 +23,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
   width: ${(props) => `${props.width}rem`};
   background: ${(props) => props.background};
 
-  @media (max-width: 817px) {
+  /* @media (max-width: 817px) {
     width: 24.5rem;
-  }
+  } */
 `;

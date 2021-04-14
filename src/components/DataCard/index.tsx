@@ -89,16 +89,18 @@ const DataCard = ({ dataObj }: ImodalData) => {
       buttonTop: "",
       buttonBotton: "portfolio",
     };
-    console.log("aui mesmo: ", dataApi);
     api
       .post(`portfolio`, dataApi, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
         console.log("Adcionado no portfolio");
+        deleteCardsMenu();
       })
       .catch((err) => console.log(err));
+  };
 
+  const deleteCardsMenu = () => {
     api
       .delete(`accepted/${dataObj.id}/?userId=${idUser}`, {
         headers: { Authorization: `Bearer ${user}` },
