@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { AuthDashboardProvider } from "./AuthDashboard";
 import { DataMapProvider } from "./DataMap";
+import { DataUserProvider } from "./DataUser";
 
 interface IChildrenContext {
   children: ReactNode;
@@ -9,7 +10,9 @@ interface IChildrenContext {
 export const Providers = ({ children }: IChildrenContext) => {
   return (
     <AuthDashboardProvider>
-      <DataMapProvider>{children}</DataMapProvider>
+      <DataUserProvider>
+        <DataMapProvider>{children}</DataMapProvider>
+      </DataUserProvider>
     </AuthDashboardProvider>
   );
 };

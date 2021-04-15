@@ -29,6 +29,7 @@ import { ComponentEmp } from "../../components/ComponentEmp";
 import MenuMobile from "../../components/MenuMobile";
 import { BsPeopleCircle, BsCode } from "react-icons/bs";
 import { DeleteTech } from "../../components/DeleteTech";
+import { DataUser } from "../../Provider/DataUser";
 
 interface Iuser {
   token: string;
@@ -42,6 +43,7 @@ interface IdataCard {
   reward: string;
   id: number;
   buttonBotton: string;
+  buttonExcluir: string;
   buttonTop: string;
 }
 
@@ -54,6 +56,7 @@ interface ITech {
 const Dashboard = () => {
   const { valueState, setValueState } = useContext(AuthDashboardContext);
   const { itemMap, setItemMap } = useContext(DataMapContext);
+  const { dataUser, setDataUser } = useContext(DataUser);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -80,6 +83,7 @@ const Dashboard = () => {
       .then((response) => {
         setCategory(response.data.category);
         setValueState(response.data.category);
+        setDataUser(response.data.category);
         if (response.data.category === "dev") {
           cardDev();
         }

@@ -13,6 +13,7 @@ interface IitensData {
   id: number;
   buttonBotton: string;
   buttonTop: string;
+  buttonExcluir: string;
 }
 interface Props {
   title: string;
