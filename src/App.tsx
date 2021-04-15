@@ -1,8 +1,17 @@
 import Routes from "./routes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Providers } from "./Provider/index";
 
-import { FC } from "react";
-const App: FC = () => {
-  return <Routes />;
+const App = () => {
+  return (
+    <>
+      <Providers>
+        <Routes />
+        <ToastContainer />
+      </Providers>
+    </>
+  );
 };
 
 export default App;
