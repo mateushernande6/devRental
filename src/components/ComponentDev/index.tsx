@@ -102,11 +102,12 @@ export const ComponentDev = () => {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     if (e.target.files?.length) {
       setFile(URL.createObjectURL(e.target.files[0]));
     }
   };
-
+  console.log(file);
   return (
     <Container>
       <Logo src={logo} />

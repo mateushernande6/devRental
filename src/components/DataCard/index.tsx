@@ -14,10 +14,12 @@ import {
   BackIcon,
 } from "./style";
 import { FiCheckSquare } from "react-icons/fi";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import api from "../../services";
 import { DataMapContext } from "../../Provider/DataMap";
+import { toast } from "react-toastify";
+import { DataUser } from "../../Provider/DataUser";
 
 interface IitensData {
   title: string;
@@ -28,6 +30,7 @@ interface IitensData {
   id: number;
   buttonBotton: string;
   buttonTop: string;
+  buttonExcluir: string;
 }
 interface ImodalData {
   dataObj: IitensData;
@@ -43,15 +46,18 @@ interface Iobj {
 
 const DataCard = ({ dataObj }: ImodalData) => {
   const { valueState } = useContext(AuthDashboardContext);
+  const { dataUser } = useContext(DataUser);
+
+  const [category, setCategory] = useState<string>("");
   const { itemMap, setItemMap } = useContext(DataMapContext);
   let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
   const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
-  const deleteCard = (dataObj: Iobj) => {
-    console.log(user);
-    console.log(idUser);
-    console.log(dataObj);
+  useEffect(() => {
+    setCategory(dataUser);
+  }, []);
 
+  const deleteCard = (dataObj: Iobj) => {
     api
       .delete(`jobs/${dataObj.id}/?userId=${idUser}`, {
         headers: { Authorization: `Bearer ${user}` },
@@ -59,7 +65,20 @@ const DataCard = ({ dataObj }: ImodalData) => {
       .then((response) => {
         const filterMap = itemMap.filter((ele) => ele.id !== dataObj.id && ele);
         setItemMap(filterMap);
-        console.log("card deletado");
+        // console.log("card deletado");
+
+        toast.success(
+          <p style={{ fontSize: "1.5rem" }}>Card deletado com sucesso !</p>,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -77,9 +96,37 @@ const DataCard = ({ dataObj }: ImodalData) => {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        console.log("Cadastrado desafio aceito");
+        // console.log("Cadastrado desafio aceito");
+        toast.success(
+          <p style={{ fontSize: "1.5rem" }}>Desafio aceito com sucesso !</p>,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error(
+          <p style={{ fontSize: "1.5rem" }}>
+            Não foi possivel aceitar esse desafio !
+          </p>,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+        console.log(err);
+      });
   };
 
   const addPortfolio = (dataObj: Iobj) => {
@@ -96,8 +143,39 @@ const DataCard = ({ dataObj }: ImodalData) => {
       .then((response) => {
         console.log("Adcionado no portfolio");
         deleteCardsMenu();
+
+        toast.success(
+          <p style={{ fontSize: "1.5rem" }}>
+            Desafio cadastro no portfolio com sucesso.
+          </p>,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error(
+          <p style={{ fontSize: "1.5rem" }}>
+            Não foi possivel adcionar no portfolio !
+          </p>,
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          }
+        );
+        console.log(err);
+      });
   };
 
   const deleteCardsMenu = () => {
@@ -110,7 +188,9 @@ const DataCard = ({ dataObj }: ImodalData) => {
         const filterMap = itemMap.filter((ele) => ele.id !== dataObj.id && ele);
         setItemMap(filterMap);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -118,25 +198,25 @@ const DataCard = ({ dataObj }: ImodalData) => {
       <Content>
         <DivTitle>
           <Title>{dataObj.title}</Title>
-          {console.log(dataObj)}
-          {/* <Line /> */}
-          {dataObj.buttonTop === "desafio" ? (
-            <BackIcon>
+          {category === "company" ? (
+            dataObj.buttonExcluir === "excluir" ? (
+              <BackIconCam onClick={() => deleteCard(dataObj)}>
+                <FiCheckSquare size={28} />
+                <TextButton>Excluir Desafio</TextButton>
+              </BackIconCam>
+            ) : (
+              ""
+            )
+          ) : dataObj.buttonTop === "desafio" ? (
+            <BackIconCam onClick={() => challengesAccepted(dataObj)}>
               <FiCheckSquare size={28} />
-              <TextButton onClick={() => challengesAccepted(dataObj)}>
-                Aceitar Desafio
-              </TextButton>
-            </BackIcon>
-          ) : dataObj.buttonTop === "excluir" ? (
-            <BackIconCam onClick={() => deleteCard(dataObj)}>
-              <FiCheckSquare size={28} />
-              <TextButton>Excluir Desafio</TextButton>
+              <TextButton> Aceitar Desafio</TextButton>
             </BackIconCam>
           ) : dataObj.buttonTop === "desafioAceito" ? (
-            <BackIconCam onClick={() => addPortfolio(dataObj)}>
+            <BackIcon onClick={() => addPortfolio(dataObj)}>
               <FiCheckSquare size={28} />
               <TextButton>Desafio Concluido</TextButton>
-            </BackIconCam>
+            </BackIcon>
           ) : (
             ""
           )}

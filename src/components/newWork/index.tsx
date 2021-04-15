@@ -8,12 +8,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../services";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
-import { MouseEventHandler, useContext, useState } from "react";
+import { MouseEventHandler, useContext, useState, useEffect } from "react";
 import { date } from "yup";
 import { DataMapContext } from "../../Provider/DataMap";
+import { toast } from "react-toastify";
 
 const NewWork = () => {
   const { itemMap, setItemMap } = useContext(DataMapContext);
+
+  const [error, setError] = useState(false);
+  const [valid, setValid] = useState(false);
 
   const [Techs, setTechs] = useState<string[]>([]);
   const [value, setValue] = useState<string>("");
@@ -65,6 +69,7 @@ const NewWork = () => {
       tecnology: Techs,
       userId: idUser,
       buttonTop: "desafio",
+      buttonExcluir: "excluir",
       buttonBotton: "desafio",
     };
 
@@ -81,10 +86,50 @@ const NewWork = () => {
       .then((response) => {
         console.log(response);
         setItemMap([...itemMap, response.data]);
-        console.log("Desafio cadastrado na api");
+        setValid(true);
+        reset();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError(true);
+        console.log(err);
+      });
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(
+        <p style={{ fontSize: "1.5rem" }}>
+          Não foi possivél cadastrar seu desafio
+        </p>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+      setError(false);
+    }
+
+    if (valid) {
+      toast.success(
+        <p style={{ fontSize: "1.5rem" }}>Desafio cadastrado com sucesso!</p>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+      setValid(false);
+    }
+  }, [error, valid]);
 
   return (
     <Container>

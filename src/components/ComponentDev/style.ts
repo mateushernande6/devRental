@@ -50,12 +50,14 @@ export const ContainerUsuario = styled.div`
     color: white;
   }
 `;
+
 export const PhotoProfile = styled.div<IPhoto>`
   width: 90px;
   height: 90px;
   border-radius: 100%;
   background-color: green;
   background-image: url(${(props) => props.tst});
+
   background-size: cover;
   display: flex;
   justify-content: center;

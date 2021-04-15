@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { BsPeopleCircle } from "react-icons/bs";
 
+interface IPhoto {
+  tst?: any;
+}
+
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -244,5 +248,38 @@ export const ContainerTecs = styled.div`
   ::-webkit-scrollbar-thumb {
     background: #3a3864;
     border-radius: 5px;
+  }
+`;
+
+export const PhotoProfile = styled.div<IPhoto>`
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  background-color: green;
+  background-image: url(${(props) => props.tst});
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    .iconUpload {
+      font-size: 4rem;
+      margin-top: 21px;
+      color: whitesmoke;
+      opacity: 0;
+    }
+    &:hover {
+      .iconUpload {
+        opacity: 0.9;
+      }
+      background-color: rgba(0, 0, 0, 0.5);
+    }
   }
 `;
