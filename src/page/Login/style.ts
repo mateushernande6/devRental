@@ -101,5 +101,6 @@ export const DivContent = styled.div`
     outline: none;
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
+    cursor: pointer;
   }
 `;
