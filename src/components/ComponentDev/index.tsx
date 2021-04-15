@@ -26,7 +26,7 @@ import {
 import {
   ChangeEvent,
   ChangeEventHandler,
-  SetStateAction,
+  SetStateAction, useContext,
   useEffect,
   useState,
 } from "react";
@@ -37,6 +37,7 @@ import ModalComponents from "../Modal";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 import DeleteTech from "../DeleteTech";
+import {AuthDashboardContext} from "../../Provider/AuthDashboard";
 
 interface ITech {
   name: string;
@@ -44,6 +45,8 @@ interface ITech {
 }
 
 export const ComponentDev = () => {
+  const {setIsAuth} = useContext(AuthDashboardContext)
+
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -99,6 +102,7 @@ export const ComponentDev = () => {
   const handleLogOut = () => {
     localStorage.clear();
     history.push("/login");
+    setIsAuth(false);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

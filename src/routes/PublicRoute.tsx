@@ -3,6 +3,8 @@ import {useContext} from 'react'
 import {AuthDashboardContext} from "../Provider/AuthDashboard";
 
 interface IPublic {
+    exact: boolean;
+    path: string;
     component: any;
     restricted: boolean;
 }

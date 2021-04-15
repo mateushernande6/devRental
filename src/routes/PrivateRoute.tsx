@@ -4,7 +4,8 @@ import {AuthDashboardContext} from "../Provider/AuthDashboard";
 
 interface IPrivate {
     component: any;
-    restricted: boolean;
+    path: string;
+    exact: boolean;
 }
 
 export const PrivateRoute = ({component: Component, ...rest}:IPrivate) => {
