@@ -111,6 +111,7 @@ const Login = () => {
               height={3.2}
               placeHolder="Email"
               register={register}
+              data-testId="emailInput"
             />
             <p>{errors.email?.message}</p>
             <Input
@@ -119,6 +120,8 @@ const Login = () => {
               height={3.2}
               placeHolder="Password"
               register={register}
+              type="password"
+              data-testId="passwordlInput"
             />
             <p>{errors.password?.message}</p>
             <Button
