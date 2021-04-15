@@ -14,12 +14,11 @@ import {
   DivUsuarioInfo,
   Tecs,
   ContainerTecs,
-  PhotoProfile,
   BsPeopleCircleStyled,
 } from "./style";
 import Card from "../../components/Cards";
 import api from "../../services";
-import { useEffect, useState, useContext, ChangeEvent } from "react";
+import { useEffect, useState, useContext } from "react";
 import Button from "../../components/Atoms/Button";
 import ModalComponents from "../../components/Modal";
 import NewWork from "../../components/newWork";
@@ -31,7 +30,7 @@ import MenuMobile from "../../components/MenuMobile";
 import { BsPeopleCircle, BsCode } from "react-icons/bs";
 import DeleteTech from "../../components/DeleteTech";
 import { DataUser } from "../../Provider/DataUser";
-import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
+
 interface Iuser {
   token: string;
 }
@@ -66,8 +65,6 @@ const Dashboard = () => {
 
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
-
-  const [file, setFile] = useState<any>();
 
   const id = JSON.parse(localStorage.getItem("userId") ?? "");
 
@@ -147,12 +144,6 @@ const Dashboard = () => {
       });
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.length) {
-      setFile(URL.createObjectURL(e.target.files[0]));
-    }
-  };
-
   return (
     <Container>
       <DivAside>
@@ -163,17 +154,7 @@ const Dashboard = () => {
         <DivDataUser>
           <ContainerUsuario>
             <DivIconUser>
-              <PhotoProfile tst={file}>
-                <input
-                  type="file"
-                  onChange={handleChange}
-                  id="fileButton"
-                  hidden
-                />
-                <label htmlFor="fileButton">
-                  <PublishRoundedIcon className="iconUpload" />
-                </label>
-              </PhotoProfile>
+              <BsPeopleCircleStyled size={48} />
             </DivIconUser>
             <DivUsuarioInfo>
               <h2>{name}</h2>
