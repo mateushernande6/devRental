@@ -53,6 +53,7 @@ export const RegisterTech = ({ getTechs }: IProps) => {
       <h2>Qual tech você conhece?</h2>
       <FormStyled onSubmit={handleSubmit(onSubmit)}>
         <Input
+          data-testid="inputRegister"
           name="name"
           register={register}
           height={1}
@@ -61,7 +62,8 @@ export const RegisterTech = ({ getTechs }: IProps) => {
         />
         <P>{errors.name?.message}</P>
         <Button
-          height={3.02}
+          data-testid="buttonRegister"
+          height={2}
           width={7}
           color={"#fff"}
           text={"Ok"}
