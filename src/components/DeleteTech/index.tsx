@@ -3,11 +3,11 @@ import api from "../../services";
 import { Container } from "./style";
 
 interface Iprops {
-  id: number;
+  id: any;
   getTechs: () => void;
 }
 
-export const DeleteTech = ({ id, getTechs }: Iprops) => {
+const DeleteTech = ({ id, getTechs }: Iprops) => {
   let user = JSON.parse(localStorage.getItem("token") ?? "");
 
   const handleDeleteTech = () => {
@@ -20,10 +20,12 @@ export const DeleteTech = ({ id, getTechs }: Iprops) => {
         getTechs();
       });
   };
-
+  console.log("teste id", id);
   return (
     <Container>
       <BsXCircle onClick={handleDeleteTech} />
     </Container>
   );
 };
+
+export default DeleteTech;

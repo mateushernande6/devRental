@@ -17,7 +17,12 @@ import {
 } from "./style";
 import { FiPlus } from "react-icons/fi";
 import logo from "./Assets/devRental.png";
-import { BsPeopleCircle, BsPlus, BsFillCaretLeftFill } from "react-icons/bs";
+import {
+  BsPeopleCircle,
+  BsCode,
+  BsPlus,
+  BsFillCaretLeftFill,
+} from "react-icons/bs";
 import {
   ChangeEvent,
   ChangeEventHandler,
@@ -31,6 +36,8 @@ import { RegisterTech } from "../RegisterTech";
 import ModalComponents from "../Modal";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
+import DeleteTech from "../DeleteTech";
+
 interface ITech {
   name: string;
   userId: string;
@@ -118,9 +125,9 @@ export const ComponentDev = () => {
       </ContainerUsuario>
       <BlockTecs>
         <InfoTecs>
-          <h2>Tecs</h2>
+          <h2>Techs</h2>
           <Line />
-          <DivPlus onClick={handleOpen}>
+          <DivPlus onClick={handleOpen} data-testid="divPlus">
             <FiPlus />
           </DivPlus>
           <ModalComponents open={open} handleClose={handleClose}>
@@ -133,7 +140,19 @@ export const ComponentDev = () => {
               return element.userId == id;
             })
             .map((element) => {
-              return <Tecs>{element.name}</Tecs>;
+              return (
+                <Tecs data-testid="tech">
+                  <div>
+                    <BsCode />
+                  </div>
+                  {element.name}
+                  <DeleteTech
+                    id={element}
+                    getTechs={getTechs}
+                    data-testid="deleteTech"
+                  />
+                </Tecs>
+              );
             })}
         </ContainerTecs>
       </BlockTecs>

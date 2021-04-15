@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 300px;
   height: 150px;
-  background: #5a5c91;
+  background-color: rgb(33, 32, 64);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +13,7 @@ export const Container = styled.div`
 
   h2 {
     font-size: 2rem;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: bolder;
     text-align: center;
     color: white;
@@ -36,4 +37,12 @@ export const P = styled.p`
   font-weight: bolder;
   text-align: center;
   color: red;
+`;
+
+export const FormStyled = styled.form`
+  display: flex;
+  margin-top: 18px;
+  width: 228px;
+  justify-content: space-around;
+  align-items: center;
 `;

@@ -49,7 +49,7 @@ export const InfoContainer = styled.div`
     text-align: left;
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #f99292;
   }
 
@@ -63,7 +63,7 @@ export const InfoContainer = styled.div`
 
   h2 {
     font-size: 4rem;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Montserrat", sans-serif;
     color: #fff;
     margin-bottom: 2rem;
   }
