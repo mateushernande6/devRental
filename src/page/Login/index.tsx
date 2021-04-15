@@ -1,7 +1,7 @@
 import { Container, Main, DivImage, DivContent } from "./style";
 import Input from "../../components/Atoms/Input";
 import Button from "../../components/Atoms/Button";
-import { Link } from "react-router-dom";
+
 import api from "../../services";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -33,7 +33,6 @@ const schema = yup.object().shape({
 const Login = () => {
   const [error, setError] = useState(false);
   const [valid, setValid] = useState(false);
-
   const history = useHistory();
   const {
     register,
@@ -113,7 +112,7 @@ const Login = () => {
               register={register}
               data-testId="emailInput"
             />
-            <p>{errors.email?.message}</p>
+            <p data-testId="error1">{errors.email?.message}</p>
             <Input
               name="password"
               width={30}
@@ -123,8 +122,9 @@ const Login = () => {
               type="password"
               data-testId="passwordlInput"
             />
-            <p>{errors.password?.message}</p>
+            <p data-testId="error2">{errors.password?.message}</p>
             <Button
+              data-testId="submitButton"
               width={32.5}
               height={5.5}
               text="Entrar"
@@ -132,9 +132,13 @@ const Login = () => {
               background="#FC923F"
             />
           </form>
-          <Link className="linkReg" to="/preregister">
+          <a
+            data-testId="btnRegister"
+            className="linkReg"
+            onClick={() => history.push("register")}
+          >
             Register
-          </Link>
+          </a>
         </DivContent>
       </Main>
     </Container>
