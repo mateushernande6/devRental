@@ -1,5 +1,7 @@
-import {OuterContainer, Container, UpperContainer, LowerContainer} from './style'
-import Button from "../Atoms/Button";
+import { UpperContainer, LowerContainer} from './style'
+import {OuterContainer, Container} from "../style";
+
+import Button from "../../Atoms/Button";
 import {useHistory} from 'react-router-dom'
 
 const HomeHeader = () => {

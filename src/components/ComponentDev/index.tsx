@@ -11,7 +11,11 @@ import {
   Tecs,
   BlockTecs,
   PhotoProfile,
+  PrincipalBlock,
+  DivIconUser,
+  FiChevronLeftStyle,
 } from "./style";
+import { FiPlus } from "react-icons/fi";
 import logo from "./Assets/devRental.png";
 import { BsPeopleCircle, BsPlus, BsFillCaretLeftFill } from "react-icons/bs";
 import {
@@ -25,8 +29,8 @@ import api from "../../services";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
 import ModalComponents from "../Modal";
-import PublishIcon from "@material-ui/icons/Publish";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 interface ITech {
   name: string;
   userId: string;
@@ -103,7 +107,7 @@ export const ComponentDev = () => {
         <PhotoProfile tst={file}>
           <input type="file" onChange={handleChange} id="fileButton" hidden />
           <label htmlFor="fileButton">
-            <DeleteForeverIcon />
+            <PublishRoundedIcon className="iconUpload" />
           </label>
         </PhotoProfile>
 
@@ -117,7 +121,7 @@ export const ComponentDev = () => {
           <h2>Tecs</h2>
           <Line />
           <DivPlus onClick={handleOpen}>
-            <BsPlus />
+            <FiPlus />
           </DivPlus>
           <ModalComponents open={open} handleClose={handleClose}>
             <RegisterTech getTechs={getTechs} />
@@ -134,7 +138,7 @@ export const ComponentDev = () => {
         </ContainerTecs>
       </BlockTecs>
       <ContainerLogOut onClick={handleLogOut}>
-        <BsFillCaretLeftFill className="Sair" />
+        <FiChevronLeftStyle className="Sair" />
         <h2>Sair</h2>
       </ContainerLogOut>
     </Container>

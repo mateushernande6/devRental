@@ -1,16 +1,21 @@
 import styled from "styled-components";
+import { FiChevronLeft } from "react-icons/fi";
 
 interface IPhoto {
   tst?: any;
 }
 
 export const Container = styled.div`
-  width: 25%;
+  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+
+  @media (max-width: 850px) {
+    display: none;
+  }
 `;
 
 export const PrincipalBlock = styled.div`
@@ -23,9 +28,15 @@ export const PrincipalBlock = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 320px;
+  width: 260px;
   height: 75px;
   margin-top: 15px;
+  margin-left: 25px;
+
+  @media (max-width: 915px) {
+    width: 214px;
+    margin-left: 17px;
+  }
 `;
 
 export const ContainerUsuario = styled.div`
@@ -55,9 +66,20 @@ export const PhotoProfile = styled.div<IPhoto>`
     height: 90px;
     overflow: hidden;
     border-radius: 50%;
-    background-color: indigo;
     cursor: pointer;
     text-align: center;
+    .iconUpload {
+      font-size: 4rem;
+      margin-top: 21px;
+      color: whitesmoke;
+      opacity: 0;
+    }
+    &:hover {
+      .iconUpload {
+        opacity: 0.9;
+      }
+      background-color: rgba(0, 0, 0, 0.5);
+    }
   }
 `;
 
@@ -72,16 +94,16 @@ export const DivUsuarioInfo = styled.div`
 
   h2 {
     font-size: 3rem;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: bold;
     text-align: center;
     color: white;
     padding-bottom: 10px;
   }
   h3 {
-    font-size: 1rem;
-    font-family: "Montserrat Alternates", sans-serif;
-    font-weight: bolder;
+    font-size: 1.5rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
     text-align: center;
     color: white;
   }
@@ -104,17 +126,18 @@ export const InfoTecs = styled.div`
   margin-bottom: 10px;
 
   h2 {
-    font-size: 2rem;
-    font-family: "Montserrat Alternates", sans-serif;
-    font-weight: bolder;
+    font-size: 2.3rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 200;
     text-align: center;
     color: white;
   }
 `;
 
 export const DivPlus = styled.div`
-  border: solid 2px white;
-  border-radius: 50%;
+  /* border: solid 2px white; */
+  background-color: #424472;
+  border-radius: 5px;
   color: white;
   font-size: 20px;
   display: flex;
@@ -168,22 +191,29 @@ export const Btn = styled.button`
 `;
 
 export const ContainerTecs = styled.div`
+  width: 230px;
+  height: 31vh;
   display: flex;
-  height: 200px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* padding: 1rem; */
   overflow-y: auto;
-  padding: 1rem;
   margin-top: 10px;
+
+  @media (max-width: 850px) {
+    height: 82vh;
+  }
 
   ::-webkit-scrollbar-track {
     background-color: transparent;
+
     border-radius: 0 8px 8px 0;
   }
   ::-webkit-scrollbar {
     width: 6px;
     border-radius: 0 8px 8px 0;
+
+    /* background-image: linear-gradient(#212040, #21203e); */
   }
   ::-webkit-scrollbar-thumb {
     background: #3a3864;
@@ -195,17 +225,20 @@ export const Tecs = styled.div`
   width: 210px;
   height: 50px;
   border-radius: 5px;
-  /* background: #575a9e; */
   background: #424472;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
   font-size: 1.5rem;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bolder;
   margin-bottom: 10px;
   padding: 10px;
+
+  @media (max-width: 952px) {
+    width: 190px;
+  }
 
   div {
     font-size: 25px;
@@ -213,13 +246,21 @@ export const Tecs = styled.div`
   }
 `;
 
+export const DivIconUser = styled.div``;
+
 export const ContainerLogOut = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 30px;
+  width: 100%;
   padding: 5px;
-  margin-bottom: 145px;
+  margin: 59px 0;
+  /* margin-bottom: 145px; */
+
+  /* @media (max-width: 1125px) {
+    width: 98%;
+  } */
 
   &:hover {
     cursor: pointer;
@@ -227,14 +268,18 @@ export const ContainerLogOut = styled.div`
 
   h2 {
     font-size: 2rem;
-    font-family: "Montserrat Alternates", sans-serif;
-    font-weight: bolder;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
     text-align: center;
     color: white;
+    /* margin-left: 12px; */
   }
 
   .Sair {
     font-size: 30px;
     color: white;
+    /* margin-left: 20px; */
   }
 `;
+
+export const FiChevronLeftStyle = styled(FiChevronLeft)``;

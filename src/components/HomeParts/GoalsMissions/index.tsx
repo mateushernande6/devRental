@@ -1,4 +1,5 @@
-import {Container, LowerContainer, UpperContainer, OuterContainer} from './style'
+import {LowerContainer, UpperContainer} from './style'
+import {OuterContainer, Container} from "../style";
 
 const GoalsMissions = () => {
     return (

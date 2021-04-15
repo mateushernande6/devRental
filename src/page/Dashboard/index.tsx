@@ -6,6 +6,15 @@ import {
   DivAside,
   DivMain,
   ContainerCard,
+  DivMenuMobile,
+  Logo,
+  DivDataUser,
+  ContainerUsuario,
+  DivIconUser,
+  DivUsuarioInfo,
+  Tecs,
+  ContainerTecs,
+  BsPeopleCircleStyled,
 } from "./style";
 import Card from "../../components/Cards";
 import api from "../../services";
@@ -17,6 +26,10 @@ import { ComponentDev } from "../../components/ComponentDev";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { DataMapContext } from "../../Provider/DataMap";
 import { ComponentEmp } from "../../components/ComponentEmp";
+import MenuMobile from "../../components/MenuMobile";
+import { BsPeopleCircle, BsCode } from "react-icons/bs";
+import { DeleteTech } from "../../components/DeleteTech";
+
 interface Iuser {
   token: string;
 }
@@ -32,12 +45,25 @@ interface IdataCard {
   buttonTop: string;
 }
 
+interface ITech {
+  name: string;
+  userId: string;
+  id: number;
+}
+
 const Dashboard = () => {
   const { valueState, setValueState } = useContext(AuthDashboardContext);
   const { itemMap, setItemMap } = useContext(DataMapContext);
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const [tech, setTech] = useState<ITech[]>([]);
+
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
+
+  const id = JSON.parse(localStorage.getItem("userId") ?? "");
 
   useEffect(() => {
     setdataCardMap(itemMap);
@@ -82,14 +108,73 @@ const Dashboard = () => {
       })
       .then((response) => {
         setdataCardMap(response.data);
+        getNameEmail();
+        getTechs();
         setItemMap(response.data);
       })
       .catch((err) => console.log(err));
   };
 
+  const getNameEmail = () => {
+    const id = JSON.parse(localStorage.getItem("userId") ?? "");
+    const users = "users/" + id;
+    let user = JSON.parse(localStorage.getItem("token") ?? "");
+    api
+      .get(users, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        setName(response.data.name);
+        setEmail(response.data.email);
+      });
+  };
+
+  const getTechs = () => {
+    let user = JSON.parse(localStorage.getItem("token") ?? "");
+    api
+      .get(`techs`, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        setTech(response.data);
+      });
+  };
+
   return (
     <Container>
       <DivAside>
+        <DivMenuMobile>
+          <Logo src="./assets/devRental.png" />
+          <MenuMobile />
+        </DivMenuMobile>
+        <DivDataUser>
+          <ContainerUsuario>
+            <DivIconUser>
+              <BsPeopleCircleStyled size={48} />
+            </DivIconUser>
+            <DivUsuarioInfo>
+              <h2>{name}</h2>
+              <h3>{email}</h3>
+            </DivUsuarioInfo>
+          </ContainerUsuario>
+          <ContainerTecs>
+            {tech
+              .filter((element) => {
+                return element.userId == id;
+              })
+              .map((element) => {
+                return (
+                  <Tecs>
+                    <div className="icon">
+                      <BsCode />
+                    </div>
+                    {element.name}
+                    <DeleteTech id={element.id} getTechs={getTechs} />
+                  </Tecs>
+                );
+              })}
+          </ContainerTecs>
+        </DivDataUser>
         {category === "dev" ? <ComponentDev /> : <ComponentEmp />}
       </DivAside>
       <DivMain>
