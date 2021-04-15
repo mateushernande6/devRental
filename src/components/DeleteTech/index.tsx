@@ -4,11 +4,11 @@ import { Container } from "./style";
 import { useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 interface Iprops {
-  id: number;
+  id: any;
   getTechs: () => void;
 }
 
-export const DeleteTech = ({ id, getTechs }: Iprops) => {
+const DeleteTech = ({ id, getTechs }: Iprops) => {
   let user = JSON.parse(localStorage.getItem("token") ?? "");
 
   const [error, setError] = useState(false);
@@ -71,3 +71,5 @@ export const DeleteTech = ({ id, getTechs }: Iprops) => {
     </Container>
   );
 };
+
+export default DeleteTech;

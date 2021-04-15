@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { FiChevronLeft } from "react-icons/fi";
 
+interface IPhoto {
+  tst?: any;
+}
+
 export const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -25,8 +29,8 @@ export const PrincipalBlock = styled.div`
 
 export const Logo = styled.img`
   width: 260px;
-  /* height: 75px; */
-  margin-bottom: 15px;
+  height: 75px;
+  margin-top: 15px;
   margin-left: 25px;
 
   @media (max-width: 915px) {
@@ -39,12 +43,45 @@ export const ContainerUsuario = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
-  width: 170px;
-  margin-bottom: 15px;
+  width: 250px;
 
   div {
     font-size: 60px;
     color: white;
+  }
+`;
+
+export const PhotoProfile = styled.div<IPhoto>`
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  background-color: green;
+  background-image: url(${(props) => props.tst});
+
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  label {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+    text-align: center;
+    .iconUpload {
+      font-size: 4rem;
+      margin-top: 21px;
+      color: whitesmoke;
+      opacity: 0;
+    }
+    &:hover {
+      .iconUpload {
+        opacity: 0.9;
+      }
+      background-color: rgba(0, 0, 0, 0.5);
+    }
   }
 `;
 

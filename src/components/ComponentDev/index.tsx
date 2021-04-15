@@ -10,24 +10,37 @@ import {
   ContainerLogOut,
   Tecs,
   BlockTecs,
+  PhotoProfile,
   PrincipalBlock,
   DivIconUser,
   FiChevronLeftStyle,
 } from "./style";
 import { FiPlus } from "react-icons/fi";
 import logo from "./Assets/devRental.png";
-import { BsPeopleCircle, BsCode } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import {
+  BsPeopleCircle,
+  BsCode,
+  BsPlus,
+  BsFillCaretLeftFill,
+} from "react-icons/bs";
+import {
+  ChangeEvent,
+  ChangeEventHandler,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import api from "../../services";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
 import ModalComponents from "../Modal";
-import { DeleteTech } from "../DeleteTech";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
+import DeleteTech from "../DeleteTech";
 
 interface ITech {
   name: string;
   userId: string;
-  id: number;
 }
 
 export const ComponentDev = () => {
@@ -36,11 +49,18 @@ export const ComponentDev = () => {
   const [email, setEmail] = useState("");
   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+  const [flag, setFlag] = useState(false);
+  const [file, setFile] = useState<any>();
+
   const history = useHistory();
 
   useEffect(() => {
     Promise.all([getNameEmail(), getTechs()]);
   }, []);
+
+  useEffect(() => {
+    getTechs();
+  }, [flag]);
 
   const getNameEmail = () => {
     const id = JSON.parse(localStorage.getItem("userId") ?? "");
@@ -81,23 +101,32 @@ export const ComponentDev = () => {
     history.push("/login");
   };
 
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (e.target.files?.length) {
+      setFile(URL.createObjectURL(e.target.files[0]));
+    }
+  };
+  console.log(file);
   return (
     <Container>
-      <PrincipalBlock>
-        <Logo src={logo} />
-        <ContainerUsuario>
-          <DivIconUser>
-            <BsPeopleCircle size={48} />
-          </DivIconUser>
-          <DivUsuarioInfo>
-            <h2>{name}</h2>
-            <h3>{email}</h3>
-          </DivUsuarioInfo>
-        </ContainerUsuario>
-      </PrincipalBlock>
+      <Logo src={logo} />
+      <ContainerUsuario>
+        <PhotoProfile tst={file}>
+          <input type="file" onChange={handleChange} id="fileButton" hidden />
+          <label htmlFor="fileButton">
+            <PublishRoundedIcon className="iconUpload" />
+          </label>
+        </PhotoProfile>
+
+        <DivUsuarioInfo>
+          <h2>{name}</h2>
+          <h3>{email}</h3>
+        </DivUsuarioInfo>
+      </ContainerUsuario>
       <BlockTecs>
         <InfoTecs>
-          <h2>Tecs</h2>
+          <h2>Techs</h2>
           <Line />
           <DivPlus onClick={handleOpen} data-testid="divPlus">
             <FiPlus />
@@ -119,7 +148,7 @@ export const ComponentDev = () => {
                   </div>
                   {element.name}
                   <DeleteTech
-                    id={element.id}
+                    id={element}
                     getTechs={getTechs}
                     data-testid="deleteTech"
                   />
