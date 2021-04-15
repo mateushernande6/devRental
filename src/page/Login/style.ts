@@ -37,7 +37,8 @@ export const DivImage = styled.div`
 
     @media (max-width: 820px) {
       width: 65%;
-      min-width: 200px;
+      min-width: 160px;
+      margin-top: 3rem;
     }
   }
 
@@ -69,7 +70,7 @@ export const DivContent = styled.div`
     margin-bottom: 6rem;
 
     @media (max-width: 820px) {
-      margin: 4rem 0;
+      margin: 3rem 0;
     }
   }
   p {
