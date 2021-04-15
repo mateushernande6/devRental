@@ -9,7 +9,8 @@ import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
-import { useState, useEffect } from "react";
+import {useState, useEffect, useContext} from "react";
+import {AuthDashboardContext} from "../../Provider/AuthDashboard";
 
 interface IFormInputs {
   email: string;
@@ -31,6 +32,9 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
+
+  const {setIsAuth} = useContext(AuthDashboardContext)
+
   const [error, setError] = useState(false);
   const [valid, setValid] = useState(false);
 
@@ -56,6 +60,7 @@ const Login = () => {
         let { sub } = jwt_decode<string>(response.data.accessToken);
         localStorage.setItem("userId", JSON.stringify(sub));
         setValid(true);
+        setIsAuth(true);
         history.push("/dashboard");
       })
       .catch((err) => {

@@ -8,7 +8,7 @@ import {
 } from "./style";
 import logo from "./Assets/devRental.png";
 import { BsPeopleCircle, BsFillCaretLeftFill } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import api from "../../services";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
@@ -16,8 +16,11 @@ import ModalComponents from "../Modal";
 import NewWork from "../newWork";
 import Button from "../Atoms/Button";
 import { PrincipalBlock } from "../ComponentEmp/style";
+import {AuthDashboardContext} from "../../Provider/AuthDashboard";
 
 export const ComponentEmp = () => {
+  const {setIsAuth} = useContext(AuthDashboardContext)
+
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -50,6 +53,7 @@ export const ComponentEmp = () => {
   const handleLogOut = () => {
     localStorage.clear();
     history.push("/login");
+    setIsAuth(false)
   };
   return (
     <Container>
