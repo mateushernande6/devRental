@@ -1,40 +1,32 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { LocalStorageMock } from "@react-mock/localstorage";
-import { ComponentDev } from "../../../components/ComponentDev";
-import axios from "axios";
+import { RegisterTech } from "../../../components/RegisterTech";
 
-// jest.mock("axios");
-// const mockedAxios = axios;
+const mockFuncSubmit = jest.fn();
+
+jest.mock("react-hook-form", () => {
+  return {
+    useForm: () => ({
+      handleSubmit: mockFuncSubmit,
+      formState: {
+        errors: {
+          name: "Java",
+        },
+      },
+      register: jest.fn(),
+    }),
+  };
+});
 
 describe("When everything is ok", () => {
-  test("Should value appear on the tech list when the user click ok after type a value", async () => {
-    // const getName = {
-    //   name: "teste",
-    //   email: "teste@teste.com",
-    // };
-    // const getTech = {
-    //   name: "Java",
-    // };
-
-    // mockedAxios.get.mockResolvedValueOnce({ data: { getName } });
-    // mockedAxios.get.mockResolvedValueOnce({ data: { getTech } });
-
-    render(
-      <LocalStorageMock items={{ userId: "2", token: "teste" }}>
-        <ComponentDev />
-      </LocalStorageMock>
-    );
-
-    const addTech = screen.getByTestId("divPlus");
-    const showTech = screen.getByTestId("tech");
+  test("a new technology should be registered in the menu", async () => {
+    render(<RegisterTech />);
     const inputTech = screen.getByTestId("inputRegister");
-    const registerTechButton = screen.getByTestId("buttonRegister");
+    const formRegisterTech = screen.getByTestId("formTech");
 
-    userEvent.click(addTech);
     userEvent.type(inputTech, "Java");
-    userEvent.click(registerTechButton);
+    fireEvent.submit(formRegisterTech);
 
-    expect(showTech).toBeInTheDocument;
+    expect(mockFuncSubmit).toHaveBeenCalled();
   });
 });
