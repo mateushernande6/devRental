@@ -7,14 +7,18 @@ interface IPhoto {
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 92vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  /* background-color: green; */
 
   @media (max-width: 850px) {
-    display: none;
+    height: 30vh;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
   }
 `;
 
@@ -25,6 +29,10 @@ export const PrincipalBlock = styled.div`
   align-items: center;
   justify-content: space-around;
   margin-top: 20px;
+
+  @media (max-width: 850px) {
+    height: 17vh;
+  }
 `;
 
 export const Logo = styled.img`
@@ -37,13 +45,30 @@ export const Logo = styled.img`
     width: 214px;
     margin-left: 17px;
   }
+
+  @media (max-width: 850px) {
+    width: 260px;
+    margin: 0;
+  }
+
+  @media (max-width: 350px) {
+    width: 193px;
+  }
 `;
 
 export const ContainerUsuario = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
-  width: 250px;
+  width: 212px;
+
+  margin: 39px 15px;
+
+  @media (max-width: 850px) {
+    width: 50vw;
+    padding: 0 45px;
+    margin: 0;
+  }
 
   div {
     font-size: 60px;
@@ -55,8 +80,13 @@ export const PhotoProfile = styled.div<IPhoto>`
   width: 90px;
   height: 90px;
   border-radius: 100%;
-  background-color: green;
+  background-color: rgb(66, 68, 114, 0.43);
   background-image: url(${(props) => props.tst});
+
+  @media (max-width: 850px) {
+    width: 78px;
+    height: 78px;
+  }
 
   background-size: cover;
   display: flex;
@@ -112,11 +142,15 @@ export const DivUsuarioInfo = styled.div`
 `;
 
 export const BlockTecs = styled.div`
-  height: 500px;
+  /* height: 500px; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 850px) {
+    height: 17vh;
+  }
 `;
 
 export const InfoTecs = styled.div`
@@ -126,6 +160,10 @@ export const InfoTecs = styled.div`
   margin-top: 10px;
   width: 170px;
   margin-bottom: 10px;
+
+  @media (max-width: 850px) {
+    display: none;
+  }
 
   h2 {
     font-size: 2.3rem;
@@ -204,6 +242,11 @@ export const ContainerTecs = styled.div`
 
   @media (max-width: 850px) {
     height: 82vh;
+    display: flex;
+    width: 50vw;
+    overflow-y: none;
+    width: 31vw;
+    overflow-x: auto;
   }
 
   ::-webkit-scrollbar-track {
@@ -242,9 +285,19 @@ export const Tecs = styled.div`
     width: 190px;
   }
 
+  @media (max-width: 360px) {
+    width: 84px;
+  }
+
   div {
     font-size: 25px;
     color: #fc923f;
+  }
+
+  div.divButton {
+    @media (max-width: 850px) {
+      display: none;
+    }
   }
 `;
 
@@ -263,6 +316,10 @@ export const ContainerLogOut = styled.div`
   /* @media (max-width: 1125px) {
     width: 98%;
   } */
+
+  @media (max-width: 850px) {
+    display: none;
+  }
 
   &:hover {
     cursor: pointer;
@@ -285,3 +342,23 @@ export const ContainerLogOut = styled.div`
 `;
 
 export const FiChevronLeftStyle = styled(FiChevronLeft)``;
+
+export const DivLogo = styled.div`
+  @media (max-width: 850px) {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid rgb(66 68 114 / 43%);
+    align-items: center;
+  }
+`;
+
+export const DivMobile = styled.div`
+  width: auto;
+  height: auto;
+  @media (max-width: 850px) {
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+  }
+`;

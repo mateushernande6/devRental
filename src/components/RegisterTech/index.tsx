@@ -109,7 +109,7 @@ export const RegisterTech = ({ getTechs }: IProps) => {
         <P>{errors.name?.message}</P>
         <Button
           data-testid="buttonRegister"
-          height={2}
+          height={3.5}
           width={7}
           color={"#fff"}
           text={"Ok"}
