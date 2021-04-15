@@ -48,7 +48,6 @@ const Partners = () => {
       <Container>
         <UpperContainer>
           <h2>Empresas Parceiras</h2>
-          <h2>{width}</h2>
 
           <p>lorem ipsum dolor sit amet </p>
         </UpperContainer>

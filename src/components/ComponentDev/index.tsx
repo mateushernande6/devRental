@@ -11,8 +11,10 @@ import {
   Tecs,
   BlockTecs,
   PhotoProfile,
+  DivLogo,
   PrincipalBlock,
   DivIconUser,
+  DivMobile,
   FiChevronLeftStyle,
 } from "./style";
 import { FiPlus } from "react-icons/fi";
@@ -27,6 +29,7 @@ import {
   ChangeEvent,
   ChangeEventHandler,
   SetStateAction,
+  useContext,
   useEffect,
   useState,
 } from "react";
@@ -37,6 +40,8 @@ import ModalComponents from "../Modal";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 import DeleteTech from "../DeleteTech";
+import MenuMobile from "../../components/MenuMobile";
+import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 
 interface ITech {
   name: string;
@@ -44,6 +49,8 @@ interface ITech {
 }
 
 export const ComponentDev = () => {
+  const { setIsAuth } = useContext(AuthDashboardContext);
+
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -99,6 +106,7 @@ export const ComponentDev = () => {
   const handleLogOut = () => {
     localStorage.clear();
     history.push("/login");
+    setIsAuth(false);
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -107,56 +115,62 @@ export const ComponentDev = () => {
       setFile(URL.createObjectURL(e.target.files[0]));
     }
   };
+
   console.log(file);
   return (
     <Container>
-      <Logo src={logo} />
-      <ContainerUsuario>
-        <PhotoProfile tst={file}>
-          <input type="file" onChange={handleChange} id="fileButton" hidden />
-          <label htmlFor="fileButton">
-            <PublishRoundedIcon className="iconUpload" />
-          </label>
-        </PhotoProfile>
+      <DivLogo>
+        <Logo src={logo} />
+        <MenuMobile />
+      </DivLogo>
+      <DivMobile>
+        <ContainerUsuario>
+          <PhotoProfile tst={file}>
+            <input type="file" onChange={handleChange} id="fileButton" hidden />
+            <label htmlFor="fileButton">
+              <PublishRoundedIcon className="iconUpload" />
+            </label>
+          </PhotoProfile>
 
-        <DivUsuarioInfo>
-          <h2>{name}</h2>
-          <h3>{email}</h3>
-        </DivUsuarioInfo>
-      </ContainerUsuario>
-      <BlockTecs>
-        <InfoTecs>
-          <h2>Techs</h2>
-          <Line />
-          <DivPlus onClick={handleOpen} data-testid="divPlus">
-            <FiPlus />
-          </DivPlus>
-          <ModalComponents open={open} handleClose={handleClose}>
-            <RegisterTech getTechs={getTechs} />
-          </ModalComponents>
-        </InfoTecs>
-        <ContainerTecs>
-          {tech
-            .filter((element) => {
-              return element.userId == id;
-            })
-            .map((element) => {
-              return (
-                <Tecs data-testid="tech">
-                  <div>
-                    <BsCode />
-                  </div>
-                  {element.name}
-                  <DeleteTech
-                    id={element}
-                    getTechs={getTechs}
-                    data-testid="deleteTech"
-                  />
-                </Tecs>
-              );
-            })}
-        </ContainerTecs>
-      </BlockTecs>
+          <DivUsuarioInfo>
+            <h2>{name}</h2>
+            <h3>{email}</h3>
+          </DivUsuarioInfo>
+        </ContainerUsuario>
+        <BlockTecs>
+          <InfoTecs>
+            <h2>Techs</h2>
+            <Line />
+            <DivPlus onClick={handleOpen} data-testid="divPlus">
+              <FiPlus />
+            </DivPlus>
+            <ModalComponents open={open} handleClose={handleClose}>
+              <RegisterTech getTechs={getTechs} />
+            </ModalComponents>
+          </InfoTecs>
+          <ContainerTecs>
+            {tech
+              .filter((element) => {
+                return element.userId == id;
+              })
+              .map((element) => {
+                return (
+                  <Tecs data-testid="tech">
+                    <div className="divButton">
+                      <BsCode />
+                    </div>
+                    {element.name}
+                    <DeleteTech
+                      id={element}
+                      getTechs={getTechs}
+                      data-testid="deleteTech"
+                    />
+                  </Tecs>
+                );
+              })}
+          </ContainerTecs>
+        </BlockTecs>
+      </DivMobile>
       <ContainerLogOut onClick={handleLogOut}>
         <FiChevronLeftStyle className="Sair" />
         <h2>Sair</h2>

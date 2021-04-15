@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { DivModalMobile } from "./style";
+
 import {
   FiAlignRight,
   FiBarChart,
@@ -50,11 +51,7 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-interface Iuser {
-  token: string;
-}
-
-export default function MenuMobile() {
+export default function MenuMobileEm() {
   const history = useHistory();
 
   const { setIsAuth } = useContext(AuthDashboardContext);
@@ -66,48 +63,6 @@ export default function MenuMobile() {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const { itemMap, setItemMap } = useContext(DataMapContext);
-  let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
-  const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
-
-  const desafiosMenu: any = () => {
-    console.log("Desafios");
-    api
-      .get(`jobs`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setItemMap(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const aceitosMenu: any = () => {
-    console.log("Projetos aceitos");
-
-    api
-      .get(`accepted/?userId=${idUser}`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setItemMap(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const portfolioMenu: any = () => {
-    console.log("Portfolio");
-
-    api
-      .get(`portfolio/?userId=${idUser}`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setItemMap(response.data);
-      })
-      .catch((err) => console.log(err));
   };
 
   const handleLogOut = () => {
@@ -134,24 +89,6 @@ export default function MenuMobile() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem onClick={desafiosMenu}>
-          <ListItemIcon>
-            <FiClipboard fontSize="2.7rem" />
-          </ListItemIcon>
-          <ListItemText primary="Desafios" />
-        </StyledMenuItem>
-        <StyledMenuItem onClick={aceitosMenu}>
-          <ListItemIcon>
-            <FiBarChart fontSize="2.7rem" />
-          </ListItemIcon>
-          <ListItemText primary="Projetos aceitos" />
-        </StyledMenuItem>
-        <StyledMenuItem onClick={portfolioMenu}>
-          <ListItemIcon>
-            <FiCoffee fontSize="2.7rem" />
-          </ListItemIcon>
-          <ListItemText primary="Portfolio" />
-        </StyledMenuItem>
         <StyledMenuItem onClick={handleLogOut}>
           <ListItemIcon>
             <FiLogOut fontSize="2.7rem" />

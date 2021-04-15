@@ -97,7 +97,7 @@ export const RegisterTech = ({ getTechs }: IProps) => {
   return (
     <Container>
       <h2>Qual tech você conhece?</h2>
-      <FormStyled onSubmit={handleSubmit(onSubmit)}>
+      <FormStyled onSubmit={handleSubmit(onSubmit)} data-testid="formTech">
         <Input
           data-testid="inputRegister"
           name="name"
@@ -109,7 +109,7 @@ export const RegisterTech = ({ getTechs }: IProps) => {
         <P>{errors.name?.message}</P>
         <Button
           data-testid="buttonRegister"
-          height={2}
+          height={3.5}
           width={7}
           color={"#fff"}
           text={"Ok"}
