@@ -13,12 +13,15 @@ import * as yup from "yup";
 import api from "../../services";
 import { useHistory } from "react-router-dom";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const history = useHistory();
 
   const { valueState } = useContext(AuthDashboardContext);
+  const [error, setError] = useState(false);
+  const [valid, setValid] = useState(false);
 
   interface IFormValue {
     email: string;
@@ -57,10 +60,50 @@ const Register = () => {
     api
       .post("users", dataEnd)
       .then((response) => {
+        setValid(true);
         history.push("/login");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError(true);
+        console.log(err);
+      });
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(
+        <p style={{ fontSize: "1.5rem" }}>
+          Não foi possivél fazer seu Registro
+        </p>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+      setError(false);
+    }
+
+    if (valid) {
+      toast.success(
+        <p style={{ fontSize: "1.5rem" }}>Registo efetuado com sucesso!</p>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+      setValid(false);
+    }
+  }, [error, valid]);
 
   return (
     <Container>

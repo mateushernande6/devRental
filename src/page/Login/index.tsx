@@ -32,6 +32,7 @@ const schema = yup.object().shape({
 
 const Login = () => {
   const [error, setError] = useState(false);
+  const [valid, setValid] = useState(false);
 
   const history = useHistory();
   const {
@@ -54,7 +55,7 @@ const Login = () => {
         );
         let { sub } = jwt_decode<string>(response.data.accessToken);
         localStorage.setItem("userId", JSON.stringify(sub));
-
+        setValid(true);
         history.push("/dashboard");
       })
       .catch((err) => {
@@ -65,7 +66,23 @@ const Login = () => {
 
   useEffect(() => {
     if (error) {
-      toast.error(`😵 Não foi possivél fazer login `, {
+      toast.error(
+        <p style={{ fontSize: "1.5rem" }}>Não foi possivél fazer login</p>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+      setError(false);
+    }
+
+    if (valid) {
+      toast.dark(<p style={{ fontSize: "1.5rem" }}>Bem Vindo!</p>, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -74,9 +91,9 @@ const Login = () => {
         draggable: true,
         progress: undefined,
       });
-      setError(false);
+      setValid(false);
     }
-  }, [error]);
+  }, [error, valid]);
 
   console.log(error);
   return (

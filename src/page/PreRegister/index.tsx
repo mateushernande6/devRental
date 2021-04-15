@@ -24,11 +24,14 @@ const PreRegister = () => {
 
   const functionDev = (data: string) => {
     setValueState(data);
+    console.log(data);
+
     history.push("/register");
   };
 
   const functionCompany = (data: string) => {
     setValueState(data);
+    console.log(data);
     history.push("/register");
   };
 

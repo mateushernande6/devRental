@@ -3,9 +3,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../Atoms/Input";
 import { Container, DivButtons, P, FormStyled } from "./style";
-
+import { useState, useEffect } from "react";
 import api from "../../services";
 import Button from "../Atoms/Button";
+import { toast } from "react-toastify";
 
 interface IValue {
   name: string;
@@ -17,6 +18,9 @@ interface IProps {
 }
 
 export const RegisterTech = ({ getTechs }: IProps) => {
+  const [error, setError] = useState(false);
+  const [valid, setValid] = useState(false);
+
   const schema = yup.object().shape({
     name: yup.string().required("Campo obrigatório"),
   });
@@ -42,11 +46,53 @@ export const RegisterTech = ({ getTechs }: IProps) => {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
+        setValid(true);
+      })
+      .catch((err) => {
+        setError(true);
       });
     reset();
     getTechs();
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(
+        <p style={{ fontSize: "1.5rem" }}>
+          Não foi possivel cadastrar essa Tecnologia !
+        </p>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+      setError(false);
+    }
+
+    if (valid) {
+      toast.success(
+        <p style={{ fontSize: "1.5rem" }}>
+          Tecnologia cadastrada com sucesso !
+        </p>,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
+      setValid(false);
+    }
+  }, [error, valid]);
 
   return (
     <Container>
