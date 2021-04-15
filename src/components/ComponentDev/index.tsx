@@ -99,7 +99,7 @@ export const ComponentDev = () => {
         <InfoTecs>
           <h2>Tecs</h2>
           <Line />
-          <DivPlus onClick={handleOpen}>
+          <DivPlus onClick={handleOpen} data-testid="divPlus">
             <FiPlus />
           </DivPlus>
           <ModalComponents open={open} handleClose={handleClose}>
@@ -113,12 +113,16 @@ export const ComponentDev = () => {
             })
             .map((element) => {
               return (
-                <Tecs>
+                <Tecs data-testid="tech">
                   <div>
                     <BsCode />
                   </div>
                   {element.name}
-                  <DeleteTech id={element.id} getTechs={getTechs} />
+                  <DeleteTech
+                    id={element.id}
+                    getTechs={getTechs}
+                    data-testid="deleteTech"
+                  />
                 </Tecs>
               );
             })}

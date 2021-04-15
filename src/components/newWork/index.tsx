@@ -133,8 +133,9 @@ const NewWork = () => {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit(handleForm)}>
+      <form onSubmit={handleSubmit(handleForm)} data-testid="newWorkForm">
         <Input
+          data-testid="InputTitle"
           name={"title"}
           register={register}
           width={30}
@@ -144,10 +145,16 @@ const NewWork = () => {
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
         {/*//    titulo, objetivo, descrição, tecnologias, recompensa, prazo*/}
-        <TextArea {...register("objective")} placeholder="Objetivo" rows={5} />
+        <TextArea
+          data-testid="InputObjective"
+          {...register("objective")}
+          placeholder="Objetivo"
+          rows={5}
+        />
         <ErrorMessage>{errors.objective?.message}</ErrorMessage>
 
         <TextArea
+          data-testid="InputDescription"
           {...register("description")}
           placeholder="Descrição"
           rows={10}
@@ -176,6 +183,7 @@ const NewWork = () => {
         {/* <ErrorMessage>{errors.workTechs?.message}</ErrorMessage> */}
 
         <Input
+          data-testid="InputReward"
           name={"reward"}
           register={register}
           width={30}
@@ -185,6 +193,7 @@ const NewWork = () => {
         <ErrorMessage>{errors.reward?.message}</ErrorMessage>
 
         <Input
+          data-testid="InputDeadline"
           name={"workDeadline"}
           register={register}
           width={30}
@@ -199,7 +208,6 @@ const NewWork = () => {
           color={"#fff"}
           text={"Adicionar"}
           background={"#fc923f"}
-          // type={'submit'}
         />
       </form>
     </Container>
