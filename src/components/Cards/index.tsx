@@ -46,12 +46,12 @@ const Card = ({ title, dataCardObj }: Props) => {
     let user = JSON.parse(localStorage.getItem("token") ?? "");
 
     api
-      .get(`accepted/?title_like=${title}`, {
+      .get(`users/?acceptedId_like=${dataCardObj.id}`, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        setDataAccepted(response.data);
-        // console.log("AGORA", response);
+        // setDataAccepted(response.data);
+        console.log("AGORA", response);
       })
       .catch((err) => {
         console.log(err);
@@ -59,7 +59,6 @@ const Card = ({ title, dataCardObj }: Props) => {
   }, []);
 
   useEffect(() => {
-    console.log("AQUI FABRICIO", dataAccepted);
     setCount(0);
 
     dataAccepted.forEach((ele) => ele.title === title && setCount(count + 1));
