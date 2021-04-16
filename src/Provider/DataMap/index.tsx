@@ -15,6 +15,8 @@ interface IdataState {
   buttonBotton: string;
   buttonTop: string;
   buttonExcluir: string;
+  users: string[];
+
 }
 interface IcontextData {
   itemMap: IdataState[];

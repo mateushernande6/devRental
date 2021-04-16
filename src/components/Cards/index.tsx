@@ -23,6 +23,8 @@ interface IitensData {
   buttonBotton: string;
   buttonTop: string;
   buttonExcluir: string;
+
+  users: string[];
 }
 interface Props {
   title: string;
