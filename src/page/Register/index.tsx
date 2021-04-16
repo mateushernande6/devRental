@@ -4,6 +4,7 @@ import {
   SvgContainer,
   InfoContainer,
   Title,
+  FiCrosshairStyled,
 } from "./style";
 import Input from "../../components/Atoms/Input";
 import Button from "../../components/Atoms/Button";
@@ -22,6 +23,8 @@ const Register = () => {
   const { valueState } = useContext(AuthDashboardContext);
   const [error, setError] = useState(false);
   const [valid, setValid] = useState(false);
+
+  const [viewIcon, setViewIcon] = useState(false);
 
   interface IFormValue {
     email: string;
@@ -53,6 +56,8 @@ const Register = () => {
   });
 
   const onSubmit = (data: IFormValue) => {
+    setViewIcon(true);
+
     reset();
     const userData = {
       category: `${valueState}`,
@@ -74,6 +79,8 @@ const Register = () => {
   };
 
   useEffect(() => {
+    setViewIcon(false);
+
     if (error) {
       toast.error(
         <p style={{ fontSize: "1.5rem" }}>
@@ -148,7 +155,7 @@ const Register = () => {
               height={4.7}
               width={26}
               color={"#fff"}
-              text={"Register"}
+              text={!viewIcon ? "Register" : <FiCrosshairStyled size={26} />}
               background={"#fc923f"}
             />
           </form>

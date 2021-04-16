@@ -130,6 +130,8 @@ const DataCard = ({ dataObj }: ImodalData) => {
   };
 
   const addPortfolio = (dataObj: Iobj) => {
+    const {} = dataObj;
+
     const dataApi = {
       ...dataObj,
       userId: idUser,
