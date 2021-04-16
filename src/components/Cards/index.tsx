@@ -1,8 +1,17 @@
-import { useState } from "react";
-import { Container, ImgCard } from "./style";
+import { useState, useContext, useEffect } from "react";
+import { Container, ImgCard, DivUser, DivBack } from "./style";
 import ModalComponents from "../Modal";
 import DataCard from "../DataCard";
 import Button from "../Atoms/Button";
+import { DataUser } from "../../Provider/DataUser";
+import {
+  FiUsers,
+  FiBarChart2,
+  FiClipboard,
+  FiSun,
+  FiCoffee,
+} from "react-icons/fi";
+import api from "../../services";
 
 interface IitensData {
   title: string;
@@ -22,6 +31,37 @@ interface Props {
 
 const Card = ({ title, dataCardObj }: Props) => {
   const [open, setOpen] = useState(false);
+  // const [category, setCategory] = useState<string>("");
+
+  const [dataAccepted, setDataAccepted] = useState<IitensData[]>([]);
+  const [count, setCount] = useState<number>(0);
+
+  const { dataUser } = useContext(DataUser);
+
+  useEffect(() => {
+    // setCategory(dataUser);
+
+    let user = JSON.parse(localStorage.getItem("token") ?? "");
+
+    api
+      .get(`accepted/?title_like=${title}`, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        setDataAccepted(response.data);
+        // console.log("AGORA", response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log("AQUI FABRICIO", dataAccepted);
+    setCount(0);
+
+    dataAccepted.forEach((ele) => ele.title === title && setCount(count + 1));
+  }, [dataAccepted]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -34,9 +74,31 @@ const Card = ({ title, dataCardObj }: Props) => {
   return (
     <Container>
       <>
-        {console.log(dataCardObj)}
+        {dataUser === "company" && (
+          <DivUser>
+            <FiUsers size={20} />
+            {count}
+          </DivUser>
+        )}
+
         <image>
-          <ImgCard src="https://picsum.photos/200/200" />
+          {dataUser === "company" ? (
+            <DivBack>
+              <FiBarChart2 size={50} />
+            </DivBack>
+          ) : dataCardObj.buttonTop === "desafio" ? (
+            <DivBack>
+              <FiClipboard size={50} />
+            </DivBack>
+          ) : dataCardObj.buttonTop === "desafioAceito" ? (
+            <DivBack>
+              <FiSun size={50} />
+            </DivBack>
+          ) : (
+            <DivBack>
+              <FiCoffee size={50} />
+            </DivBack>
+          )}
         </image>
         <section>
           <p>{title}</p>
@@ -44,7 +106,7 @@ const Card = ({ title, dataCardObj }: Props) => {
         {dataCardObj.buttonBotton === "desafio" ? (
           <Button
             width={18}
-            background="#FC923F"
+            background="rgb(252, 146, 63, 0.86)"
             color="#fcfbff"
             height={3.7}
             text="Ver mais"

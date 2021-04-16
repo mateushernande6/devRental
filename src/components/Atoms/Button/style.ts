@@ -13,6 +13,9 @@ export const ButtonStyled = styled.button<ButtonProps>`
   font-weight: 600;
   font-size: 1.6rem;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   :hover {
     cursor: pointer;
     opacity: 0.8;

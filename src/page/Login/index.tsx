@@ -1,4 +1,10 @@
-import { Container, Main, DivImage, DivContent } from "./style";
+import {
+  Container,
+  Main,
+  DivImage,
+  DivContent,
+  FiCrosshairStyled,
+} from "./style";
 import Input from "../../components/Atoms/Input";
 import Button from "../../components/Atoms/Button";
 
@@ -36,6 +42,9 @@ const Login = () => {
 
   const [error, setError] = useState(false);
   const [valid, setValid] = useState(false);
+
+  const [viewIcon, setViewIcon] = useState(false);
+
   const history = useHistory();
   const {
     register,
@@ -47,6 +56,8 @@ const Login = () => {
   });
 
   const onSubmit = (data: IFormInputs) => {
+    setViewIcon(true);
+    reset();
     api
       .post("login", data)
       .then((response) => {
@@ -68,6 +79,7 @@ const Login = () => {
   };
 
   useEffect(() => {
+    setViewIcon(false);
     if (error) {
       toast.error(
         <p style={{ fontSize: "1.5rem" }}>Não foi possivél fazer login</p>,
@@ -131,7 +143,7 @@ const Login = () => {
               data-testId="submitButton"
               width={32.5}
               height={5.5}
-              text="Entrar"
+              text={!viewIcon ? "Entrar" : <FiCrosshairStyled size={26} />}
               color="white"
               background="#FC923F"
             />
