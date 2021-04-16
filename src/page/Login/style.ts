@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import { FiCrosshair } from "react-icons/fi";
+
+export const FiCrosshairStyled = styled(FiCrosshair)`
+  animation: rotationIcon 2s linear infinite;
+
+  @keyframes rotationIcon {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 export const Container = styled.div`
   width: 100vw;
