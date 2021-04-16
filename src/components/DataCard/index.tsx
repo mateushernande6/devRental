@@ -86,22 +86,23 @@ const DataCard = ({ dataObj }: ImodalData) => {
   };
 
   const challengesAccepted =  (dataObj: Iobj) => {
-    const {users} = dataObj
+
+    const {id} = dataObj
 
     const dataApi = {
-      ...dataObj,
-      users: [...users, idUser],
-      userId: idUser,
+
+      acceptedId: id,
+
       buttonTop: "desafioAceito",
       buttonBotton: "desafioAceito",
     };
 
     api
-      .post(`accepted`, dataApi, {
+      .patch(`users/${idUser}/`, dataApi, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        // console.log("Cadastrado desafio aceito");
+         localStorage.setItem('acceptedId', JSON.stringify(response.data));
         toast.success(
           <p style={{ fontSize: "1.5rem" }}>Desafio aceito com sucesso !</p>,
           {
