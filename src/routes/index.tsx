@@ -5,36 +5,18 @@ import Register from "../page/Register";
 import PreRegister from "../page/PreRegister";
 import Dashboard from "../page/Dashboard";
 import NotFound from "../page/NotFound";
-
-interface IPrevate {
-  component: any;
-  path: string;
-}
-
-const token = localStorage.getItem("token");
-
-const PrivateRoute = ({ component: Component, ...rest }: IPrevate) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      !!token ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-      )
-    }
-  />
-);
+import {PublicRoute} from "./PublicRoute";
+import {PrivateRoute} from "./PrivateRoute";
 
 const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/register" component={Register} />
-      <Route exact path="/preregister" component={PreRegister} />
+      <PublicRoute exact path='/' component={Home} restricted={true}/>
+      <PublicRoute exact path='/login' component={Login} restricted={true}/>
+      <PublicRoute exact path='/register' component={Register} restricted={true}/>
+      <PublicRoute exact path='/preregister' component={PreRegister} restricted={true}/>
 
-      <PrivateRoute path="/dashboard" component={Dashboard} />
+      <PrivateRoute component={Dashboard} exact path={'/dashboard'} />
 
       <Route component={NotFound} />
     </Switch>

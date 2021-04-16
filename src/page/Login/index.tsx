@@ -1,7 +1,13 @@
-import { Container, Main, DivImage, DivContent } from "./style";
+import {
+  Container,
+  Main,
+  DivImage,
+  DivContent,
+  FiCrosshairStyled,
+} from "./style";
 import Input from "../../components/Atoms/Input";
 import Button from "../../components/Atoms/Button";
-import { Link } from "react-router-dom";
+
 import api from "../../services";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,7 +15,8 @@ import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 
 interface IFormInputs {
   email: string;
@@ -31,8 +38,12 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
+  const { setIsAuth } = useContext(AuthDashboardContext);
+
   const [error, setError] = useState(false);
   const [valid, setValid] = useState(false);
+
+  const [viewIcon, setViewIcon] = useState(false);
 
   const history = useHistory();
   const {
@@ -45,6 +56,8 @@ const Login = () => {
   });
 
   const onSubmit = (data: IFormInputs) => {
+    setViewIcon(true);
+    reset();
     api
       .post("login", data)
       .then((response) => {
@@ -56,6 +69,7 @@ const Login = () => {
         let { sub } = jwt_decode<string>(response.data.accessToken);
         localStorage.setItem("userId", JSON.stringify(sub));
         setValid(true);
+        setIsAuth(true);
         history.push("/dashboard");
       })
       .catch((err) => {
@@ -65,6 +79,7 @@ const Login = () => {
   };
 
   useEffect(() => {
+    setViewIcon(false);
     if (error) {
       toast.error(
         <p style={{ fontSize: "1.5rem" }}>Não foi possivél fazer login</p>,
@@ -111,27 +126,35 @@ const Login = () => {
               height={3.2}
               placeHolder="Email"
               register={register}
+              data-testId="emailInput"
             />
-            <p>{errors.email?.message}</p>
+            <p data-testId="error1">{errors.email?.message}</p>
             <Input
               name="password"
               width={30}
               height={3.2}
               placeHolder="Password"
               register={register}
+              type="password"
+              data-testId="passwordlInput"
             />
-            <p>{errors.password?.message}</p>
+            <p data-testId="error2">{errors.password?.message}</p>
             <Button
+              data-testId="submitButton"
               width={32.5}
               height={5.5}
-              text="Entrar"
+              text={!viewIcon ? "Entrar" : <FiCrosshairStyled size={26} />}
               color="white"
               background="#FC923F"
             />
           </form>
-          <Link className="linkReg" to="/preregister">
+          <a
+            data-testId="btnRegister"
+            className="linkReg"
+            onClick={() => history.push("preregister")}
+          >
             Register
-          </Link>
+          </a>
         </DivContent>
       </Main>
     </Container>

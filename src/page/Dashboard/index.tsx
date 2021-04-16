@@ -26,7 +26,6 @@ import { ComponentDev } from "../../components/ComponentDev";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { DataMapContext } from "../../Provider/DataMap";
 import { ComponentEmp } from "../../components/ComponentEmp";
-import MenuMobile from "../../components/MenuMobile";
 import { BsPeopleCircle, BsCode } from "react-icons/bs";
 import DeleteTech from "../../components/DeleteTech";
 import { DataUser } from "../../Provider/DataUser";
@@ -45,6 +44,8 @@ interface IdataCard {
   buttonBotton: string;
   buttonExcluir: string;
   buttonTop: string;
+
+  users: string[];
 }
 
 interface ITech {
@@ -147,7 +148,7 @@ const Dashboard = () => {
   return (
     <Container>
       <DivAside>
-        <DivMenuMobile>
+        {/* <DivMenuMobile>
           <Logo src="./assets/devRental.png" />
           <MenuMobile />
         </DivMenuMobile>
@@ -178,7 +179,7 @@ const Dashboard = () => {
                 );
               })}
           </ContainerTecs>
-        </DivDataUser>
+        </DivDataUser> */}
         {category === "dev" ? <ComponentDev /> : <ComponentEmp />}
       </DivAside>
       <DivMain>

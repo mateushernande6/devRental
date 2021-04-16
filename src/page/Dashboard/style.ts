@@ -97,7 +97,7 @@ export const ContainerCard = styled.div`
   overflow-y: auto;
 
   @media (max-width: 850px) {
-    height: 100%;
+    height: 95%;
   }
 
   ::-webkit-scrollbar-track {
