@@ -3,6 +3,7 @@ import api from "../../services";
 import { Container } from "./style";
 import { useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import jwt_decode from "jwt-decode";
 interface Iprops {
   id: any;
   getTechs: () => void;
@@ -10,13 +11,14 @@ interface Iprops {
 
 const DeleteTech = ({ id, getTechs }: Iprops) => {
   let user = JSON.parse(localStorage.getItem("token") ?? "");
+  let { sub } = jwt_decode<string>(localStorage.getItem("token") ?? "");
 
   const [error, setError] = useState(false);
   const [valid, setValid] = useState(false);
 
   const handleDeleteTech = () => {
     api
-      .delete(`techs/${id}`, {
+      .delete(`techs/${id.id}/?userId=${sub}`, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
