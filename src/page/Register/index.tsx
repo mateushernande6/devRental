@@ -54,8 +54,12 @@ const Register = () => {
 
   const onSubmit = (data: IFormValue) => {
     reset();
+    const userData = {
+      category: `${valueState}`,
+      src: "",
+    };
 
-    const dataEnd = { ...data, category: `${valueState}` };
+    const dataEnd = { ...data, ...userData };
 
     api
       .post("users", dataEnd)
