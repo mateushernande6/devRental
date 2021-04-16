@@ -80,6 +80,9 @@ export const ComponentDev = () => {
       })
       .then((response) => {
         console.log("dataUser", response);
+        if (response.data.src !== "") {
+          setFile(response.data.src);
+        }
         setName(response.data.name);
         setEmail(response.data.email);
       });
