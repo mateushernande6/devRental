@@ -51,7 +51,6 @@ interface ITech {
 export const ComponentDev = () => {
   const { setIsAuth } = useContext(AuthDashboardContext);
 
-  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [tech, setTech] = useState<ITech[]>([]);
@@ -71,14 +70,13 @@ export const ComponentDev = () => {
     getTechs();
   }, [flag]);
 
+  const id = JSON.parse(localStorage.getItem("userId") ?? "");
+  const token = JSON.parse(localStorage.getItem("token") ?? "");
   const getNameEmail = () => {
-    const id = JSON.parse(localStorage.getItem("userId") ?? "");
-    setId(id);
     const users = "users/" + id;
-    let user = JSON.parse(localStorage.getItem("token") ?? "");
     api
       .get(users, {
-        headers: { Authorization: `Bearer ${user}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log("dataUser", response);
@@ -114,12 +112,18 @@ export const ComponentDev = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    const users = "users/" + id;
     if (e.target.files?.length) {
-      // api.patch()
+      console.log("token api", token);
+      api
+        .patch(users, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((response) => console.log("resp", response));
       setFile(URL.createObjectURL(e.target.files[0]));
     }
   };
-
+  console.log("id aqui", id);
   console.log(file);
   return (
     <Container>
