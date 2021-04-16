@@ -79,6 +79,7 @@ export const ComponentDev = () => {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
+        console.log("dataUser", response);
         setName(response.data.name);
         setEmail(response.data.email);
       });

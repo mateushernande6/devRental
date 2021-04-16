@@ -48,6 +48,7 @@ export const ComponentEmp = () => {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
+        console.log("dataUserEmp", response);
         setName(response.data.name);
         setEmail(response.data.email);
       });
