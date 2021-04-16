@@ -1,9 +1,9 @@
 import { useState, useContext, useEffect } from "react";
 import { Container, ImgCard, DivUser, DivBack } from "./style";
-import ModalComponents from "../Modal";
+import ModalComponents from "../../../Modal";
 import DataCard from "../DataCard";
-import Button from "../Atoms/Button";
-import { DataUser } from "../../Provider/DataUser";
+import Button from "../../../Reusables/Button";
+import { DataUser } from "../../../../Provider/DataUser";
 import {
   FiUsers,
   FiBarChart2,
@@ -11,7 +11,7 @@ import {
   FiSun,
   FiCoffee,
 } from "react-icons/fi";
-import api from "../../services";
+import api from "../../../../services";
 
 interface IitensData {
   title: string;

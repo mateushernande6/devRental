@@ -15,11 +15,11 @@ import {
 } from "./style";
 import { FiCheckSquare } from "react-icons/fi";
 import { useContext, useState, useEffect } from "react";
-import { AuthDashboardContext } from "../../Provider/AuthDashboard";
-import api from "../../services";
-import { DataMapContext } from "../../Provider/DataMap";
+import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
+import api from "../../../../services";
+import { DataMapContext } from "../../../../Provider/DataMap";
 import { toast } from "react-toastify";
-import { DataUser } from "../../Provider/DataUser";
+import { DataUser } from "../../../../Provider/DataUser";
 
 interface IitensData {
   title: string;

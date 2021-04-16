@@ -5,8 +5,8 @@ import {
   DivContent,
   FiCrosshairStyled,
 } from "./style";
-import Input from "../../components/Atoms/Input";
-import Button from "../../components/Atoms/Button";
+import Input from "../../components/Reusables/Input";
+import Button from "../../components/Reusables/Button";
 
 import api from "../../services";
 import { useForm } from "react-hook-form";

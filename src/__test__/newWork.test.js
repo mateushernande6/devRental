@@ -1,4 +1,4 @@
-import NewWork from "../components/newWork";
+import NewWork from "../components/DashboardParts/Company/newWork";
 
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";

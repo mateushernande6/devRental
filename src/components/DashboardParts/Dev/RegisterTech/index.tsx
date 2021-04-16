@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Input from "../Atoms/Input";
+import Input from "../../../Reusables/Input";
 import { Container, DivButtons, P, FormStyled } from "./style";
 import { useState, useEffect } from "react";
-import api from "../../services";
-import Button from "../Atoms/Button";
+import api from "../../../../services";
+import Button from "../../../Reusables/Button";
 import { toast } from "react-toastify";
 
 interface IValue {

@@ -33,15 +33,15 @@ import {
   useEffect,
   useState,
 } from "react";
-import api from "../../services";
+import api from "../../../../services";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
-import ModalComponents from "../Modal";
+import ModalComponents from "../../../Modal";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 import DeleteTech from "../DeleteTech";
-import MenuMobile from "../../components/MenuMobile";
-import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import MenuMobile from "../../../MenuMobile";
+import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
 
 interface ITech {
   name: string;

@@ -6,8 +6,8 @@ import {
   Title,
   FiCrosshairStyled,
 } from "./style";
-import Input from "../../components/Atoms/Input";
-import Button from "../../components/Atoms/Button";
+import Input from "../../components/Reusables/Input";
+import Button from "../../components/Reusables/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
