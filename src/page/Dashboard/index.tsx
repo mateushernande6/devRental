@@ -44,6 +44,8 @@ interface IdataCard {
   buttonBotton: string;
   buttonExcluir: string;
   buttonTop: string;
+
+  users: string[];
 }
 
 interface ITech {

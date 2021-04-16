@@ -66,6 +66,7 @@ const NewWork = () => {
 
     const postData = {
       ...data,
+      users: [],
       tecnology: Techs,
       userId: idUser,
       buttonTop: "desafio",

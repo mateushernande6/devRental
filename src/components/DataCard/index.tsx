@@ -31,6 +31,7 @@ interface IitensData {
   buttonBotton: string;
   buttonTop: string;
   buttonExcluir: string;
+  users: string[];
 }
 interface ImodalData {
   dataObj: IitensData;
@@ -41,6 +42,7 @@ interface Iuser {
 }
 
 interface Iobj {
+  users: string[];
   id: number;
 }
 
@@ -83,9 +85,12 @@ const DataCard = ({ dataObj }: ImodalData) => {
       .catch((err) => console.log(err));
   };
 
-  const challengesAccepted = (dataObj: Iobj) => {
+  const challengesAccepted =  (dataObj: Iobj) => {
+    const {users} = dataObj
+
     const dataApi = {
       ...dataObj,
+      users: [...users, idUser],
       userId: idUser,
       buttonTop: "desafioAceito",
       buttonBotton: "desafioAceito",
