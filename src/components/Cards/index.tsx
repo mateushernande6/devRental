@@ -50,8 +50,8 @@ const Card = ({ title, dataCardObj }: Props) => {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        // setDataAccepted(response.data);
-        console.log("AGORA", response);
+        setDataAccepted(response.data);
+        // console.log("AGORA", response);
       })
       .catch((err) => {
         console.log(err);
@@ -78,7 +78,7 @@ const Card = ({ title, dataCardObj }: Props) => {
         {dataUser === "company" && (
           <DivUser>
             <FiUsers size={20} />
-            {count}
+            {dataAccepted.length}
           </DivUser>
         )}
 
