@@ -51,13 +51,14 @@ interface ITech {
 export const ComponentDev = () => {
   const { setIsAuth } = useContext(AuthDashboardContext);
 
-  const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const [flag, setFlag] = useState(false);
-  const [file, setFile] = useState<any>();
+  const [file, setFile] = useState<any>(
+    "https://www.construtoracesconetto.com.br/wp-content/uploads/2020/03/blank-profile-picture-973460_640.png"
+  );
 
   const history = useHistory();
 
@@ -69,17 +70,19 @@ export const ComponentDev = () => {
     getTechs();
   }, [flag]);
 
+  const id = JSON.parse(localStorage.getItem("userId") ?? "");
+  const token = JSON.parse(localStorage.getItem("token") ?? "");
   const getNameEmail = () => {
-    const id = JSON.parse(localStorage.getItem("userId") ?? "");
-    setId(id);
     const users = "users/" + id;
-    let user = JSON.parse(localStorage.getItem("token") ?? "");
     api
       .get(users, {
-        headers: { Authorization: `Bearer ${user}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         console.log("dataUser", response);
+        if (response.data.src !== "") {
+          setFile(response.data.src);
+        }
         setName(response.data.name);
         setEmail(response.data.email);
       });
@@ -112,11 +115,24 @@ export const ComponentDev = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    const users = "users/" + id;
     if (e.target.files?.length) {
-      setFile(URL.createObjectURL(e.target.files[0]));
+      const photoUser = URL.createObjectURL(e.target.files[0]);
+      api
+        .patch(
+          users,
+          { src: `${photoUser}` },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((response) => {
+          setFile(response.data.src);
+        })
+        .catch((err) => err.response);
     }
   };
-
+  console.log("id aqui", id);
   console.log(file);
   return (
     <Container>
