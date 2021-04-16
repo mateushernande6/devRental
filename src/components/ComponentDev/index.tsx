@@ -57,7 +57,9 @@ export const ComponentDev = () => {
   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const [flag, setFlag] = useState(false);
-  const [file, setFile] = useState<any>();
+  const [file, setFile] = useState<any>(
+    "https://www.construtoracesconetto.com.br/wp-content/uploads/2020/03/blank-profile-picture-973460_640.png"
+  );
 
   const history = useHistory();
 
@@ -113,6 +115,7 @@ export const ComponentDev = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files?.length) {
+      // api.patch()
       setFile(URL.createObjectURL(e.target.files[0]));
     }
   };
