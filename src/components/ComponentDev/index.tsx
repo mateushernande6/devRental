@@ -114,13 +114,19 @@ export const ComponentDev = () => {
     e.preventDefault();
     const users = "users/" + id;
     if (e.target.files?.length) {
-      console.log("token api", token);
+      const photoUser = URL.createObjectURL(e.target.files[0]);
       api
-        .patch(users, {
-          headers: { Authorization: `Bearer ${token}` },
+        .patch(
+          users,
+          { src: `${photoUser}` },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .then((response) => {
+          setFile(response.data.src);
         })
-        .then((response) => console.log("resp", response));
-      setFile(URL.createObjectURL(e.target.files[0]));
+        .catch((err) => err.response);
     }
   };
   console.log("id aqui", id);
