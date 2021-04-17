@@ -6,28 +6,14 @@ import {
   DivAside,
   DivMain,
   ContainerCard,
-  DivMenuMobile,
-  Logo,
-  DivDataUser,
-  ContainerUsuario,
-  DivIconUser,
-  DivUsuarioInfo,
-  Tecs,
-  ContainerTecs,
-  BsPeopleCircleStyled,
 } from "./style";
 import Card from "../../components/DashboardParts/Common/Cards";
 import api from "../../services";
 import { useEffect, useState, useContext } from "react";
-import Button from "../../components/Reusables/Button";
-import ModalComponents from "../../components/Modal";
-import NewWork from "../../components/DashboardParts/Company/newWork";
 import { ComponentDev } from "../../components/DashboardParts/Dev/ComponentDev";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { DataMapContext } from "../../Provider/DataMap";
 import { ComponentEmp } from "../../components/DashboardParts/Company/ComponentEmp";
-import { BsPeopleCircle, BsCode } from "react-icons/bs";
-import DeleteTech from "../../components/DashboardParts/Dev/DeleteTech";
 import { DataUser } from "../../Provider/DataUser";
 import { motion } from "framer-motion";
 
@@ -156,16 +142,13 @@ const Dashboard = () => {
           <DivMenu>
             {category === "dev" ? (
               <>
-                <ItensMenu text="Desafios" fun={() => console.log("aqui")} />
+                <ItensMenu text="Desafios" fun={() => {}} />
                 <ItensMenu text="Projetos aceitos" fun={() => {}} />
-                <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
+                <ItensMenu text="Portfolio" fun={() => {}} />
               </>
             ) : (
               <>
-                <ItensMenu
-                  text="Desafios ativos"
-                  fun={() => console.log("aqui")}
-                />
+                <ItensMenu text="Desafios ativos" fun={() => {}} />
               </>
             )}
           </DivMenu>
