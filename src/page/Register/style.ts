@@ -101,8 +101,6 @@ export const SvgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 50%; */
-  /* background-color: red; */
   height: 100%;
 
   img {

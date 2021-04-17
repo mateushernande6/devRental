@@ -7,9 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import api from "../../../../services";
-import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
-import { MouseEventHandler, useContext, useState, useEffect } from "react";
-import { date } from "yup";
+import { useContext, useState, useEffect } from "react";
 import { DataMapContext } from "../../../../Provider/DataMap";
 import { toast } from "react-toastify";
 
@@ -47,7 +45,6 @@ const NewWork = () => {
       .string()
       .required(requiredField)
       .max(500, "máximo de 500 caracteres"),
-    // workTechs: yup.string().required(requiredField),
     reward: yup.string().required(requiredField),
     workDeadline: yup.string().required(requiredField),
   });
@@ -76,8 +73,6 @@ const NewWork = () => {
 
     let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
 
-    console.log(user, postData);
-
     api
       .post(`jobs`, postData, {
         headers: {
@@ -85,7 +80,6 @@ const NewWork = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         setItemMap([...itemMap, response.data]);
         setValid(true);
         reset();
@@ -145,7 +139,6 @@ const NewWork = () => {
         />
         <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
-        {/*//    titulo, objetivo, descrição, tecnologias, recompensa, prazo*/}
         <TextArea
           data-testid="InputObjective"
           {...register("objective")}
@@ -181,7 +174,6 @@ const NewWork = () => {
         >
           add tech
         </button>
-        {/* <ErrorMessage>{errors.workTechs?.message}</ErrorMessage> */}
 
         <Input
           data-testid="InputReward"

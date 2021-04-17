@@ -75,7 +75,7 @@ const Login = () => {
       })
       .catch((err) => {
         setError(true);
-        console.log("aassasa", err.response);
+        console.log(err.response);
       });
   };
 

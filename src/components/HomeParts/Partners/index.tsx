@@ -1,47 +1,38 @@
-import {
-  UpperContainer,
-  CompanyImage,
-} from "./style";
-import {OuterContainer, Container} from "../style";
+import { UpperContainer, CompanyImage } from "./style";
+import { OuterContainer, Container } from "../style";
 
 import Carousel from "react-elastic-carousel";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 const useWindowSize = () => {
-  const [size, setSize] = useState([window.innerHeight, window.innerWidth])
+  const [size, setSize] = useState([window.innerHeight, window.innerWidth]);
 
-  useEffect(()=>{
+  useEffect(() => {
     const handleResize = () => {
-      setSize([window.innerHeight, window.innerWidth])
-    }
-    window.addEventListener('resize', handleResize)
+      setSize([window.innerHeight, window.innerWidth]);
+    };
+    window.addEventListener("resize", handleResize);
 
-    return()=>{
-      window.removeEventListener('resize', handleResize)
-    }
-  },[])
-  return size
-}
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  return size;
+};
 
 const Partners = () => {
-  const [height ,width] = useWindowSize()
-
-  // let itemsToShow = 0
+  const [height, width] = useWindowSize();
 
   const handleCarousel = () => {
-    if (width < 321){
-      return 1
+    if (width < 321) {
+      return 1;
+    } else if (width >= 321 && width < 426) {
+      return 2;
+    } else if (width >= 426 && width < 769) {
+      return 3;
     }
-
-    else if(width >= 321 && width < 426){
-        return 2
-    }
-    else if(width >= 426 && width < 769){
-      return 3
-    }
-    return 4
-  }
-
+    return 4;
+  };
 
   return (
     <OuterContainer>

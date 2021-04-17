@@ -58,32 +58,12 @@ export const Tecs = styled.div`
   }
 `;
 
-export const BsPeopleCircleStyled = styled(BsPeopleCircle)``;
-
 export const DivTechsMobile = styled.div`
   display: none;
 
   @media (max-width: 850px) {
     display: flex;
     width: 90%;
-  }
-`;
-
-export const Logo = styled.img`
-  width: 217px;
-`;
-
-export const DivDataUser = styled.div`
-  background-color: rgb(20, 20, 43, 0.64);
-  margin: -4px 0;
-  width: 100%;
-  height: 395px;
-  display: none;
-
-  @media (max-width: 850px) {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
 `;
 
@@ -115,21 +95,6 @@ export const ContainerCard = styled.div`
   ::-webkit-scrollbar-thumb {
     background: #3a3864;
     border-radius: 5px;
-  }
-`;
-
-export const DivMenuMobile = styled.div`
-  display: none;
-  background-color: rgb(20, 20, 43, 0.64);
-  width: 100%;
-  margin-bottom: 15px;
-  height: 400px;
-
-  @media (max-width: 850px) {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 217px;
   }
 `;
 
@@ -176,19 +141,6 @@ export const DivAside = styled.div`
     flex-direction: column;
     /* background-color: aqua; */
     height: 30%;
-  }
-`;
-
-export const ContainerUsuario = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-  width: 170px;
-  margin-bottom: 15px;
-
-  div {
-    font-size: 60px;
-    color: white;
   }
 `;
 

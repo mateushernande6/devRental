@@ -12,38 +12,22 @@ import {
   BlockTecs,
   PhotoProfile,
   DivLogo,
-  PrincipalBlock,
   FiPlusStyled,
-  DivIconUser,
   DivMobile,
   FiChevronLeftStyle,
 } from "./style";
 import logo from "./Assets/devRental.png";
-import {
-  BsPeopleCircle,
-  BsCode,
-  BsPlus,
-  BsFillCaretLeftFill,
-} from "react-icons/bs";
-import {
-  ChangeEvent,
-  ChangeEventHandler,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { BsCode } from "react-icons/bs";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import api from "../../../../services";
 import { useHistory } from "react-router";
 import { RegisterTech } from "../RegisterTech";
 import ModalComponents from "../../../Modal";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 import DeleteTech from "../DeleteTech";
 import MenuMobile from "../../../MenuMobile";
 import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
 import { motion } from "framer-motion";
-
 interface ITech {
   name: string;
   userId: string;
@@ -57,7 +41,7 @@ export const ComponentDev = () => {
   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const [flag, setFlag] = useState(false);
-  const [file, setFile] = useState<any>("./assets/profile.svg");
+  const [file, setFile] = useState<any>();
 
   const history = useHistory();
 
@@ -78,7 +62,6 @@ export const ComponentDev = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        console.log("dataUser", response);
         if (response.data.src !== "") {
           setFile(response.data.src);
         }
@@ -131,8 +114,7 @@ export const ComponentDev = () => {
         .catch((err) => err.response);
     }
   };
-  console.log("id aqui", id);
-  console.log(file);
+
   return (
     <motion.div
       initial={{ translateX: "-100%" }}

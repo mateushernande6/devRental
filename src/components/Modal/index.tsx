@@ -11,9 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    paper: {
-      // padding: theme.spacing(2, 4, 3),
-    },
+    paper: {},
   })
 );
 

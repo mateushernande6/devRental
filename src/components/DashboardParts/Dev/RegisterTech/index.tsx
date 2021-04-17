@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../../../Reusables/Input";
-import { Container, DivButtons, P, FormStyled } from "./style";
+import { Container, P, FormStyled } from "./style";
 import { useState, useEffect } from "react";
 import api from "../../../../services";
 import Button from "../../../Reusables/Button";
@@ -39,14 +39,11 @@ export const RegisterTech = ({ getTechs }: IProps) => {
     let user = JSON.parse(localStorage.getItem("token") ?? "");
     const userId = id;
     const newData = { ...data, userId };
-    console.log(newData);
-
     api
       .post("techs", newData, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        // console.log(response);
         setValid(true);
       })
       .catch((err) => {
