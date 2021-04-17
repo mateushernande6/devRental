@@ -17,6 +17,12 @@ export const Container = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
   }
+
+  div.divMotion {
+    @media (max-width: 850px) {
+      width: 100vw;
+    }
+  }
 `;
 
 export const PrincipalBlock = styled.div`
@@ -25,7 +31,7 @@ export const PrincipalBlock = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  margin-top: 10px;
+  margin-top: 65px;
 
   @media (max-width: 850px) {
     margin-top: 0;
@@ -50,9 +56,13 @@ export const DivLogo = styled.div`
 
 export const Logo = styled.img`
   width: 260px;
-  height: 75px;
+  /* height: 75px; */
   margin-top: 15px;
   margin-left: 25px;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 
   @media (max-width: 915px) {
     width: 214px;
@@ -255,6 +265,10 @@ export const ButtonDiv = styled.div`
   cursor: pointer;
   margin-top: 53px;
 
+  &:hover {
+    transform: translateX(2px);
+  }
+
   @media (max-width: 850px) {
     margin-top: 0;
   }
@@ -287,8 +301,8 @@ export const PhotoProfile = styled.div<IPhoto>`
   align-items: center;
 
   label {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     overflow: hidden;
     border-radius: 50%;
     cursor: pointer;

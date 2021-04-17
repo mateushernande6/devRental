@@ -29,6 +29,7 @@ import { ComponentEmp } from "../../components/DashboardParts/Company/ComponentE
 import { BsPeopleCircle, BsCode } from "react-icons/bs";
 import DeleteTech from "../../components/DashboardParts/Dev/DeleteTech";
 import { DataUser } from "../../Provider/DataUser";
+import { motion } from "framer-motion";
 
 interface Iuser {
   token: string;
@@ -44,7 +45,7 @@ interface IdataCard {
   buttonBotton: string;
   buttonExcluir: string;
   buttonTop: string;
-
+  acceptedId: number;
   users: string[];
 }
 
@@ -170,7 +171,14 @@ const Dashboard = () => {
           </DivMenu>
           <ContainerCard>
             {dataCardMap.map((ele, index) => (
-              <Card key={index} title={ele.title} dataCardObj={ele} />
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.7 }}
+              >
+                <Card key={index} title={ele.title} dataCardObj={ele} />
+              </motion.div>
             ))}
           </ContainerCard>
         </DivSection>

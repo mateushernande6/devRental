@@ -16,6 +16,7 @@ interface IdataState {
   buttonTop: string;
   buttonExcluir: string;
   users: string[];
+  acceptedId: number;
 }
 
 interface IcontextData {

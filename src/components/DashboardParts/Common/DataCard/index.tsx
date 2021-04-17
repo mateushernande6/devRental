@@ -11,6 +11,7 @@ import {
   Line,
   BackIconCam,
   TextButton,
+  BackIconCamChallenges,
   BackIcon,
 } from "./style";
 import { FiCheckSquare } from "react-icons/fi";
@@ -20,6 +21,7 @@ import api from "../../../../services";
 import { DataMapContext } from "../../../../Provider/DataMap";
 import { toast } from "react-toastify";
 import { DataUser } from "../../../../Provider/DataUser";
+// import { string } from "yup";
 
 interface IitensData {
   title: string;
@@ -32,6 +34,7 @@ interface IitensData {
   buttonTop: string;
   buttonExcluir: string;
   users: string[];
+  acceptedId: number;
 }
 interface ImodalData {
   dataObj: IitensData;
@@ -85,24 +88,23 @@ const DataCard = ({ dataObj }: ImodalData) => {
       .catch((err) => console.log(err));
   };
 
-  const challengesAccepted =  (dataObj: Iobj) => {
-
-    const {id} = dataObj
+  const challengesAccepted = (dataObj: Iobj) => {
+    const { id } = dataObj;
 
     const dataApi = {
-
       acceptedId: id,
 
       buttonTop: "desafioAceito",
       buttonBotton: "desafioAceito",
     };
 
+    console.log(dataApi);
     api
       .patch(`users/${idUser}/`, dataApi, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-         localStorage.setItem('acceptedId', JSON.stringify(response.data));
+        localStorage.setItem("acceptedId", JSON.stringify(response.data));
         toast.success(
           <p style={{ fontSize: "1.5rem" }}>Desafio aceito com sucesso !</p>,
           {
@@ -216,11 +218,12 @@ const DataCard = ({ dataObj }: ImodalData) => {
               ""
             )
           ) : dataObj.buttonTop === "desafio" ? (
-            <BackIconCam onClick={() => challengesAccepted(dataObj)}>
+            <BackIconCamChallenges onClick={() => challengesAccepted(dataObj)}>
               <FiCheckSquare size={28} />
               <TextButton> Aceitar Desafio</TextButton>
-            </BackIconCam>
-          ) : dataObj.buttonTop === "desafioAceito" ? (
+              {console.log(dataObj)}
+            </BackIconCamChallenges>
+          ) : typeof dataObj.acceptedId === "number" ? (
             <BackIcon onClick={() => addPortfolio(dataObj)}>
               <FiCheckSquare size={28} />
               <TextButton>Desafio Concluido</TextButton>

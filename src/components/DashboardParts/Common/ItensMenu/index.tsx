@@ -1,8 +1,10 @@
-import {ReactNode, MouseEventHandler, useState, useEffect} from "react";
+import { ReactNode, MouseEventHandler, useState, useEffect } from "react";
 import { Container } from "./style";
 import api from "../../../../services";
 import { useContext } from "react";
 import { DataMapContext } from "../../../../Provider/DataMap";
+import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
+import { motion } from "framer-motion";
 
 interface IPropsItensMenu {
   text: ReactNode;
@@ -18,9 +20,7 @@ const ItensMenu = ({ text, fun }: IPropsItensMenu) => {
   let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
   const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
-
   const desafiosMenu: any = () => {
-
     console.log("Desafios");
     api
       .get(`jobs`, {
@@ -33,11 +33,13 @@ const ItensMenu = ({ text, fun }: IPropsItensMenu) => {
   };
 
   const AceitosMenu: any = () => {
-    let step1 = localStorage.getItem('acceptedId') || ''
+    let step1 = localStorage.getItem("acceptedId") || "";
 
-    const {acceptedId} = JSON.parse(step1)
+    const { acceptedId } = JSON.parse(step1);
 
-    {console.log(acceptedId)}
+    {
+      console.log(acceptedId);
+    }
     console.log("Projetos aceitos");
 
     api
@@ -51,7 +53,6 @@ const ItensMenu = ({ text, fun }: IPropsItensMenu) => {
   };
 
   const portfolioMenu: any = () => {
-
     console.log("Portfolio");
 
     api
@@ -65,19 +66,25 @@ const ItensMenu = ({ text, fun }: IPropsItensMenu) => {
   };
 
   return (
-    <Container
-      onClick={
-        text === "Projetos aceitos"
-          ? AceitosMenu
-          : text === "Desafios"
-          ? desafiosMenu
-          : text === "Portfolio"
-          ? portfolioMenu
-          : ""
-      }
+    <motion.div
+      initial={{ translateX: "100%" }}
+      animate={{ translateX: "0%" }}
+      transition={{ duration: 0.7 }}
     >
-      {text}
-    </Container>
+      <Container
+        onClick={
+          text === "Projetos aceitos"
+            ? AceitosMenu
+            : text === "Desafios"
+            ? desafiosMenu
+            : text === "Portfolio"
+            ? portfolioMenu
+            : ""
+        }
+      >
+        {text}
+      </Container>
+    </motion.div>
   );
 };
 
