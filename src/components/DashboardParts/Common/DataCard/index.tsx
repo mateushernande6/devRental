@@ -8,7 +8,6 @@ import {
   UlStyled,
   LiStyled,
   DivTitle,
-  Line,
   BackIconCam,
   TextButton,
   BackIconCamChallenges,
@@ -21,7 +20,6 @@ import api from "../../../../services";
 import { DataMapContext } from "../../../../Provider/DataMap";
 import { toast } from "react-toastify";
 import { DataUser } from "../../../../Provider/DataUser";
-// import { string } from "yup";
 
 interface IitensData {
   title: string;
@@ -70,7 +68,6 @@ const DataCard = ({ dataObj }: ImodalData) => {
       .then((response) => {
         const filterMap = itemMap.filter((ele) => ele.id !== dataObj.id && ele);
         setItemMap(filterMap);
-        // console.log("card deletado");
 
         toast.success(
           <p style={{ fontSize: "1.5rem" }}>Card deletado com sucesso !</p>,
@@ -98,7 +95,6 @@ const DataCard = ({ dataObj }: ImodalData) => {
       buttonBotton: "desafioAceito",
     };
 
-    console.log(dataApi);
     api
       .patch(`users/${idUser}/`, dataApi, {
         headers: { Authorization: `Bearer ${user}` },
@@ -151,7 +147,6 @@ const DataCard = ({ dataObj }: ImodalData) => {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        console.log("Adcionado no portfolio");
         deleteCardsMenu();
 
         toast.success(
@@ -194,7 +189,6 @@ const DataCard = ({ dataObj }: ImodalData) => {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        console.log("deletado do aceitado e add portfolio");
         const filterMap = itemMap.filter((ele) => ele.id !== dataObj.id && ele);
         setItemMap(filterMap);
       })
@@ -221,7 +215,6 @@ const DataCard = ({ dataObj }: ImodalData) => {
             <BackIconCamChallenges onClick={() => challengesAccepted(dataObj)}>
               <FiCheckSquare size={28} />
               <TextButton> Aceitar Desafio</TextButton>
-              {console.log(dataObj)}
             </BackIconCamChallenges>
           ) : typeof dataObj.acceptedId === "number" ? (
             <BackIcon onClick={() => addPortfolio(dataObj)}>

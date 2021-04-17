@@ -43,7 +43,6 @@ import DeleteTech from "../DeleteTech";
 import MenuMobile from "../../../MenuMobile";
 import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
 import { motion } from "framer-motion";
-
 interface ITech {
   name: string;
   userId: string;
@@ -57,7 +56,7 @@ export const ComponentDev = () => {
   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const [flag, setFlag] = useState(false);
-  const [file, setFile] = useState<any>("./assets/profile.svg");
+  const [file, setFile] = useState<any>();
 
   const history = useHistory();
 
