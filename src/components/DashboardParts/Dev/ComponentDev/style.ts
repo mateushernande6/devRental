@@ -38,22 +38,8 @@ export const Container = styled.div`
   }
 `;
 
-export const PrincipalBlock = styled.div`
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  margin-top: 20px;
-
-  @media (max-width: 850px) {
-    height: 17vh;
-  }
-`;
-
 export const Logo = styled.img`
   width: 260px;
-  /* height: 75px; */
   margin-top: 15px;
   margin-left: 25px;
 
@@ -325,8 +311,6 @@ export const Tecs = styled.div`
   }
 `;
 
-export const DivIconUser = styled.div``;
-
 export const ContainerLogOut = styled.div`
   display: flex;
   align-items: center;
@@ -335,11 +319,6 @@ export const ContainerLogOut = styled.div`
   width: 100%;
   padding: 5px;
   margin: 59px 0;
-  /* margin-bottom: 145px; */
-
-  /* @media (max-width: 1125px) {
-    width: 98%;
-  } */
 
   @media (max-width: 850px) {
     display: none;
