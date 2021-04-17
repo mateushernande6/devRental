@@ -46,8 +46,7 @@ export const DivCardIcon = styled.div`
 export const ContainerDiv = styled.div`
   width: 900px;
   height: 460px;
-  /* height: 550px;
-  width: 1098px; */
+
   border-radius: 15px;
   display: flex;
   justify-content: space-between;
@@ -60,15 +59,6 @@ export const ContainerDiv = styled.div`
     width: 97%;
     height: 91%;
   }
-  /* @media (max-width: 425px) {
-    width: 465px;
-    flex-direction: column;
-    height: 600px;
-  }
-
-  @media (max-width: 375px) {
-    margin-top: 70px;
-  } */
 `;
 
 export const Img = styled.img`
@@ -152,7 +142,6 @@ export const Card = styled.div`
     transform: scale(1.03);
     cursor: pointer;
     box-shadow: 0 3px 6px rgb(0 0 0 / 12%), 0 3px 6px rgb(0 0 0 / 24%);
-    /* border: solid 1px white; */
   }
 
   h2 {

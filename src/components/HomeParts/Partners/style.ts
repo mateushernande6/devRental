@@ -10,8 +10,6 @@ export const UpperContainer = styled.div`
 
   text-align: center;
 
-  //margin-bottom: 5rem;
-
   h2 {
     font-size: 3rem;
   }

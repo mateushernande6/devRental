@@ -1,10 +1,13 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Menu, { MenuProps } from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import {
+  withStyles,
+  Button,
+  Menu,
+  MenuProps,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 import { DivModalMobile } from "./style";
 import {
   FiAlignRight,
@@ -73,7 +76,6 @@ export default function MenuMobile() {
   const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
   const desafiosMenu: any = () => {
-    console.log("Desafios");
     api
       .get(`jobs`, {
         headers: { Authorization: `Bearer ${user}` },
@@ -85,8 +87,6 @@ export default function MenuMobile() {
   };
 
   const aceitosMenu: any = () => {
-    console.log("Projetos aceitos");
-
     api
       .get(`accepted/?userId=${idUser}`, {
         headers: { Authorization: `Bearer ${user}` },
@@ -98,8 +98,6 @@ export default function MenuMobile() {
   };
 
   const portfolioMenu: any = () => {
-    console.log("Portfolio");
-
     api
       .get(`portfolio/?userId=${idUser}`, {
         headers: { Authorization: `Bearer ${user}` },

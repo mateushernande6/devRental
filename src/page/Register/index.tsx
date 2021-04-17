@@ -6,8 +6,8 @@ import {
   Title,
   FiCrosshairStyled,
 } from "./style";
-import Input from "../../components/Atoms/Input";
-import Button from "../../components/Atoms/Button";
+import Input from "../../components/Reusables/Input";
+import Button from "../../components/Reusables/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -16,6 +16,7 @@ import { useHistory } from "react-router-dom";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 const Register = () => {
   const history = useHistory();
@@ -118,61 +119,68 @@ const Register = () => {
 
   return (
     <Container>
-      <InnerContainer>
-        <InfoContainer>
-          <Title>Cadastrar</Title>
-          <form onSubmit={handleSubmit(onSubmit)} data-testid="formRegister">
-            <Input
-              data-testid="InputName"
-              name="name"
-              register={register}
-              height={2.5}
-              placeHolder={"Nome"}
-              width={24}
-            />
-            <p>{errors.name?.message}</p>
-            <Input
-              data-testid="InputEmail"
-              name="email"
-              register={register}
-              height={2.5}
-              placeHolder={"Email"}
-              width={24}
-            />
-            <p>{errors.email?.message}</p>
+      <motion.div
+        initial={{ translateX: "-100%" }}
+        animate={{ translateX: "0%" }}
+        transition={{ duration: 0.7 }}
+      >
+        <InnerContainer>
+          <InfoContainer>
+            <Title>Cadastrar</Title>
+            <form onSubmit={handleSubmit(onSubmit)} data-testid="formRegister">
+              <Input
+                data-testid="InputName"
+                name="name"
+                register={register}
+                height={2.5}
+                placeHolder={"Nome"}
+                width={24}
+              />
+              <p>{errors.name?.message}</p>
+              <Input
+                data-testid="InputEmail"
+                name="email"
+                register={register}
+                height={2.5}
+                placeHolder={"Email"}
+                width={24}
+              />
+              <p>{errors.email?.message}</p>
 
-            <Input
-              data-testid="InputPassword"
-              name="password"
-              register={register}
-              height={2.5}
-              placeHolder={"Senha"}
-              width={24}
-            />
-            <p>{errors.password?.message}</p>
+              <Input
+                data-testid="InputPassword"
+                name="password"
+                register={register}
+                height={2.5}
+                type="password"
+                placeHolder={"Senha"}
+                width={24}
+              />
+              <p>{errors.password?.message}</p>
+
+              <Button
+                height={4.7}
+                width={26}
+                color={"#fff"}
+                text={!viewIcon ? "Register" : <FiCrosshairStyled size={26} />}
+                background={"#fc923f"}
+              />
+            </form>
 
             <Button
-              height={4.7}
+              height={4}
               width={26}
               color={"#fff"}
-              text={!viewIcon ? "Register" : <FiCrosshairStyled size={26} />}
-              background={"#fc923f"}
+              text={"Login"}
+              click={() => history.push("/login")}
+              background={"#14142b"}
             />
-          </form>
-
-          <Button
-            height={4}
-            width={26}
-            color={"#fff"}
-            text={"Login"}
-            click={() => history.push("/login")}
-            background={"#14142b"}
-          />
-        </InfoContainer>
-        <SvgContainer>
-          <img src="./assets/registerImage.svg" alt={""} />
-        </SvgContainer>
-      </InnerContainer>
+          </InfoContainer>
+          <SvgContainer>
+            <img src="./assets/registerImage.svg" alt={""} />
+          </SvgContainer>
+        </InnerContainer>
+      </motion.div>
     </Container>
   );
 };

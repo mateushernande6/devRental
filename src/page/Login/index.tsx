@@ -5,8 +5,8 @@ import {
   DivContent,
   FiCrosshairStyled,
 } from "./style";
-import Input from "../../components/Atoms/Input";
-import Button from "../../components/Atoms/Button";
+import Input from "../../components/Reusables/Input";
+import Button from "../../components/Reusables/Button";
 
 import api from "../../services";
 import { useForm } from "react-hook-form";
@@ -17,6 +17,7 @@ import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
 import { useState, useEffect, useContext } from "react";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import { motion } from "framer-motion";
 
 interface IFormInputs {
   email: string;
@@ -74,7 +75,7 @@ const Login = () => {
       })
       .catch((err) => {
         setError(true);
-        console.log("aassasa", err.response);
+        console.log(err.response);
       });
   };
 
@@ -113,50 +114,56 @@ const Login = () => {
   console.log(error);
   return (
     <Container>
-      <Main>
-        <DivImage>
-          <img src="./assets/loginImage.svg" alt="img" />
-        </DivImage>
-        <DivContent>
-          <h2>Faça Login</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              name="email"
-              width={30}
-              height={3.2}
-              placeHolder="Email"
-              register={register}
-              data-testId="emailInput"
-            />
-            <p data-testId="error1">{errors.email?.message}</p>
-            <Input
-              name="password"
-              width={30}
-              height={3.2}
-              placeHolder="Password"
-              register={register}
-              type="password"
-              data-testId="passwordlInput"
-            />
-            <p data-testId="error2">{errors.password?.message}</p>
-            <Button
-              data-testId="submitButton"
-              width={32.5}
-              height={5.5}
-              text={!viewIcon ? "Entrar" : <FiCrosshairStyled size={26} />}
-              color="white"
-              background="#FC923F"
-            />
-          </form>
-          <a
-            data-testId="btnRegister"
-            className="linkReg"
-            onClick={() => history.push("preregister")}
-          >
-            Register
-          </a>
-        </DivContent>
-      </Main>
+      <motion.div
+        initial={{ translateX: "-100%" }}
+        animate={{ translateX: "0%" }}
+        transition={{ duration: 0.7 }}
+      >
+        <Main>
+          <DivImage>
+            <img src="./assets/loginImage.svg" alt="img" />
+          </DivImage>
+          <DivContent>
+            <h2>Faça Login</h2>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                name="email"
+                width={30}
+                height={3.2}
+                placeHolder="Email"
+                register={register}
+                data-testId="emailInput"
+              />
+              <p data-testId="error1">{errors.email?.message}</p>
+              <Input
+                name="password"
+                width={30}
+                height={3.2}
+                placeHolder="Password"
+                register={register}
+                type="password"
+                data-testId="passwordlInput"
+              />
+              <p data-testId="error2">{errors.password?.message}</p>
+              <Button
+                data-testId="submitButton"
+                width={32.5}
+                height={5.5}
+                text={!viewIcon ? "Entrar" : <FiCrosshairStyled size={26} />}
+                color="white"
+                background="#FC923F"
+              />
+            </form>
+            <a
+              data-testId="btnRegister"
+              className="linkReg"
+              onClick={() => history.push("preregister")}
+            >
+              Register
+            </a>
+          </DivContent>
+        </Main>
+      </motion.div>
     </Container>
   );
 };
