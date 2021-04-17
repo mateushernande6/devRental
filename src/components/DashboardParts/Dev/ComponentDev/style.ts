@@ -1,9 +1,25 @@
 import styled from "styled-components";
 import { FiChevronLeft } from "react-icons/fi";
+import { FiPlus } from "react-icons/fi";
 
 interface IPhoto {
   tst?: any;
 }
+
+export const FiPlusStyled = styled(FiPlus)`
+  &:hover {
+    animation: rotationIcon 1s;
+
+    @keyframes rotationIcon {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(100deg);
+      }
+    }
+  }
+`;
 
 export const Container = styled.div`
   width: 100%;
@@ -37,9 +53,13 @@ export const PrincipalBlock = styled.div`
 
 export const Logo = styled.img`
   width: 260px;
-  height: 75px;
+  /* height: 75px; */
   margin-top: 15px;
   margin-left: 25px;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 
   @media (max-width: 915px) {
     width: 214px;
@@ -280,6 +300,10 @@ export const Tecs = styled.div`
   font-weight: bolder;
   margin-bottom: 10px;
   padding: 10px;
+
+  &:hover {
+    transform: scale(1.01);
+  }
 
   @media (max-width: 952px) {
     width: 190px;
