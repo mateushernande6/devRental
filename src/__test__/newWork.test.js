@@ -11,7 +11,6 @@ jest.mock("react-hook-form", () => {
       handleSubmit: mockFunctionSubmit,
       formState: {
         errors: {
-          // key: value
           title: "job title Error",
           objective: "job objective Error",
           description: "job description Error",
