@@ -3,7 +3,6 @@ import { Container } from "./style";
 import api from "../../../../services";
 import { useContext } from "react";
 import { DataMapContext } from "../../../../Provider/DataMap";
-import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
 import { motion } from "framer-motion";
 
 interface IPropsItensMenu {
@@ -15,13 +14,12 @@ interface Iuser {
   token: string;
 }
 
-const ItensMenu = ({ text, fun }: IPropsItensMenu) => {
+const ItensMenu = ({ text }: IPropsItensMenu) => {
   const { itemMap, setItemMap } = useContext(DataMapContext);
   let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
   const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
   const desafiosMenu: any = () => {
-    console.log("Desafios");
     api
       .get(`jobs`, {
         headers: { Authorization: `Bearer ${user}` },
@@ -37,11 +35,6 @@ const ItensMenu = ({ text, fun }: IPropsItensMenu) => {
 
     const { acceptedId } = JSON.parse(step1);
 
-    {
-      console.log(acceptedId);
-    }
-    console.log("Projetos aceitos");
-
     api
       .get(`/jobs/${acceptedId}/`, {
         headers: { Authorization: `Bearer ${user}` },
@@ -53,8 +46,6 @@ const ItensMenu = ({ text, fun }: IPropsItensMenu) => {
   };
 
   const portfolioMenu: any = () => {
-    console.log("Portfolio");
-
     api
       .get(`portfolio/?userId=${idUser}`, {
         headers: { Authorization: `Bearer ${user}` },
