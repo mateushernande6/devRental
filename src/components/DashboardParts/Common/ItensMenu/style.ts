@@ -11,6 +11,7 @@ export const Container = styled.div`
   border-bottom: 1px solid #fc923f;
 
   &:hover {
-    border-bottom: 1px solid #ff6a17;
+    transform: scale(1.01);
+    border-bottom: 2px solid #ff6a17;
   }
 `;

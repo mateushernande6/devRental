@@ -23,9 +23,10 @@ import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 import ModalComponents from "../../../Modal";
 import NewWork from "../newWork";
 import Button from "../../../Reusables/Button";
-import { PrincipalBlock } from "./style";
+import { PrincipalBlock } from "../ComponentEmp/style";
 import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
 import MenuMobileEm from "../../../MenuMobileEm";
+import { motion } from "framer-motion";
 
 export const ComponentEmp = () => {
   const { setIsAuth } = useContext(AuthDashboardContext);
@@ -34,7 +35,7 @@ export const ComponentEmp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [open, setOpen] = useState<boolean>(false);
-  const [file, setFile] = useState<any>();
+  const [file, setFile] = useState<any>("./assets/profile.svg");
 
   const history = useHistory();
 
@@ -77,39 +78,57 @@ export const ComponentEmp = () => {
 
   return (
     <Container>
-      <DivLogo>
-        <Logo src={logo} />
-        <MenuMobileEm />
-      </DivLogo>
-      <PrincipalBlock>
-        <ContainerUsuario>
-          <PhotoProfile tst={file}>
-            <input type="file" onChange={handleChange} id="fileButton" hidden />
-            <label htmlFor="fileButton">
-              <PublishRoundedIcon className="iconUpload" />
-            </label>
-          </PhotoProfile>
-          <DivUsuarioInfo>
-            <h2>{name}</h2>
-            <h3>{email}</h3>
-          </DivUsuarioInfo>
-        </ContainerUsuario>
-        <ButtonDiv onClick={handleOpen}>
-          <Icon>
-            <FiPlus />
-          </Icon>
-          <p>Novo desafio</p>
-        </ButtonDiv>
-      </PrincipalBlock>
-      <Block>
-        <ModalComponents open={open} handleClose={handleClose}>
-          <NewWork />
-        </ModalComponents>
-      </Block>
-      <ContainerLogOut onClick={handleLogOut}>
-        <FiChevronLeft className="Sair" />
-        <h2>Sair</h2>
-      </ContainerLogOut>
+      <motion.div
+        initial={{ translateX: "-100%" }}
+        animate={{ translateX: "0%" }}
+        transition={{ duration: 0.7 }}
+      >
+        <motion.div
+          initial={{ translateY: "100%" }}
+          animate={{ translateY: "0%" }}
+          transition={{ duration: 0.7 }}
+          className="divMotion"
+        >
+          <DivLogo>
+            <Logo src={logo} />
+            <MenuMobileEm />
+          </DivLogo>
+        </motion.div>
+        <PrincipalBlock>
+          <ContainerUsuario>
+            <PhotoProfile tst={file}>
+              <input
+                type="file"
+                onChange={handleChange}
+                id="fileButton"
+                hidden
+              />
+              <label htmlFor="fileButton">
+                <PublishRoundedIcon className="iconUpload" />
+              </label>
+            </PhotoProfile>
+            <DivUsuarioInfo>
+              <h2>{name}</h2>
+              <h3>{email}</h3>
+            </DivUsuarioInfo>
+          </ContainerUsuario>
+          <ButtonDiv onClick={handleOpen}>
+            <Icon>
+              <FiPlus />
+            </Icon>
+            <p>Novo desafio</p>
+          </ButtonDiv>
+        </PrincipalBlock>
+        <Block>
+          <ModalComponents open={open} handleClose={handleClose}>
+            <NewWork />
+          </ModalComponents>
+        </Block>
+        <ContainerLogOut onClick={handleLogOut}>
+          <FiChevronLeft className="Sair" />
+          <h2>Sair</h2>
+        </ContainerLogOut>
+      </motion.div>
     </Container>
   );
 };

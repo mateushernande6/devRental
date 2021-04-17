@@ -23,7 +23,7 @@ interface IitensData {
   buttonBotton: string;
   buttonTop: string;
   buttonExcluir: string;
-
+  acceptedId: number;
   users: string[];
 }
 interface Props {
@@ -36,7 +36,6 @@ const Card = ({ title, dataCardObj }: Props) => {
   // const [category, setCategory] = useState<string>("");
 
   const [dataAccepted, setDataAccepted] = useState<IitensData[]>([]);
-  const [count, setCount] = useState<number>(0);
 
   const { dataUser } = useContext(DataUser);
 
@@ -56,13 +55,7 @@ const Card = ({ title, dataCardObj }: Props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-
-  useEffect(() => {
-    setCount(0);
-
-    dataAccepted.forEach((ele) => ele.title === title && setCount(count + 1));
-  }, [dataAccepted]);
+  }, [title]);
 
   const handleOpen = () => {
     setOpen(true);

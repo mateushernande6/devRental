@@ -13,11 +13,11 @@ import {
   PhotoProfile,
   DivLogo,
   PrincipalBlock,
+  FiPlusStyled,
   DivIconUser,
   DivMobile,
   FiChevronLeftStyle,
 } from "./style";
-import { FiPlus } from "react-icons/fi";
 import logo from "./Assets/devRental.png";
 import {
   BsPeopleCircle,
@@ -42,6 +42,7 @@ import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 import DeleteTech from "../DeleteTech";
 import MenuMobile from "../../../MenuMobile";
 import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
+import { motion } from "framer-motion";
 
 interface ITech {
   name: string;
@@ -56,9 +57,7 @@ export const ComponentDev = () => {
   const [tech, setTech] = useState<ITech[]>([]);
   const [open, setOpen] = useState<boolean>(false);
   const [flag, setFlag] = useState(false);
-  const [file, setFile] = useState<any>(
-    "https://www.construtoracesconetto.com.br/wp-content/uploads/2020/03/blank-profile-picture-973460_640.png"
-  );
+  const [file, setFile] = useState<any>("./assets/profile.svg");
 
   const history = useHistory();
 
@@ -135,63 +134,81 @@ export const ComponentDev = () => {
   console.log("id aqui", id);
   console.log(file);
   return (
-    <Container>
-      <DivLogo>
-        <Logo src={logo} />
-        <MenuMobile />
-      </DivLogo>
-      <DivMobile>
-        <ContainerUsuario>
-          <PhotoProfile tst={file}>
-            <input type="file" onChange={handleChange} id="fileButton" hidden />
-            <label htmlFor="fileButton">
-              <PublishRoundedIcon className="iconUpload" />
-            </label>
-          </PhotoProfile>
+    <motion.div
+      initial={{ translateX: "-100%" }}
+      animate={{ translateX: "0%" }}
+      transition={{ duration: 0.7 }}
+    >
+      <Container>
+        <motion.div
+          initial={{ translateY: "100%" }}
+          animate={{ translateY: "0%" }}
+          transition={{ duration: 0.7 }}
+        >
+          <DivLogo>
+            <Logo src={logo} />
+            <MenuMobile />
+          </DivLogo>
+        </motion.div>
+        <DivMobile>
+          <ContainerUsuario>
+            <PhotoProfile tst={file}>
+              <input
+                type="file"
+                onChange={handleChange}
+                id="fileButton"
+                hidden
+              />
+              <label htmlFor="fileButton">
+                <PublishRoundedIcon className="iconUpload" />
+              </label>
+            </PhotoProfile>
 
-          <DivUsuarioInfo>
-            <h2>{name}</h2>
-            <h3>{email}</h3>
-          </DivUsuarioInfo>
-        </ContainerUsuario>
-        <BlockTecs>
-          <InfoTecs>
-            <h2>Techs</h2>
-            <Line />
-            <DivPlus onClick={handleOpen} data-testid="divPlus">
-              <FiPlus />
-            </DivPlus>
-            <ModalComponents open={open} handleClose={handleClose}>
-              <RegisterTech getTechs={getTechs} />
-            </ModalComponents>
-          </InfoTecs>
-          <ContainerTecs>
-            {tech
-              .filter((element) => {
-                return element.userId == id;
-              })
-              .map((element) => {
-                return (
-                  <Tecs data-testid="tech">
-                    <div className="divButton">
-                      <BsCode />
-                    </div>
-                    {element.name}
-                    <DeleteTech
-                      id={element}
-                      getTechs={getTechs}
-                      data-testid="deleteTech"
-                    />
-                  </Tecs>
-                );
-              })}
-          </ContainerTecs>
-        </BlockTecs>
-      </DivMobile>
-      <ContainerLogOut onClick={handleLogOut}>
-        <FiChevronLeftStyle className="Sair" />
-        <h2>Sair</h2>
-      </ContainerLogOut>
-    </Container>
+            <DivUsuarioInfo>
+              <h2>{name}</h2>
+              <h3>{email}</h3>
+            </DivUsuarioInfo>
+          </ContainerUsuario>
+          <BlockTecs>
+            <InfoTecs>
+              <h2>Techs</h2>
+              <Line />
+              <DivPlus onClick={handleOpen} data-testid="divPlus">
+                <FiPlusStyled />
+              </DivPlus>
+              <ModalComponents open={open} handleClose={handleClose}>
+                <RegisterTech getTechs={getTechs} />
+              </ModalComponents>
+            </InfoTecs>
+            <ContainerTecs>
+              {tech
+                .filter((element) => {
+                  return element.userId == id;
+                })
+                .map((element) => {
+                  return (
+                    <Tecs data-testid="tech">
+                      <div className="divButton">
+                        <BsCode />
+                      </div>
+                      {element.name}
+                      <DeleteTech
+                        id={element}
+                        getTechs={getTechs}
+                        data-testid="deleteTech"
+                      />
+                    </Tecs>
+                  );
+                })}
+            </ContainerTecs>
+          </BlockTecs>
+        </DivMobile>
+
+        <ContainerLogOut onClick={handleLogOut}>
+          <FiChevronLeftStyle className="Sair" />
+          <h2>Sair</h2>
+        </ContainerLogOut>
+      </Container>
+    </motion.div>
   );
 };

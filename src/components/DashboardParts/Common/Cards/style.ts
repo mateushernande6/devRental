@@ -35,6 +35,10 @@ export const Container = styled.div`
       margin: 10px 0 0 0;
     }
   }
+
+  &:hover {
+    transform: scale(1.01);
+  }
 `;
 
 export const ImgCard = styled.img`
@@ -68,4 +72,8 @@ export const DivBack = styled.div`
   justify-content: center;
   color: white;
   background-color: rgba(66, 68, 114, 0.43);
+
+  &:hover {
+    transform: scale(1.01);
+  }
 `;

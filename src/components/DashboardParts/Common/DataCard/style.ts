@@ -109,6 +109,10 @@ export const BackIconCam = styled.div`
   transition: filter 0.3s;
 `;
 
+export const BackIconCamChallenges = styled(BackIconCam)`
+  background-color: #4cb8df;
+`;
+
 export const BackIcon = styled.div`
   background-color: #fc923f;
   width: 174px;

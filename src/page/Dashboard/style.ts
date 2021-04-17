@@ -111,6 +111,7 @@ export const ContainerCard = styled.div`
 
     /* background-image: linear-gradient(#212040, #21203e); */
   }
+
   ::-webkit-scrollbar-thumb {
     background: #3a3864;
     border-radius: 5px;
