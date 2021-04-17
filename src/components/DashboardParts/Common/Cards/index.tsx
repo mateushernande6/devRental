@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import { Container, ImgCard, DivUser, DivBack } from "./style";
+import { Container, DivUser, DivBack } from "./style";
 import ModalComponents from "../../../Modal";
 import DataCard from "../DataCard";
 import Button from "../../../Reusables/Button";
@@ -33,7 +33,6 @@ interface Props {
 
 const Card = ({ title, dataCardObj }: Props) => {
   const [open, setOpen] = useState(false);
-  // const [category, setCategory] = useState<string>("");
 
   const [dataAccepted, setDataAccepted] = useState<IitensData[]>([]);
   const [count, setCount] = useState<number>(0);
@@ -41,8 +40,6 @@ const Card = ({ title, dataCardObj }: Props) => {
   const { dataUser } = useContext(DataUser);
 
   useEffect(() => {
-    // setCategory(dataUser);
-
     let user = JSON.parse(localStorage.getItem("token") ?? "");
 
     api
@@ -51,7 +48,6 @@ const Card = ({ title, dataCardObj }: Props) => {
       })
       .then((response) => {
         setDataAccepted(response.data);
-        // console.log("AGORA", response);
       })
       .catch((err) => {
         console.log(err);
