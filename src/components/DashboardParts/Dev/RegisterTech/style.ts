@@ -21,16 +21,6 @@ export const Container = styled.div`
   }
 `;
 
-export const DivButtons = styled.div`
-  height: 20px;
-  width: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  margin-top: 7px;
-`;
-
 export const P = styled.p`
   font-size: 1rem;
   font-family: "Montserrat Alternates", sans-serif;
