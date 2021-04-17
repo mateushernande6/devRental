@@ -16,8 +16,8 @@ interface IdataState {
   buttonTop: string;
   buttonExcluir: string;
   users: string[];
-
 }
+
 interface IcontextData {
   itemMap: IdataState[];
   setItemMap: React.Dispatch<React.SetStateAction<IdataState[]>>;

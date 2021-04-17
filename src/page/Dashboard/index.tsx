@@ -1,4 +1,4 @@
-import ItensMenu from "../../components/ItensMenu";
+import ItensMenu from "../../components/DashboardParts/Common/ItensMenu";
 import {
   Container,
   DivSection,
@@ -16,18 +16,18 @@ import {
   ContainerTecs,
   BsPeopleCircleStyled,
 } from "./style";
-import Card from "../../components/Cards";
+import Card from "../../components/DashboardParts/Common/Cards";
 import api from "../../services";
 import { useEffect, useState, useContext } from "react";
-import Button from "../../components/Atoms/Button";
+import Button from "../../components/Reusables/Button";
 import ModalComponents from "../../components/Modal";
-import NewWork from "../../components/newWork";
-import { ComponentDev } from "../../components/ComponentDev";
+import NewWork from "../../components/DashboardParts/Company/newWork";
+import { ComponentDev } from "../../components/DashboardParts/Dev/ComponentDev";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { DataMapContext } from "../../Provider/DataMap";
-import { ComponentEmp } from "../../components/ComponentEmp";
+import { ComponentEmp } from "../../components/DashboardParts/Company/ComponentEmp";
 import { BsPeopleCircle, BsCode } from "react-icons/bs";
-import DeleteTech from "../../components/DeleteTech";
+import DeleteTech from "../../components/DashboardParts/Dev/DeleteTech";
 import { DataUser } from "../../Provider/DataUser";
 
 interface Iuser {
@@ -148,38 +148,6 @@ const Dashboard = () => {
   return (
     <Container>
       <DivAside>
-        {/* <DivMenuMobile>
-          <Logo src="./assets/devRental.png" />
-          <MenuMobile />
-        </DivMenuMobile>
-        <DivDataUser>
-          <ContainerUsuario>
-            <DivIconUser>
-              <BsPeopleCircleStyled size={48} />
-            </DivIconUser>
-            <DivUsuarioInfo>
-              <h2>{name}</h2>
-              <h3>{email}</h3>
-            </DivUsuarioInfo>
-          </ContainerUsuario>
-          <ContainerTecs>
-            {tech
-              .filter((element) => {
-                return element.userId == id;
-              })
-              .map((element) => {
-                return (
-                  <Tecs>
-                    <div className="icon">
-                      <BsCode />
-                    </div>
-                    {element.name}
-                    <DeleteTech id={element.id} getTechs={getTechs} />
-                  </Tecs>
-                );
-              })}
-          </ContainerTecs>
-        </DivDataUser> */}
         {category === "dev" ? <ComponentDev /> : <ComponentEmp />}
       </DivAside>
       <DivMain>

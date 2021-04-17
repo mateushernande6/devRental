@@ -1,16 +1,16 @@
 import { Container, TextArea, ErrorMessage, TechsList } from "./style";
 
-import Input from "../Atoms/Input";
-import Button from "../Atoms/Button";
+import Input from "../../../Reusables/Input";
+import Button from "../../../Reusables/Button";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import api from "../../services";
-import { AuthDashboardContext } from "../../Provider/AuthDashboard";
+import api from "../../../../services";
+import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
 import { MouseEventHandler, useContext, useState, useEffect } from "react";
 import { date } from "yup";
-import { DataMapContext } from "../../Provider/DataMap";
+import { DataMapContext } from "../../../../Provider/DataMap";
 import { toast } from "react-toastify";
 
 const NewWork = () => {

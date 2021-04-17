@@ -1,9 +1,8 @@
 import {ReactNode, MouseEventHandler, useState, useEffect} from "react";
 import { Container } from "./style";
-import api from "../../services";
+import api from "../../../../services";
 import { useContext } from "react";
-import { DataMapContext } from "../../Provider/DataMap";
-import {AuthDashboardContext} from "../../Provider/AuthDashboard";
+import { DataMapContext } from "../../../../Provider/DataMap";
 
 interface IPropsItensMenu {
   text: ReactNode;

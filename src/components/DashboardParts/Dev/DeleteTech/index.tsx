@@ -1,5 +1,5 @@
 import { BsXCircle } from "react-icons/bs";
-import api from "../../services";
+import api from "../../../../services";
 import { Container } from "./style";
 import { useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";

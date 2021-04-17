@@ -15,17 +15,17 @@ import { BsPeopleCircle, BsFillCaretLeftFill } from "react-icons/bs";
 import { FiPlus, FiChevronLeft } from "react-icons/fi";
 
 import { useContext, useEffect, useState, ChangeEvent } from "react";
-import api from "../../services";
+import api from "../../../../services";
 import { useHistory } from "react-router";
-import { RegisterTech } from "../RegisterTech";
+import { RegisterTech } from "../../Dev/RegisterTech";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 
-import ModalComponents from "../Modal";
+import ModalComponents from "../../../Modal";
 import NewWork from "../newWork";
-import Button from "../Atoms/Button";
-import { PrincipalBlock } from "../ComponentEmp/style";
-import { AuthDashboardContext } from "../../Provider/AuthDashboard";
-import MenuMobileEm from "../MenuMobileEm";
+import Button from "../../../Reusables/Button";
+import { PrincipalBlock } from "./style";
+import { AuthDashboardContext } from "../../../../Provider/AuthDashboard";
+import MenuMobileEm from "../../../MenuMobileEm";
 
 export const ComponentEmp = () => {
   const { setIsAuth } = useContext(AuthDashboardContext);
