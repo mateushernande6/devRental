@@ -10,9 +10,7 @@ import {
   DivCardIcon,
 } from "./style";
 import image1 from "./assets/asde1.svg";
-import { BsPeopleCircle } from "react-icons/bs";
 import { FiUser, FiHome } from "react-icons/fi";
-import { AiFillBank } from "react-icons/ai";
 import { useContext } from "react";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { useHistory } from "react-router-dom";
@@ -56,7 +54,6 @@ const PreRegister = () => {
                 <DivCardIcon>
                   <FiUser size={50} />
                 </DivCardIcon>
-                {/* <BsPeopleCircle /> */}
                 <h2>Sou Dev</h2>
               </Card>
               <Card onClick={() => functionCompany("company")}>
@@ -64,7 +61,6 @@ const PreRegister = () => {
                   <FiHome size={50} />
                 </DivCardIcon>
 
-                {/* <AiFillBank /> */}
                 <h2>Sou Empresa</h2>
               </Card>
             </DivCards>
