@@ -32,7 +32,9 @@ export const ComponentEmp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [open, setOpen] = useState<boolean>(false);
-  const [file, setFile] = useState<any>("./assets/profile.svg");
+  const [file, setFile] = useState<any>(
+    "https://trello-attachments.s3.amazonaws.com/606b10067cfa4c6475fdeb36/607af5dc5e8017326744014f/c61ec116defd59163d2c579734234870/user-end-profile-dashboard.png"
+  );
 
   const history = useHistory();
 

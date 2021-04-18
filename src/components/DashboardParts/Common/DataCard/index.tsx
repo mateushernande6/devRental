@@ -48,7 +48,6 @@ interface Iobj {
 }
 
 const DataCard = ({ dataObj }: ImodalData) => {
-  const { valueState } = useContext(AuthDashboardContext);
   const { dataUser } = useContext(DataUser);
 
   const [category, setCategory] = useState<string>("");
@@ -134,8 +133,6 @@ const DataCard = ({ dataObj }: ImodalData) => {
   };
 
   const addPortfolio = (dataObj: Iobj) => {
-    const {} = dataObj;
-
     const dataApi = {
       ...dataObj,
       userId: idUser,

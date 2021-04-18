@@ -56,7 +56,6 @@ export const DivLogo = styled.div`
 
 export const Logo = styled.img`
   width: 260px;
-  /* height: 75px; */
   margin-top: 15px;
   margin-left: 25px;
 
@@ -85,7 +84,6 @@ export const ContainerUsuario = styled.div`
   align-items: center;
   justify-content: space-around;
   width: 170px;
-  /* margin-top: 30px; */
 
   div {
     font-size: 60px;
@@ -240,13 +238,11 @@ export const ContainerLogOut = styled.div`
     font-weight: 300;
     text-align: center;
     color: white;
-    /* margin-left: 12px; */
   }
 
   .Sair {
     font-size: 30px;
     color: white;
-    /* margin-left: 20px; */
   }
 `;
 

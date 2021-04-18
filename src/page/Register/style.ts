@@ -91,7 +91,6 @@ export const InfoContainer = styled.div`
   Button {
     margin: 1rem 0 1rem 0;
   }
-  //width: 50%;
 `;
 
 export const SvgContainer = styled.div`

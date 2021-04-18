@@ -17,9 +17,12 @@ import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
+import { DataMapContext } from "../../Provider/DataMap";
 
 const Register = () => {
   const history = useHistory();
+
+  const { setCurrentJob } = useContext(DataMapContext);
 
   const { valueState } = useContext(AuthDashboardContext);
   const [error, setError] = useState(false);
@@ -71,6 +74,7 @@ const Register = () => {
       .post("users", dataEnd)
       .then((response) => {
         setValid(true);
+        setCurrentJob({});
         history.push("/login");
       })
       .catch((err) => {

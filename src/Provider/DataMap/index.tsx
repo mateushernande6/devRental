@@ -26,18 +26,31 @@ interface IcontextData {
   setCurrentWindow: React.Dispatch<React.SetStateAction<string>>;
   currentJob: any;
   setCurrentJob: any;
-
+  dataAcceptedContext: any;
+  setDataAcceptedContext: any;
 }
 
 export const DataMapContext = createContext<IcontextData>({} as IcontextData);
 
 export const DataMapProvider = ({ children }: IdataChildren) => {
   const [itemMap, setItemMap] = useState<IdataState[]>([]);
-  const [currentWindow, setCurrentWindow] = useState<string>('Desafios')
-  const [currentJob, setCurrentJob] = useState<any>({})
+  const [currentWindow, setCurrentWindow] = useState<string>("Desafios");
+  const [currentJob, setCurrentJob] = useState<any>({});
+  const [dataAcceptedContext, setDataAcceptedContext] = useState<any>();
 
   return (
-    <DataMapContext.Provider value={{ itemMap, setItemMap, currentWindow, setCurrentWindow, currentJob, setCurrentJob }}>
+    <DataMapContext.Provider
+      value={{
+        itemMap,
+        setItemMap,
+        currentWindow,
+        setCurrentWindow,
+        currentJob,
+        setCurrentJob,
+        dataAcceptedContext,
+        setDataAcceptedContext,
+      }}
+    >
       {children}
     </DataMapContext.Provider>
   );
