@@ -15,9 +15,12 @@ interface Iuser {
 }
 
 const ItensMenu = ({ text }: IPropsItensMenu) => {
-  const { setItemMap, setCurrentWindow, setCurrentJob } = useContext(
-    DataMapContext
-  );
+  const {
+    setItemMap,
+    setCurrentWindow,
+    setCurrentJob,
+    setPortfolioJob,
+  } = useContext(DataMapContext);
   let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
   const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
@@ -54,15 +57,6 @@ const ItensMenu = ({ text }: IPropsItensMenu) => {
 
   const portfolioMenu: any = () => {
     setCurrentWindow("Portfolio");
-
-    api
-      .get(`portfolio/?userId=${idUser}`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setItemMap(response.data);
-      })
-      .catch((err) => console.log(err));
   };
 
   return (

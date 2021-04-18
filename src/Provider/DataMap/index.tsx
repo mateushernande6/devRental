@@ -17,6 +17,7 @@ interface IdataState {
   buttonExcluir: string;
   users: string[];
   acceptedId: number;
+  workDeadline: any;
 }
 
 interface IcontextData {
@@ -28,6 +29,8 @@ interface IcontextData {
   setCurrentJob: any;
   dataAcceptedContext: any;
   setDataAcceptedContext: any;
+  portfolioJob: any;
+  setPortfolioJob: any;
 }
 
 export const DataMapContext = createContext<IcontextData>({} as IcontextData);
@@ -36,6 +39,9 @@ export const DataMapProvider = ({ children }: IdataChildren) => {
   const [itemMap, setItemMap] = useState<IdataState[]>([]);
   const [currentWindow, setCurrentWindow] = useState<string>("Desafios");
   const [currentJob, setCurrentJob] = useState<any>({});
+
+  const [portfolioJob, setPortfolioJob] = useState<any>({});
+
   const [dataAcceptedContext, setDataAcceptedContext] = useState<any>();
 
   return (
@@ -49,6 +55,8 @@ export const DataMapProvider = ({ children }: IdataChildren) => {
         setCurrentJob,
         dataAcceptedContext,
         setDataAcceptedContext,
+        portfolioJob,
+        setPortfolioJob,
       }}
     >
       {children}
