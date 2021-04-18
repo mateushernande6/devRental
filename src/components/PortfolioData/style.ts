@@ -17,7 +17,6 @@ export const List = styled.ul`
 export const Card = styled.li`
     color: #fff;
     margin-bottom: 2rem;
-  
   h3{
     margin-bottom: 0.2rem;
     span{
