@@ -130,12 +130,15 @@ export const DivUsuarioInfo = styled.div`
   margin-top: 5px;
 
   h2 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
     text-align: center;
     color: white;
     padding-bottom: 10px;
+    @media (max-width: 1200px) {
+      font-size: 1.5rem;
+    }
   }
   h3 {
     font-size: 1.5rem;
@@ -312,7 +315,7 @@ export const ContainerLogOut = styled.div`
   font-size: 30px;
   width: 100%;
   padding: 5px;
-  margin: 59px 0;
+  margin: 40px 0;
 
   @media (max-width: 850px) {
     display: none;
