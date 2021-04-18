@@ -71,7 +71,7 @@ export default function MenuMobile() {
     setAnchorEl(null);
   };
 
-  const { itemMap, setItemMap } = useContext(DataMapContext);
+  const { setItemMap } = useContext(DataMapContext);
   let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
   const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 

@@ -1,29 +1,35 @@
-import {Container} from './style'
-import {useEffect, useState} from "react";
-import api from "../../services";
+import { Container, DivTitle, Title, SubTitle, Text } from "./style";
 
 interface IAceptedWork {
-    title: string;
-    objective: string;
-    // description: string;
-    // tecnology: string[];
-    // reward: string;
-    // workDeadline: string;
+  title: string;
+  objective: string;
+  description: string;
+  tecnology: string[];
+  reward: string;
+  workDeadline: string;
 }
 interface IItem {
-    item: any;
+  item: IAceptedWork;
 }
 
-const AceptedWork = ({item}:IItem) => {
+const AceptedWork = ({ item }: IItem) => {
+  const { title, objective, description, reward } = item;
 
-    const {title, objective} = item
+  console.log("dataItem", item);
 
-    return (
+  return (
     <Container>
-        <h1>{title}</h1>
-        <h1>{objective}</h1>
+      <DivTitle>
+        <Title>{title}</Title>
+      </DivTitle>
+      <SubTitle>Objetivo:</SubTitle>
+      <Text>{objective}</Text>
+      <SubTitle>Descrição:</SubTitle>
+      <Text>{description}</Text>
+      <SubTitle>Recompensa:</SubTitle>
+      <Text>{reward}</Text>
     </Container>
-    );
+  );
 };
 
 export default AceptedWork;
