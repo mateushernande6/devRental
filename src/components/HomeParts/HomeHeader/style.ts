@@ -20,6 +20,9 @@ export const UpperContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    @media (max-width: 769px) {
+      width: inherit;
+    }
   }
 
   @media (min-width: 769px) {
