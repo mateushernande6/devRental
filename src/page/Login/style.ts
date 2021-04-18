@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import { FiCrosshair } from "react-icons/fi";
+
+export const FiCrosshairStyled = styled(FiCrosshair)`
+  animation: rotationIcon 2s linear infinite;
+
+  @keyframes rotationIcon {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 export const Container = styled.div`
   width: 100vw;
@@ -76,7 +90,8 @@ export const DivContent = styled.div`
   p {
     text-align: left;
     margin-top: 1rem;
-    margin-bottom: 3rem;
+    width: 26rem;
+    margin-bottom: 1rem;
     font-size: 1.5rem;
     font-family: "Montserrat", sans-serif;
     color: #f99292;
@@ -101,5 +116,6 @@ export const DivContent = styled.div`
     outline: none;
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
+    cursor: pointer;
   }
 `;

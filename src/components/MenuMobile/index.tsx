@@ -1,10 +1,13 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Menu, { MenuProps } from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import {
+  withStyles,
+  Button,
+  Menu,
+  MenuProps,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 import { DivModalMobile } from "./style";
 import {
   FiAlignRight,
@@ -57,6 +60,10 @@ interface Iuser {
 export default function MenuMobile() {
   const history = useHistory();
 
+  const { setItemMap, setCurrentWindow, setCurrentJob } = useContext(
+    DataMapContext
+  );
+
   const { setIsAuth } = useContext(AuthDashboardContext);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -68,12 +75,13 @@ export default function MenuMobile() {
     setAnchorEl(null);
   };
 
-  const { itemMap, setItemMap } = useContext(DataMapContext);
+  // const { setItemMap } = useContext(DataMapContext);
   let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
   const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
   const desafiosMenu: any = () => {
-    console.log("Desafios");
+    setCurrentWindow("Desafios");
+
     api
       .get(`jobs`, {
         headers: { Authorization: `Bearer ${user}` },
@@ -85,27 +93,19 @@ export default function MenuMobile() {
   };
 
   const aceitosMenu: any = () => {
-    console.log("Projetos aceitos");
+    setCurrentWindow("Desafios aceitos");
+
+    let step1 = localStorage.getItem("acceptedId") || "";
+
+    const { acceptedId } = JSON.parse(step1);
 
     api
-      .get(`accepted/?userId=${idUser}`, {
+      .get(`/jobs/${acceptedId}/`, {
         headers: { Authorization: `Bearer ${user}` },
       })
       .then((response) => {
-        setItemMap(response.data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const portfolioMenu: any = () => {
-    console.log("Portfolio");
-
-    api
-      .get(`portfolio/?userId=${idUser}`, {
-        headers: { Authorization: `Bearer ${user}` },
-      })
-      .then((response) => {
-        setItemMap(response.data);
+        setCurrentJob(response.data);
+        console.log(response.data);
       })
       .catch((err) => console.log(err));
   };
@@ -145,12 +145,6 @@ export default function MenuMobile() {
             <FiBarChart fontSize="2.7rem" />
           </ListItemIcon>
           <ListItemText primary="Projetos aceitos" />
-        </StyledMenuItem>
-        <StyledMenuItem onClick={portfolioMenu}>
-          <ListItemIcon>
-            <FiCoffee fontSize="2.7rem" />
-          </ListItemIcon>
-          <ListItemText primary="Portfolio" />
         </StyledMenuItem>
         <StyledMenuItem onClick={handleLogOut}>
           <ListItemIcon>

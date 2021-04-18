@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import { FiCrosshair } from "react-icons/fi";
+
+export const FiCrosshairStyled = styled(FiCrosshair)`
+  animation: rotationIcon 2s linear infinite;
+
+  @keyframes rotationIcon {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 export const Container = styled.div`
   height: 100vh;
@@ -49,6 +63,7 @@ export const InfoContainer = styled.div`
     text-align: left;
     margin-bottom: 1rem;
     font-size: 1.5rem;
+    width: 26rem;
     font-family: "Montserrat", sans-serif;
     color: #f99292;
   }
@@ -75,9 +90,10 @@ export const InfoContainer = styled.div`
     margin-top: 1.5rem;
   }
   Button {
-    margin: 1rem 0 1rem 0;
+    @media (max-width: 817px) {
+      width: 24.5rem;
+    }
   }
-  //width: 50%;
 `;
 
 export const SvgContainer = styled.div`
@@ -87,8 +103,6 @@ export const SvgContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 50%; */
-  /* background-color: red; */
   height: 100%;
 
   img {

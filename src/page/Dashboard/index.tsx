@@ -1,34 +1,24 @@
-import ItensMenu from "../../components/ItensMenu";
+import ItensMenu from "../../components/DashboardParts/Common/ItensMenu";
 import {
   Container,
   DivSection,
   DivMenu,
   DivAside,
   DivMain,
+  DivMessage,
   ContainerCard,
-  DivMenuMobile,
-  Logo,
-  DivDataUser,
-  ContainerUsuario,
-  DivIconUser,
-  DivUsuarioInfo,
-  Tecs,
-  ContainerTecs,
-  BsPeopleCircleStyled,
 } from "./style";
-import Card from "../../components/Cards";
+import Card from "../../components/DashboardParts/Common/Cards";
 import api from "../../services";
 import { useEffect, useState, useContext } from "react";
-import Button from "../../components/Atoms/Button";
-import ModalComponents from "../../components/Modal";
-import NewWork from "../../components/newWork";
-import { ComponentDev } from "../../components/ComponentDev";
+import { ComponentDev } from "../../components/DashboardParts/Dev/ComponentDev";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 import { DataMapContext } from "../../Provider/DataMap";
-import { ComponentEmp } from "../../components/ComponentEmp";
-import { BsPeopleCircle, BsCode } from "react-icons/bs";
-import DeleteTech from "../../components/DeleteTech";
+import { ComponentEmp } from "../../components/DashboardParts/Company/ComponentEmp";
 import { DataUser } from "../../Provider/DataUser";
+import { motion } from "framer-motion";
+import AceptedWork from "../../components/AceptedWork";
+import PortfolioData from "../../components/PortfolioData";
 
 interface Iuser {
   token: string;
@@ -44,6 +34,8 @@ interface IdataCard {
   buttonBotton: string;
   buttonExcluir: string;
   buttonTop: string;
+  acceptedId: number;
+  users: string[];
 }
 
 interface ITech {
@@ -53,9 +45,15 @@ interface ITech {
 }
 
 const Dashboard = () => {
-  const { valueState, setValueState } = useContext(AuthDashboardContext);
-  const { itemMap, setItemMap } = useContext(DataMapContext);
-  const { dataUser, setDataUser } = useContext(DataUser);
+  const { setValueState } = useContext(AuthDashboardContext);
+  const {
+    itemMap,
+    setItemMap,
+    currentWindow,
+    currentJob,
+    portfolioJob,
+  } = useContext(DataMapContext);
+  const { setDataUser } = useContext(DataUser);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -64,8 +62,6 @@ const Dashboard = () => {
 
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
-
-  const id = JSON.parse(localStorage.getItem("userId") ?? "");
 
   useEffect(() => {
     setdataCardMap(itemMap);
@@ -146,38 +142,6 @@ const Dashboard = () => {
   return (
     <Container>
       <DivAside>
-        {/* <DivMenuMobile>
-          <Logo src="./assets/devRental.png" />
-          <MenuMobile />
-        </DivMenuMobile>
-        <DivDataUser>
-          <ContainerUsuario>
-            <DivIconUser>
-              <BsPeopleCircleStyled size={48} />
-            </DivIconUser>
-            <DivUsuarioInfo>
-              <h2>{name}</h2>
-              <h3>{email}</h3>
-            </DivUsuarioInfo>
-          </ContainerUsuario>
-          <ContainerTecs>
-            {tech
-              .filter((element) => {
-                return element.userId == id;
-              })
-              .map((element) => {
-                return (
-                  <Tecs>
-                    <div className="icon">
-                      <BsCode />
-                    </div>
-                    {element.name}
-                    <DeleteTech id={element.id} getTechs={getTechs} />
-                  </Tecs>
-                );
-              })}
-          </ContainerTecs>
-        </DivDataUser> */}
         {category === "dev" ? <ComponentDev /> : <ComponentEmp />}
       </DivAside>
       <DivMain>
@@ -185,23 +149,57 @@ const Dashboard = () => {
           <DivMenu>
             {category === "dev" ? (
               <>
-                <ItensMenu text="Desafios" fun={() => console.log("aqui")} />
+                <ItensMenu text="Desafios" fun={() => {}} />
                 <ItensMenu text="Projetos aceitos" fun={() => {}} />
-                <ItensMenu text="Portfolio" fun={() => console.log("aqui")} />
+                <ItensMenu text="Portfolio" fun={() => {}} />
               </>
             ) : (
               <>
-                <ItensMenu
-                  text="Desafios ativos"
-                  fun={() => console.log("aqui")}
-                />
+                <ItensMenu text="Desafios ativos" fun={() => {}} />
               </>
             )}
           </DivMenu>
           <ContainerCard>
-            {dataCardMap.map((ele, index) => (
-              <Card key={index} title={ele.title} dataCardObj={ele} />
-            ))}
+            {currentWindow === "Desafios" &&
+              dataCardMap.map((ele, index) => (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7 }}
+                >
+                  <Card key={index} title={ele.title} dataCardObj={ele} />
+                </motion.div>
+              ))}
+
+            {currentWindow === "Desafios aceitos" && (
+              <>
+                {!!currentJob.title ? (
+                  <AceptedWork item={currentJob} />
+                ) : (
+                  <DivMessage>"Não tem desafio aceito !"</DivMessage>
+                )}
+              </>
+            )}
+
+            {currentWindow === "Portfolio" && (
+                <PortfolioData />
+            )}
+
+            {currentWindow === "Campany" && (
+              <>
+                {dataCardMap.map((ele, index) => (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.7 }}
+                  >
+                    <Card key={index} title={ele.title} dataCardObj={ele} />
+                  </motion.div>
+                ))}
+              </>
+            )}
           </ContainerCard>
         </DivSection>
       </DivMain>

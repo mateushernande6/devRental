@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { BsPeopleCircle } from "react-icons/bs";
 
 interface IPhoto {
   tst?: any;
@@ -26,7 +25,6 @@ export const DivSection = styled.div`
   @media (max-width: 850px) {
     height: 64vh;
     margin-bottom: 10px;
-    /* height: 70%; */
   }
 `;
 
@@ -34,7 +32,6 @@ export const Tecs = styled.div`
   width: 210px;
   height: 39px;
   border-radius: 5px;
-  /* background: #575a9e; */
   background: #424472;
   display: flex;
   align-items: center;
@@ -58,32 +55,12 @@ export const Tecs = styled.div`
   }
 `;
 
-export const BsPeopleCircleStyled = styled(BsPeopleCircle)``;
-
 export const DivTechsMobile = styled.div`
   display: none;
 
   @media (max-width: 850px) {
     display: flex;
     width: 90%;
-  }
-`;
-
-export const Logo = styled.img`
-  width: 217px;
-`;
-
-export const DivDataUser = styled.div`
-  background-color: rgb(20, 20, 43, 0.64);
-  margin: -4px 0;
-  width: 100%;
-  height: 395px;
-  display: none;
-
-  @media (max-width: 850px) {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
   }
 `;
 
@@ -108,27 +85,11 @@ export const ContainerCard = styled.div`
   ::-webkit-scrollbar {
     width: 6px;
     border-radius: 0 8px 8px 0;
-
-    /* background-image: linear-gradient(#212040, #21203e); */
   }
+
   ::-webkit-scrollbar-thumb {
     background: #3a3864;
     border-radius: 5px;
-  }
-`;
-
-export const DivMenuMobile = styled.div`
-  display: none;
-  background-color: rgb(20, 20, 43, 0.64);
-  width: 100%;
-  margin-bottom: 15px;
-  height: 400px;
-
-  @media (max-width: 850px) {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 217px;
   }
 `;
 
@@ -170,24 +131,9 @@ export const DivAside = styled.div`
   align-items: center;
 
   @media (max-width: 850px) {
-    /* display: none; */
     width: 100%;
     flex-direction: column;
-    /* background-color: aqua; */
     height: 30%;
-  }
-`;
-
-export const ContainerUsuario = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-around;
-  width: 170px;
-  margin-bottom: 15px;
-
-  div {
-    font-size: 60px;
-    color: white;
   }
 `;
 
@@ -226,7 +172,6 @@ export const ContainerTecs = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* padding: 1rem; */
   overflow-y: auto;
   margin-top: 10px;
 
@@ -242,8 +187,6 @@ export const ContainerTecs = styled.div`
   ::-webkit-scrollbar {
     width: 6px;
     border-radius: 0 8px 8px 0;
-
-    /* background-image: linear-gradient(#212040, #21203e); */
   }
   ::-webkit-scrollbar-thumb {
     background: #3a3864;
@@ -282,4 +225,10 @@ export const PhotoProfile = styled.div<IPhoto>`
       background-color: rgba(0, 0, 0, 0.5);
     }
   }
+`;
+
+export const DivMessage = styled.div`
+  color: #fff;
+  font-size: 2.3rem;
+  margin-top: 55px;
 `;

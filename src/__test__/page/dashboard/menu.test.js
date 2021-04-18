@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { RegisterTech } from "../../../components/RegisterTech";
+import { RegisterTech } from "../../../components/DashboardParts/Dev/RegisterTech";
 
 const mockFuncSubmit = jest.fn();
 

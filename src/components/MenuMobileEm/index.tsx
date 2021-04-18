@@ -1,23 +1,18 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Menu, { MenuProps } from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import {
+  withStyles,
+  Button,
+  Menu,
+  MenuProps,
+  MenuItem,
+  ListItemIcon,
+  ListItemText,
+} from "@material-ui/core";
 import { DivModalMobile } from "./style";
 
-import {
-  FiAlignRight,
-  FiBarChart,
-  FiClipboard,
-  FiCoffee,
-  FiLogOut,
-} from "react-icons/fi";
-import api from "../../services";
+import { FiAlignRight, FiLogOut } from "react-icons/fi";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
-import { DataMapContext } from "../../Provider/DataMap";
 import { AuthDashboardContext } from "../../Provider/AuthDashboard";
 
 const StyledMenu = withStyles({
