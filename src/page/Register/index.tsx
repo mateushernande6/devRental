@@ -164,7 +164,7 @@ const Register = () => {
 
               <Button
                 height={4.7}
-                width={24.5}
+                width={26.3}
                 color={"#fff"}
                 text={!viewIcon ? "Register" : <FiCrosshairStyled size={26} />}
                 background={"#fc923f"}

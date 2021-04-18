@@ -90,7 +90,8 @@ export const DivContent = styled.div`
   p {
     text-align: left;
     margin-top: 1rem;
-    margin-bottom: 3rem;
+    width: 26rem;
+    margin-bottom: 1rem;
     font-size: 1.5rem;
     font-family: "Montserrat", sans-serif;
     color: #f99292;

@@ -63,7 +63,7 @@ export const InfoContainer = styled.div`
     text-align: left;
     margin-bottom: 1rem;
     font-size: 1.5rem;
-    width: 238px;
+    width: 26rem;
     font-family: "Montserrat", sans-serif;
     color: #f99292;
   }
@@ -90,8 +90,8 @@ export const InfoContainer = styled.div`
     margin-top: 1.5rem;
   }
   Button {
-    @media (min-width: 817px) {
-      width: 26.5rem;
+    @media (max-width: 817px) {
+      width: 24.5rem;
     }
   }
 `;
