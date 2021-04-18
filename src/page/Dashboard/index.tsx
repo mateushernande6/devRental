@@ -18,6 +18,7 @@ import { ComponentEmp } from "../../components/DashboardParts/Company/ComponentE
 import { DataUser } from "../../Provider/DataUser";
 import { motion } from "framer-motion";
 import AceptedWork from "../../components/AceptedWork";
+import PortfolioData from "../../components/PortfolioData";
 
 interface Iuser {
   token: string;
@@ -45,9 +46,13 @@ interface ITech {
 
 const Dashboard = () => {
   const { setValueState } = useContext(AuthDashboardContext);
-  const { itemMap, setItemMap, currentWindow, currentJob } = useContext(
-    DataMapContext
-  );
+  const {
+    itemMap,
+    setItemMap,
+    currentWindow,
+    currentJob,
+    portfolioJob,
+  } = useContext(DataMapContext);
   const { setDataUser } = useContext(DataUser);
 
   const [name, setName] = useState("");
@@ -146,7 +151,7 @@ const Dashboard = () => {
               <>
                 <ItensMenu text="Desafios" fun={() => {}} />
                 <ItensMenu text="Projetos aceitos" fun={() => {}} />
-                {/* <ItensMenu text="Portfolio" fun={() => {}} /> */}
+                <ItensMenu text="Portfolio" fun={() => {}} />
               </>
             ) : (
               <>
@@ -169,7 +174,7 @@ const Dashboard = () => {
 
             {currentWindow === "Desafios aceitos" && (
               <>
-                {Object.entries(currentJob).length !== 0 ? (
+                {!!currentJob.title ? (
                   <AceptedWork item={currentJob} />
                 ) : (
                   <DivMessage>"Não tem desafio aceito !"</DivMessage>
