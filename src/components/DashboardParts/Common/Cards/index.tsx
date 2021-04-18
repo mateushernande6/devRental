@@ -12,6 +12,7 @@ import {
   FiCoffee,
 } from "react-icons/fi";
 import api from "../../../../services";
+import { DataMapContext } from "../../../../Provider/DataMap";
 
 interface IitensData {
   title: string;
@@ -38,6 +39,8 @@ const Card = ({ title, dataCardObj }: Props) => {
 
   const { dataUser } = useContext(DataUser);
 
+  const { setDataAcceptedContext } = useContext(DataMapContext);
+
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("token") ?? "");
 
@@ -47,6 +50,7 @@ const Card = ({ title, dataCardObj }: Props) => {
       })
       .then((response) => {
         setDataAccepted(response.data);
+        setDataAcceptedContext(response.data);
       })
       .catch((err) => {
         console.log(err);

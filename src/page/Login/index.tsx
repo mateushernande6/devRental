@@ -7,7 +7,7 @@ import {
 } from "./style";
 import Input from "../../components/Reusables/Input";
 import Button from "../../components/Reusables/Button";
-
+import { DataMapContext } from "../../Provider/DataMap";
 import api from "../../services";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -40,7 +40,7 @@ const schema = yup.object().shape({
 
 const Login = () => {
   const { setIsAuth } = useContext(AuthDashboardContext);
-
+  const { setCurrentWindow } = useContext(DataMapContext);
   const [error, setError] = useState(false);
   const [valid, setValid] = useState(false);
 
@@ -69,6 +69,7 @@ const Login = () => {
         );
         let { sub } = jwt_decode<string>(response.data.accessToken);
         localStorage.setItem("userId", JSON.stringify(sub));
+        setCurrentWindow("Campany");
         setValid(true);
         setIsAuth(true);
         history.push("/dashboard");

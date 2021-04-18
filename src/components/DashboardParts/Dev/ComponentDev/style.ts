@@ -28,7 +28,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* background-color: green; */
 
   @media (max-width: 850px) {
     height: 30vh;
@@ -148,7 +147,6 @@ export const DivUsuarioInfo = styled.div`
 `;
 
 export const BlockTecs = styled.div`
-  /* height: 500px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -181,7 +179,6 @@ export const InfoTecs = styled.div`
 `;
 
 export const DivPlus = styled.div`
-  /* border: solid 2px white; */
   background-color: #424472;
   border-radius: 5px;
   color: white;
@@ -242,7 +239,6 @@ export const ContainerTecs = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  /* padding: 1rem; */
   overflow-y: auto;
   margin-top: 10px;
 
@@ -263,8 +259,6 @@ export const ContainerTecs = styled.div`
   ::-webkit-scrollbar {
     width: 6px;
     border-radius: 0 8px 8px 0;
-
-    /* background-image: linear-gradient(#212040, #21203e); */
   }
   ::-webkit-scrollbar-thumb {
     background: #3a3864;
@@ -334,13 +328,11 @@ export const ContainerLogOut = styled.div`
     font-weight: 300;
     text-align: center;
     color: white;
-    /* margin-left: 12px; */
   }
 
   .Sair {
     font-size: 30px;
     color: white;
-    /* margin-left: 20px; */
   }
 `;
 

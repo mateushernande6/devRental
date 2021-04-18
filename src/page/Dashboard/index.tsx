@@ -5,6 +5,7 @@ import {
   DivMenu,
   DivAside,
   DivMain,
+  DivMessage,
   ContainerCard,
 } from "./style";
 import Card from "../../components/DashboardParts/Common/Cards";
@@ -43,9 +44,11 @@ interface ITech {
 }
 
 const Dashboard = () => {
-  const { valueState, setValueState } = useContext(AuthDashboardContext);
-  const { itemMap, setItemMap, currentWindow, setCurrentWindow, currentJob } = useContext(DataMapContext);
-  const { dataUser, setDataUser } = useContext(DataUser);
+  const { setValueState } = useContext(AuthDashboardContext);
+  const { itemMap, setItemMap, currentWindow, currentJob } = useContext(
+    DataMapContext
+  );
+  const { setDataUser } = useContext(DataUser);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -54,8 +57,6 @@ const Dashboard = () => {
 
   const [dataCardMap, setdataCardMap] = useState<IdataCard[]>([]);
   const [category, setCategory] = useState<string>("");
-
-  const id = JSON.parse(localStorage.getItem("userId") ?? "");
 
   useEffect(() => {
     setdataCardMap(itemMap);
@@ -145,7 +146,7 @@ const Dashboard = () => {
               <>
                 <ItensMenu text="Desafios" fun={() => {}} />
                 <ItensMenu text="Projetos aceitos" fun={() => {}} />
-                <ItensMenu text="Portfolio" fun={() => {}} />
+                {/* <ItensMenu text="Portfolio" fun={() => {}} /> */}
               </>
             ) : (
               <>
@@ -154,25 +155,42 @@ const Dashboard = () => {
             )}
           </DivMenu>
           <ContainerCard>
+            {currentWindow === "Desafios" &&
+              dataCardMap.map((ele, index) => (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7 }}
+                >
+                  <Card key={index} title={ele.title} dataCardObj={ele} />
+                </motion.div>
+              ))}
 
-            {currentWindow === 'Desafios' &&  dataCardMap.map((ele, index) => (
+            {currentWindow === "Desafios aceitos" && (
+              <>
+                {Object.entries(currentJob).length !== 0 ? (
+                  <AceptedWork item={currentJob} />
+                ) : (
+                  <DivMessage>"Não tem desafio aceito !"</DivMessage>
+                )}
+              </>
+            )}
+
+            {currentWindow === "Campany" && (
+              <>
+                {dataCardMap.map((ele, index) => (
                   <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.7 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.7 }}
                   >
                     <Card key={index} title={ele.title} dataCardObj={ele} />
                   </motion.div>
-              ))}
-
-            {currentWindow === 'Desafios aceitos' &&
-            <>
-              {console.log(currentJob)}
-            <AceptedWork item={currentJob}/>
-            </>
-            }
-
+                ))}
+              </>
+            )}
           </ContainerCard>
         </DivSection>
       </DivMain>

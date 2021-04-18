@@ -1,4 +1,4 @@
-import { ReactNode, MouseEventHandler, useState, useEffect } from "react";
+import { ReactNode, MouseEventHandler } from "react";
 import { Container } from "./style";
 import api from "../../../../services";
 import { useContext } from "react";
@@ -15,12 +15,14 @@ interface Iuser {
 }
 
 const ItensMenu = ({ text }: IPropsItensMenu) => {
-  const { itemMap, setItemMap, setCurrentWindow, setCurrentJob } = useContext(DataMapContext);
+  const { setItemMap, setCurrentWindow, setCurrentJob } = useContext(
+    DataMapContext
+  );
   let user: Iuser = JSON.parse(localStorage.getItem("token") ?? "");
   const idUser = JSON.parse(localStorage.getItem("userId") ?? "");
 
   const desafiosMenu: any = () => {
-    setCurrentWindow('Desafios')
+    setCurrentWindow("Desafios");
 
     api
       .get(`jobs`, {
@@ -33,29 +35,25 @@ const ItensMenu = ({ text }: IPropsItensMenu) => {
   };
 
   const AceitosMenu: any = () => {
-    setCurrentWindow('Desafios aceitos')
+    setCurrentWindow("Desafios aceitos");
 
     let step1 = localStorage.getItem("acceptedId") || "";
 
-    const {acceptedId} = JSON.parse(step1);
+    const { acceptedId } = JSON.parse(step1);
 
-    async function fetchData() {
-     await api.get(`/jobs/${acceptedId}/`, {
-            headers: {Authorization: `Bearer ${user}`},
-          })
-          .then((response) => {
-            setCurrentJob([response.data]);
-          })
-          .catch((err) => console.log(err));
-      return null
-    };
-    fetchData()
-
-  }
-
+    api
+      .get(`/jobs/${acceptedId}/`, {
+        headers: { Authorization: `Bearer ${user}` },
+      })
+      .then((response) => {
+        setCurrentJob(response.data);
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   const portfolioMenu: any = () => {
-    setCurrentWindow('Portfolio')
+    setCurrentWindow("Portfolio");
 
     api
       .get(`portfolio/?userId=${idUser}`, {
