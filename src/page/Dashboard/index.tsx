@@ -182,6 +182,10 @@ const Dashboard = () => {
               </>
             )}
 
+            {currentWindow === "Portfolio" && (
+                <PortfolioData />
+            )}
+
             {currentWindow === "Campany" && (
               <>
                 {dataCardMap.map((ele, index) => (
